@@ -1,0 +1,2012 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PS Care — UI Mockup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --p: #14a269; --p-dark: #064a2e; --p-light: #e9f7f1; --p-hover: #108a58;
+      --sky: #5bb8e8; --sky-light: #e5f4fc;
+      --lav: #b8a9e8; --lav-light: #f3effe;
+      --coral: #f4a07a; --coral-light: #fef0e8;
+      --bg: #f6faf8; --surface: #fff; --border: #d8e8e0;
+      --text: #1a2e28; --muted: #5c7268;
+      --sidebar-w: 240px;
+      --radius: 12px;
+      --shadow: 0 2px 12px rgba(26,46,40,.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Prompt, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* ── LANDING ── */
+    #landing {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 24px; background: linear-gradient(160deg, #042a1a 0%, #064a2e 40%, #0a6844 100%);
+    }
+    .landing-card {
+      background: var(--surface); border-radius: 20px; padding: 40px 44px;
+      max-width: 1080px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+    .modules-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--p), #0d8a55);
+      color: white; font-size: .85rem; font-weight: 700; padding: 8px 20px;
+      border-radius: 24px; letter-spacing: .5px; margin-bottom: 16px;
+    }
+    .compare-strip {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;
+      margin-bottom: 28px; padding: 16px; background: var(--p-light); border-radius: var(--radius);
+      border: 1px solid #c8e8d8;
+    }
+    .compare-item {
+      text-align: center; font-size: .72rem; color: var(--p-dark); font-weight: 500; line-height: 1.35;
+    }
+    .compare-item .ico { display: flex; align-items: center; justify-content: center; margin-bottom: 6px; color: var(--p); }
+    .compare-item .ico svg { width: 22px; height: 22px; stroke-width: 2; }
+    .compare-item strong { display: block; font-size: .78rem; margin-bottom: 2px; }
+    .module-map {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px;
+      margin-bottom: 28px;
+    }
+    .module-map-item {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+      padding: 10px 12px; font-size: .72rem; color: var(--muted); text-align: center;
+    }
+    .module-map-item strong { display: block; color: var(--p-dark); font-size: .78rem; margin-bottom: 2px; }
+    .role-mod-count {
+      display: inline-block; margin-top: 6px; background: var(--p); color: white;
+      font-size: .68rem; font-weight: 600; padding: 2px 8px; border-radius: 10px;
+    }
+    .landing-header { text-align: center; margin-bottom: 32px; }
+    .landing-header img { width: 72px; height: 72px; border-radius: 50%; border: 3px solid var(--p-light); margin-bottom: 12px; }
+    .landing-header h1 { font-size: 1.6rem; font-weight: 700; color: var(--p-dark); }
+    .landing-header p { color: var(--muted); font-size: .95rem; margin-top: 4px; }
+    .landing-header .demo-badge {
+      display: inline-block; margin-top: 10px; background: var(--p-light); color: var(--p-dark);
+      font-size: .75rem; font-weight: 600; padding: 4px 14px; border-radius: 20px;
+    }
+    .landing-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 6px; }
+    .landing-sub { font-size: .85rem; color: var(--muted); margin-bottom: 20px; }
+    .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media (max-width: 768px) { .role-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .role-grid { grid-template-columns: 1fr; } }
+    .role-card {
+      border: 2px solid var(--border); border-radius: var(--radius); padding: 16px;
+      cursor: pointer; transition: all .2s; background: var(--surface);
+      display: flex; gap: 14px; align-items: flex-start; text-align: left;
+    }
+    .role-card:hover { border-color: var(--p); background: var(--p-light); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .role-card .icon {
+      width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; color: var(--p-dark);
+    }
+    .role-card .icon svg { width: 22px; height: 22px; stroke-width: 2; }
+    .role-card h3 { font-size: .95rem; font-weight: 600; margin-bottom: 2px; }
+    .role-card .en { font-size: .72rem; color: var(--muted); font-weight: 500; margin-bottom: 4px; }
+    .role-card p { font-size: .78rem; color: var(--muted); line-height: 1.4; }
+    .role-card.admin .icon { background: var(--p-light); }
+    .role-card.admin .icon { background: var(--p-light); }
+    .role-card.caregiver .icon { background: #e8f9f5; }
+    .role-card.hr .icon { background: var(--lav-light); }
+    .role-card.customer .icon { background: var(--sky-light); }
+    .role-card.full { grid-column: span 1; }
+    .landing-footer { text-align: center; margin-top: 24px; font-size: .75rem; color: var(--muted); }
+
+    /* ── APP SHELL ── */
+    #app { display: none; min-height: 100vh; }
+    #app.active { display: flex; }
+    .sidebar {
+      width: var(--sidebar-w);
+      background: #fff;
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; flex-shrink: 0; position: fixed; top: 0; left: 0;
+      bottom: 0; z-index: 100; transition: transform .3s;
+      box-shadow: 2px 0 16px rgba(26,46,40,.06);
+    }
+    .sidebar-brand {
+      padding: 18px 16px;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sidebar-brand img {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 2px solid #c8e8d8; background: var(--p-light);
+      object-fit: cover;
+    }
+    .sidebar-brand .name { font-weight: 700; font-size: .9rem; color: var(--p-dark); line-height: 1.2; }
+    .sidebar-brand .role-label { font-size: .7rem; color: var(--muted); margin-top: 2px; }
+    .sidebar-nav { flex: 1; padding: 12px 10px; overflow-y: auto; }
+    .nav-item {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      border-radius: 8px; cursor: pointer; font-size: .88rem;
+      color: var(--muted);
+      margin-bottom: 2px; transition: all .15s; border: none; background: none; width: 100%; text-align: left;
+      font-family: inherit;
+    }
+    .nav-item:hover { background: var(--p-light); color: var(--p-dark); }
+    .nav-item.active {
+      background: var(--p-light); color: var(--p-dark); font-weight: 600;
+      box-shadow: inset 3px 0 0 var(--p);
+    }
+    .nav-item .ico { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-item .ico svg { width: 18px; height: 18px; stroke-width: 2; color: var(--p); }
+    .nav-group-label {
+      font-size: .65rem; font-weight: 700; color: var(--muted); letter-spacing: .08em;
+      padding: 14px 14px 6px; text-transform: uppercase;
+    }
+    .nav-group-label:first-child { padding-top: 4px; }
+    .highlight-banner {
+      background: linear-gradient(135deg, #064a2e 0%, var(--p) 50%, #1bc87a 100%);
+      color: white; border-radius: var(--radius); padding: 18px 24px; margin-bottom: 24px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      box-shadow: 0 4px 20px rgba(20,162,105,.25);
+    }
+    .highlight-banner h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .highlight-banner p { font-size: .82rem; opacity: .92; }
+    .highlight-banner .vs-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .highlight-banner .vs-tag {
+      background: rgba(255,255,255,.18); padding: 4px 10px; border-radius: 16px;
+      font-size: .72rem; font-weight: 500; backdrop-filter: blur(4px);
+    }
+    .rec-card {
+      border: 2px solid var(--p); border-radius: var(--radius); padding: 16px 18px;
+      background: linear-gradient(135deg, var(--p-light), #fff); margin-bottom: 12px;
+      position: relative;
+    }
+    .rec-card.rank-1 { border-color: #f5b84a; background: linear-gradient(135deg, #fef6e6, #fff); }
+    .rec-card .rank-badge {
+      position: absolute; top: -10px; right: 16px; background: var(--p); color: white;
+      font-size: .7rem; font-weight: 700; padding: 3px 10px; border-radius: 12px;
+    }
+    .rec-card.rank-1 .rank-badge { background: #e8a020; }
+    .rec-card .score-bar {
+      height: 8px; background: #dceee6; border-radius: 4px; margin-top: 8px; overflow: hidden;
+    }
+    .rec-card .score-fill { height: 100%; background: var(--p); border-radius: 4px; }
+    .rec-card.rank-1 .score-fill { background: #e8a020; }
+    .rec-card .score-val { font-size: 1.4rem; font-weight: 700; color: var(--p); }
+    .rec-card.rank-1 .score-val { color: #c08010; }
+    .rec-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; font-size: .75rem; color: var(--muted); }
+    .rec-meta span { background: var(--bg); padding: 3px 8px; border-radius: 6px; }
+    .workflow-columns {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 16px;
+      overflow-x: auto;
+    }
+    .wf-col {
+      background: var(--bg); border-radius: var(--radius); min-width: 180px; padding: 12px;
+    }
+    .wf-col-head {
+      font-size: .78rem; font-weight: 700; color: var(--p-dark); margin-bottom: 10px;
+      padding-bottom: 8px; border-bottom: 2px solid var(--p); text-align: center;
+    }
+    .wf-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 10px 12px; margin-bottom: 8px; font-size: .78rem; cursor: pointer;
+      transition: all .15s;
+    }
+    .wf-card:hover { border-color: var(--p); box-shadow: var(--shadow); }
+    .wf-card .name { font-weight: 600; margin-bottom: 2px; }
+    .wf-card .sub { color: var(--muted); font-size: .7rem; }
+    .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; padding: 16px 20px; }
+    .detail-item { font-size: .82rem; }
+    .detail-item .lbl { color: var(--muted); font-size: .72rem; margin-bottom: 2px; }
+    .detail-item .val { font-weight: 600; }
+    .adl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; padding: 0 20px 16px; }
+    .adl-item {
+      text-align: center; padding: 10px; background: var(--bg); border-radius: 8px; font-size: .75rem;
+    }
+    .adl-item > div:first-child { display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 4px; }
+    .adl-item .lvl { font-size: 1.1rem; font-weight: 700; color: var(--p); }
+    .timeline-list { padding: 12px 20px; }
+    .timeline-item {
+      display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid #eef5f2; font-size: .85rem;
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-date {
+      min-width: 72px; font-weight: 700; color: var(--p-dark); font-size: .78rem;
+    }
+    .photo-thumb {
+      width: 48px; height: 48px; border-radius: 8px; background: #dceee6;
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+    }
+    .quiz-q {
+      padding: 16px 20px; border-bottom: 1px solid var(--border); font-size: .85rem;
+    }
+    .quiz-q:last-child { border-bottom: none; }
+    .quiz-opt {
+      display: block; margin: 6px 0 0 20px; padding: 6px 10px; background: var(--bg);
+      border-radius: 6px; font-size: .82rem; cursor: pointer;
+    }
+    .quiz-opt:hover { background: var(--p-light); }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; padding: 16px 20px; }
+    .video-item {
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--surface);
+    }
+    .video-thumb {
+      height: 100px; background: linear-gradient(135deg, var(--p-light), #dceee6);
+      display: flex; align-items: center; justify-content: center; font-size: 2rem;
+    }
+    .video-info { padding: 10px 12px; font-size: .78rem; }
+    .video-info h4 { font-size: .82rem; margin-bottom: 4px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: .78rem; font-weight: 600; margin-bottom: 4px; color: var(--muted); }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px;
+      font-family: inherit; font-size: .85rem; background: var(--bg);
+    }
+    .doc-list { padding: 12px 20px; }
+    .doc-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid #eef5f2; font-size: .85rem;
+    }
+    .doc-item:last-child { border-bottom: none; }
+    .chart-line-wrap { padding: 16px 20px 8px; height: 160px; display: flex; align-items: flex-end; gap: 6px; }
+    .chart-line-bar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .chart-line-bar .bar { width: 100%; border-radius: 4px 4px 0 0; min-height: 4px; }
+    .chart-line-bar .bar.rev { background: linear-gradient(180deg, #3fbd87, var(--p)); }
+    .chart-line-bar .bar.cas { background: linear-gradient(180deg, var(--sky), #2a8ab8); opacity: .7; }
+    .chart-legend { display: flex; gap: 16px; padding: 0 20px 14px; font-size: .72rem; color: var(--muted); }
+    .chart-legend span::before { content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+    .chart-legend .rev::before { background: var(--p); }
+    .chart-legend .cas::before { background: var(--sky); }
+    .otp-boxes { display: flex; gap: 8px; justify-content: center; margin: 16px 0; }
+    .otp-box {
+      width: 44px; height: 52px; border: 2px solid var(--border); border-radius: 10px;
+      text-align: center; font-size: 1.4rem; font-weight: 700; background: var(--bg);
+    }
+    .otp-box.filled { border-color: var(--p); background: var(--p-light); color: var(--p-dark); }
+    .link-box {
+      background: var(--bg); border: 1px dashed var(--p); border-radius: 8px; padding: 12px 16px;
+      font-size: .78rem; font-family: monospace; color: var(--p-dark); word-break: break-all;
+    }
+    .pie-mock {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: conic-gradient(var(--p) 0% 45%, var(--sky) 45% 70%, var(--lav) 70% 85%, var(--coral) 85% 100%);
+      margin: 0 auto;
+    }
+    .sidebar-footer { padding: 12px; border-top: 1px solid var(--border); }
+    .btn-back {
+      width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--bg); color: var(--muted); font-family: inherit; font-size: .82rem;
+      cursor: pointer; transition: all .15s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-back svg { width: 16px; height: 16px; }
+    .btn-back:hover { border-color: var(--p); color: var(--p-dark); background: var(--p-light); }
+
+    .main {
+      flex: 1; margin-left: var(--sidebar-w); min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+      box-shadow: 0 1px 8px rgba(26,46,40,.05);
+    }
+    .topbar-left {
+      display: flex; align-items: center; gap: 12px; min-width: 0;
+    }
+    .topbar-titles { min-width: 0; }
+    .topbar h2 { font-size: 1.1rem; font-weight: 600; color: var(--p-dark); line-height: 1.25; }
+    .topbar .sub { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+    .topbar-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .topbar .demo-badge {
+      background: var(--p-light) !important; color: var(--p-dark) !important;
+      border: 1px solid #c8e8d8 !important;
+      font-size: .7rem; padding: 4px 10px; border-radius: 20px; font-weight: 600;
+    }
+    .user-chip {
+      display: flex; align-items: center; gap: 8px; background: var(--p-light);
+      padding: 6px 12px; border-radius: 20px; font-size: .8rem; font-weight: 500; color: var(--p-dark);
+      border: 1px solid #c8e8d8;
+    }
+    .user-chip .avatar {
+      width: 28px; height: 28px; border-radius: 50%; background: var(--p); color: white;
+      display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 700;
+    }
+    .menu-toggle {
+      display: none; background: none; border: none; cursor: pointer; color: var(--p-dark);
+      padding: 6px; border-radius: 8px; flex-shrink: 0;
+    }
+    .menu-toggle:hover { background: var(--p-light); }
+    .menu-toggle svg { width: 22px; height: 22px; }
+
+    .content { padding: 24px; flex: 1; }
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* Components */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px 20px; box-shadow: var(--shadow);
+      border-top: 3px solid var(--stat-accent, var(--p));
+    }
+    .stat-card--green { --stat-accent: var(--p); --stat-val: var(--p); }
+    .stat-card--sky   { --stat-accent: var(--sky); --stat-val: #2a7a9e; }
+    .stat-card--coral { --stat-accent: var(--coral); --stat-val: #c06840; }
+    .stat-card--lav   { --stat-accent: var(--lav); --stat-val: #6a5a9a; }
+    .stat-card .val { font-size: 1.75rem; font-weight: 700; color: var(--stat-val, var(--p)); line-height: 1; }
+    .stat-card .lbl { font-size: .8rem; color: var(--muted); margin-top: 4px; }
+    .stat-card .change { font-size: .72rem; color: var(--stat-val, var(--p)); margin-top: 6px; font-weight: 500; opacity: .9; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      box-shadow: var(--shadow); overflow: hidden; margin-bottom: 20px;
+    }
+    .card-head {
+      padding: 16px 20px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    }
+    .card-head h3 { font-size: .95rem; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .card-body { padding: 0; }
+
+    /* Lucide inline icons */
+    .ic { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--p); }
+    .ic svg { width: 18px; height: 18px; stroke-width: 2; }
+    .ic-sm svg { width: 15px; height: 15px; }
+    .ic-xs svg { width: 13px; height: 13px; }
+    .ic-lg svg { width: 28px; height: 28px; }
+    .ic-white { color: rgba(255,255,255,.95); }
+    .highlight-banner h3 { display: flex; align-items: center; gap: 8px; }
+    .highlight-banner .ic { color: rgba(255,255,255,.95); }
+    .portal-card h4 { display: flex; align-items: center; gap: 6px; }
+    .consent-bar { display: flex; align-items: center; gap: 8px; }
+    .wf-col-head { display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .rec-meta span { display: inline-flex; align-items: center; gap: 4px; }
+    .photo-thumb { color: var(--p); }
+    .photo-area { flex-direction: column; gap: 8px; }
+    .check-icon { display: inline-flex; align-items: center; gap: 4px; }
+    .ci-box { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .ic-inline { display: inline-flex; vertical-align: middle; margin: 0 1px; }
+    .video-thumb { color: var(--p); font-size: 0; display: flex; align-items: center; justify-content: center; }
+    .video-thumb .ic svg { width: 36px; height: 36px; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    th {
+      background: #eff5f2; text-align: left; padding: 11px 16px;
+      font-weight: 600; color: var(--text); font-size: .78rem; white-space: nowrap;
+    }
+    td { padding: 12px 16px; border-bottom: 1px solid #eef5f2; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fafcfb; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 10px; border-radius: 20px;
+      font-size: .72rem; font-weight: 600; white-space: nowrap;
+    }
+    .badge-green { background: var(--p-light); color: var(--p-dark); }
+    .badge-blue { background: var(--sky-light); color: #2a6a8a; }
+    .badge-yellow { background: #fef6e6; color: #a07020; }
+    .badge-red { background: #fdecec; color: #c04040; }
+    .badge-purple { background: var(--lav-light); color: #5a4a8a; }
+    .badge-gray { background: #eff5f2; color: var(--muted); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px;
+      border-radius: 8px; font-family: inherit; font-size: .85rem; font-weight: 600;
+      cursor: pointer; border: none; transition: all .15s;
+    }
+    .btn-primary { background: var(--p); color: white; }
+    .btn-primary:hover { background: var(--p-hover); }
+    .btn-outline { background: white; color: var(--p); border: 1.5px solid var(--p); }
+    .btn-outline:hover { background: var(--p-light); }
+    .btn-sm { padding: 6px 12px; font-size: .78rem; }
+
+    .search-bar {
+      display: flex; gap: 10px; padding: 14px 20px; border-bottom: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .search-bar input, .search-bar select {
+      padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px;
+      font-family: inherit; font-size: .85rem; background: var(--bg); color: var(--text);
+    }
+    .search-bar input { flex: 1; min-width: 180px; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+    /* Check-in page */
+    .checkin-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; max-width: 480px; box-shadow: var(--shadow);
+    }
+    .checkin-card h3 { font-size: 1rem; margin-bottom: 4px; }
+    .checkin-card .meta { font-size: .82rem; color: var(--muted); margin-bottom: 20px; }
+    .checkin-status { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .ci-box {
+      border-radius: 10px; padding: 16px; text-align: center; font-weight: 600; font-size: .85rem;
+    }
+    .ci-box.in { background: var(--p-light); color: var(--p-dark); }
+    .ci-box.out { background: var(--coral-light); color: #a05030; }
+    .ci-box .time { font-size: 1.4rem; font-weight: 700; margin-top: 4px; }
+    .photo-area {
+      background: #dceee6; border: 2px dashed var(--border); border-radius: 10px;
+      height: 140px; display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: .85rem; margin-bottom: 16px; cursor: pointer;
+    }
+    .photo-area:hover { border-color: var(--p); background: var(--p-light); }
+
+    /* Portal mobile-like on desktop */
+    .portal-wrap { max-width: 420px; margin: 0 auto; }
+    .portal-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px; margin-bottom: 14px; box-shadow: var(--shadow);
+    }
+    .portal-card h4 { font-size: .95rem; font-weight: 600; margin-bottom: 4px; }
+    .portal-card p { font-size: .82rem; color: var(--muted); }
+    .progress { height: 6px; background: #e0ece6; border-radius: 3px; margin-top: 10px; overflow: hidden; }
+    .progress-bar { height: 100%; background: var(--p); border-radius: 3px; }
+    .consent-bar {
+      background: var(--p-light); color: var(--p-dark); padding: 10px 16px;
+      border-radius: 8px; font-size: .82rem; font-weight: 500; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .chart-bars {
+      display: flex; align-items: flex-end; gap: 8px; height: 120px; padding: 16px 20px 0;
+    }
+    .chart-bar {
+      flex: 1; background: linear-gradient(180deg, #3fbd87, var(--p));
+      border-radius: 4px 4px 0 0; min-height: 8px;
+    }
+    .chart-labels {
+      display: flex; gap: 8px; padding: 6px 20px 14px; font-size: .68rem; color: var(--muted);
+    }
+    .chart-labels span { flex: 1; text-align: center; }
+
+    .line-chart-wrap { padding: 8px 12px 0; }
+    .line-chart-wrap svg { width: 100%; height: auto; display: block; }
+    .line-chart-legend {
+      display: flex; flex-wrap: wrap; gap: 14px; padding: 6px 16px 14px;
+      font-size: .72rem; color: var(--muted);
+    }
+    .line-chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .line-chart-legend .dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    }
+
+    .alert-list { padding: 12px 20px; }
+    .alert-item {
+      display: flex; gap: 12px; align-items: flex-start; padding: 12px 0;
+      border-bottom: 1px solid #eef5f2; font-size: .85rem;
+    }
+    .alert-item:last-child { border-bottom: none; }
+    .alert-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+    .alert-dot.warn { background: #f5b84a; }
+    .alert-dot.info { background: var(--sky); }
+
+    .view-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .72rem; font-weight: 600; padding: 4px 10px; border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .view-badge.staff { background: var(--p-light); color: var(--p-dark); }
+    .view-badge.portal { background: var(--sky-light); color: #2a6a8a; }
+    .view-badge.cg { background: var(--coral-light); color: #a05030; }
+
+    .star-rating { display:flex; gap:6px; font-size:1.6rem; color:#ddd; cursor:pointer; }
+    .star-rating .star.on { color:#f5a623; }
+    .review-tags { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+    .review-tags label {
+      display:flex; align-items:center; gap:6px; padding:6px 10px;
+      border:1px solid var(--border); border-radius:20px; font-size:.78rem; cursor:pointer;
+    }
+    .review-tags input:checked + span { color:var(--p-dark); font-weight:600; }
+    .review-pending-banner {
+      background:var(--coral-light); border:1px solid #f0c8b0; border-radius:10px;
+      padding:12px 16px; margin-bottom:16px; display:flex; align-items:center;
+      justify-content:space-between; gap:12px; font-size:.85rem;
+    }
+    .review-stars-inline { color:#f5a623; letter-spacing:1px; font-size:.9rem; }
+
+    .care-day-card {
+      border:1px solid var(--border); border-radius:10px; margin-bottom:12px; overflow:hidden;
+    }
+    .care-day-head {
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      padding:12px 16px; background:var(--p-light); font-size:.85rem;
+    }
+    .care-day-body { padding:12px 16px 16px; font-size:.82rem; }
+    .care-activity {
+      display:flex; gap:10px; padding:8px 0; border-bottom:1px solid #eef5f2;
+    }
+    .care-activity:last-child { border-bottom:none; }
+    .care-activity .time { min-width:42px; color:var(--muted); font-weight:600; }
+    .care-activity .task { font-weight:600; color:var(--p-dark); min-width:110px; }
+    .care-chip {
+      display:inline-flex; align-items:center; gap:4px; padding:4px 10px; margin:2px 4px 2px 0;
+      border-radius:16px; background:var(--p-light); font-size:.72rem; color:var(--p-dark);
+    }
+    .care-checklist label {
+      display:flex; align-items:center; gap:8px; padding:8px 0;
+      border-bottom:1px solid #eef5f2; font-size:.85rem; cursor:pointer;
+    }
+    .care-checklist label:last-child { border-bottom:none; }
+    .check-yes { color: var(--p); }
+    .check-no { color: #ccc; }
+
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .menu-toggle { display: block; }
+      .content { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ LANDING ══════════ -->
+<div id="landing">
+  <div class="landing-card">
+    <div class="landing-header">
+      <img src="assets/logo.png" alt="PS Care" />
+      <h1>PS Care Web Application</h1>
+      <p>ระบบบริหารจัดการ Home Care ครบวงจร — แทนที่ AppSheet ด้วย 16 Smart Modules</p>
+      <span class="demo-badge">UI Mockup — Demo / Reference</span>
+    </div>
+    <div style="text-align:center;margin-bottom:20px;">
+      <span class="modules-badge"><i data-lucide="sparkles" class="ic ic-sm ic-white"></i> 16 SMART MODULES <i data-lucide="sparkles" class="ic ic-sm ic-white"></i></span>
+    </div>
+    <div class="compare-strip">
+      <div class="compare-item"><span class="ico"><i data-lucide="sparkles"></i></span><strong>Prescriptive AI</strong>แนะนำผู้ดูแล Top 3</div>
+      <div class="compare-item"><span class="ico"><i data-lucide="bar-chart-3"></i></span><strong>Analytics</strong>Dashboard รายได้/เคส</div>
+      <div class="compare-item"><span class="ico"><i data-lucide="home"></i></span><strong>Customer Portal</strong>ลูกค้าดูเคสเอง</div>
+      <div class="compare-item"><span class="ico"><i data-lucide="shield-check"></i></span><strong>PDPA Audit</strong>Consent + Audit Log</div>
+      <div class="compare-item"><span class="ico"><i data-lucide="camera"></i></span><strong>Photo Check-in</strong>ยืนยันด้วยรูปถ่าย</div>
+      <div class="compare-item"><span class="ico"><i data-lucide="graduation-cap"></i></span><strong>Training+Quiz</strong>60 ข้อสอบ HR</div>
+      <div class="compare-item"><span class="ico"><i data-lucide="database-backup"></i></span><strong>Migration</strong>ย้ายจาก AppSheet</div>
+    </div>
+    <!-- <div class="module-map">
+      <div class="module-map-item"><strong>Patients</strong>ข้อมูลผู้ป่วย</div>
+      <div class="module-map-item"><strong>Cases</strong>เคสบริการ</div>
+      <div class="module-map-item"><strong>Assign</strong>มอบหมายผู้ดูแล</div>
+      <div class="module-map-item"><strong>Check-in</strong>เข้า-ออก+รูป</div>
+      <div class="module-map-item"><strong>Invoice</strong>ใบแจ้งหนี้</div>
+      <div class="module-map-item"><strong>Portal</strong>ลูกค้า</div>
+      <div class="module-map-item"><strong>HR</strong>รับสมัคร-จ้าง</div>
+      <div class="module-map-item"><strong>Quiz</strong>สอบ 60 ข้อ</div>
+      <div class="module-map-item"><strong>Training</strong>คลิปอบรม</div>
+      <div class="module-map-item"><strong>Analytics</strong>วิเคราะห์</div>
+      <div class="module-map-item"><strong>Prescriptive</strong>แนะนำ AI</div>
+      <div class="module-map-item"><strong>Alerts</strong>แจ้งเตือนความเสี่ยง</div>
+      <div class="module-map-item"><strong>PDPA</strong>Consent/Audit</div>
+      <div class="module-map-item"><strong>Reports</strong>รายงาน</div>
+      <div class="module-map-item"><strong>Migration</strong>ย้ายข้อมูล</div>
+      <div class="module-map-item"><strong>Settings</strong>ตั้งค่าระบบ</div>
+    </div> -->
+    <div class="landing-title">เข้าสู่ระบบ</div>
+    <div class="landing-sub">เลือกประเภทผู้ใช้งานของคุณ · Select your role · รวม 41 หน้าจอ Demo</div>
+    <div class="role-grid">
+      <div class="role-card admin" data-role="admin">
+        <div class="icon"><i data-lucide="shield-check"></i></div>
+        <div>
+          <h3>Admin</h3>
+          <div class="en">Administrator</div>
+          <p>Core Care, ผู้ป่วย/เคส, Invoice, Analytics, PDPA, Migration</p>
+          <span class="role-mod-count">18 หน้า · 6 กลุ่มเมนู</span>
+        </div>
+      </div>
+      <div class="role-card caregiver" data-role="caregiver">
+        <div class="icon"><i data-lucide="heart-pulse"></i></div>
+        <div>
+          <h3>พนักงานดูแล</h3>
+          <div class="en">Caregiver</div>
+          <p>งานของฉัน, บันทึกการดูแลรายวัน, Check-in, รายได้/สลิป, Training</p>
+          <span class="role-mod-count">8 หน้า · 3 กลุ่มเมนู</span>
+        </div>
+      </div>
+      <div class="role-card hr" data-role="hr">
+        <div class="icon"><i data-lucide="users"></i></div>
+        <div>
+          <h3>ฝ่าย HR</h3>
+          <div class="en">Human Resources</div>
+          <p>Kanban สมัคร→สอบ→จ้าง, เอกสาร, PAY Slip</p>
+          <span class="role-mod-count">7 หน้า · 3 กลุ่มเมนู</span>
+        </div>
+      </div>
+      <div class="role-card customer full" data-role="customer">
+        <div class="icon"><i data-lucide="home"></i></div>
+        <div>
+          <h3>ลูกค้า (Customer Portal)</h3>
+          <div class="en">Customer Portal</div>
+          <p>การดูแลของฉัน, รายงานการดูแลรายวัน, ประเมินผู้ดูแล, Invoice, PDPA</p>
+          <span class="role-mod-count">8 หน้า · 2 กลุ่มเมนู</span>
+        </div>
+      </div>
+    </div>
+    <div class="landing-footer">PS Care · Mockup v2.0 · มิถุนายน 2569 · ไม่เชื่อมต่อระบบจริง</div>
+  </div>
+</div>
+
+<!-- ══════════ APP ══════════ -->
+<div id="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <img src="assets/logo.png" alt="" />
+      <div>
+        <div class="name">PS Care</div>
+        <div class="role-label" id="sidebar-role-label"></div>
+      </div>
+    </div>
+    <nav class="sidebar-nav" id="sidebar-nav"></nav>
+    <div class="sidebar-footer">
+      <button class="btn-back" id="btn-back"><i data-lucide="arrow-left"></i> เปลี่ยน Role / Change Role</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" id="menu-toggle"><i data-lucide="menu"></i></button>
+        <div class="topbar-titles">
+          <h2 id="page-title">Dashboard</h2>
+          <div class="sub" id="page-subtitle"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="demo-badge">Mockup</span>
+        <div class="user-chip">
+          <div class="avatar" id="user-avatar">A</div>
+          <span id="user-name">Admin</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="content" id="content">
+
+      <!-- ADMIN PAGES -->
+      <div class="page" data-role="admin" data-page="dashboard">
+        <div class="highlight-banner">
+          <div>
+            <h3><i data-lucide="sparkles" class="ic ic-white"></i> จุดเด่น PS Care vs AppSheet</h3>
+            <p>Prescriptive Analytics · Customer Portal · PDPA Audit · Photo Check-in · Migration Tool</p>
+          </div>
+          <div class="vs-tags">
+            <span class="vs-tag">+ AI แนะนำผู้ดูแล</span>
+            <span class="vs-tag">+ Portal ลูกค้า</span>
+            <span class="vs-tag">+ Audit Log</span>
+            <span class="vs-tag">+ 60 ข้อสอบ HR</span>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat-card stat-card--green"><div class="val">24</div><div class="lbl">เคส Active</div><div class="change">↑ 2 เคสใหม่สัปดาห์นี้</div></div>
+          <div class="stat-card stat-card--sky"><div class="val">18</div><div class="lbl">Check-in วันนี้</div><div class="change">96% อัตราครบ</div></div>
+          <div class="stat-card stat-card--lav"><div class="val">42</div><div class="lbl">พนักงาน Active</div></div>
+          <div class="stat-card stat-card--coral"><div class="val">฿285K</div><div class="lbl">รายได้เดือนนี้</div><div class="change">↑ 8% จากเดือนก่อน</div></div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h3><i data-lucide="trending-up" class="ic"></i> แนวโน้มเคส</h3><span class="badge badge-green">7 วันล่าสุด</span></div>
+            <div id="dash-trend-chart" class="line-chart-wrap"></div>
+            <div class="line-chart-legend">
+              <span><span class="dot" style="background:var(--p)"></span> เคส Active (ราย)</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3><i data-lucide="bell" class="ic"></i> ต้องดำเนินการ</h3></div>
+            <div class="alert-list">
+              <div class="alert-item"><span class="alert-dot warn"></span><div><strong>เคส #CS-0242</strong> ใกล้เริ่มพรุ่งนี้ — ยังไม่มอบหมายผู้ดูแล</div></div>
+              <div class="alert-item"><span class="alert-dot warn"></span><div><strong>คุณมาลี ก.</strong> — Check-in ขาดวันนี้ (กะเช้า)</div></div>
+              <div class="alert-item"><span class="alert-dot info"></span><div><strong>ผู้สมัคร 3 คน</strong> รอสอบข้อสอบ 60 ข้อ</div></div>
+              <div class="alert-item"><span class="alert-dot info"></span><div><strong>Invoice 2 ฉบับ</strong> ค้างออก (เดือน มิ.ย.)</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>สรุปตามโมดูล</h3></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>โมดูล</th><th>Module</th><th>สถานะ</th><th>หมายเหตุ</th></tr></thead>
+            <tbody>
+              <tr><td>Core Care</td><td>Patients & Cases</td><td><span class="badge badge-green">24 Active</span></td><td>Check-in 96% วันนี้</td></tr>
+              <tr><td>Customer Portal</td><td>Portal</td><td><span class="badge badge-blue">18 ลูกค้า</span></td><td>3 ลูกค้า login วันนี้</td></tr>
+              <tr><td>HR</td><td>Recruitment</td><td><span class="badge badge-purple">12 ผู้สมัคร</span></td><td>5 รอสอบ</td></tr>
+              <tr><td>Training</td><td>Learning</td><td><span class="badge badge-green">38 คน</span></td><td>คลิป 12 หมวด</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="users">
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="users" class="ic"></i> จัดการผู้ใช้ / Users</h3><button class="btn btn-primary btn-sm">+ เพิ่มผู้ใช้</button></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>ชื่อ</th><th>Role</th><th>สถานะ</th><th>Login ล่าสุด</th></tr></thead>
+            <tbody>
+              <tr><td>คุณสมศักดิ์ (Owner)</td><td><span class="badge badge-green">Admin</span></td><td><span class="badge badge-green">Active</span></td><td>วันนี้ 08:15</td></tr>
+              <tr><td>คุณวิภา</td><td><span class="badge badge-green">Admin</span></td><td><span class="badge badge-green">Active</span></td><td>วันนี้ 09:02</td></tr>
+              <tr><td>พญ. แอน</td><td><span class="badge badge-yellow">Caregiver</span></td><td><span class="badge badge-green">Active</span></td><td>วันนี้ 07:58</td></tr>
+              <tr><td>คุณรัตนา</td><td><span class="badge badge-purple">HR</span></td><td><span class="badge badge-green">Active</span></td><td>เมื่อวาน 17:30</td></tr>
+              <tr><td>คุณนิด ศรีสุข</td><td><span class="badge badge-yellow">Caregiver</span></td><td><span class="badge badge-green">Active</span></td><td>วันนี้ 07:52</td></tr>
+              <tr><td>คุณเจ มั่นคง</td><td><span class="badge badge-yellow">Caregiver</span></td><td><span class="badge badge-green">Active</span></td><td>วันนี้ 08:58</td></tr>
+              <tr><td>คุณสมหญิง</td><td><span class="badge badge-blue">Customer</span></td><td><span class="badge badge-green">Active</span></td><td>19 มิ.ย. 20:10</td></tr>
+              <tr><td>คุณประเสริฐ</td><td><span class="badge badge-green">Admin</span></td><td><span class="badge badge-gray">Inactive</span></td><td>1 มิ.ย. 09:00</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="reports">
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="bar-chart-3" class="ic"></i> รายงานภาพรวม / Reports</h3><button class="btn btn-outline btn-sm">Export All CSV</button></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>รายงาน</th><th>ช่วงเวลา</th><th>รายละเอียด</th><th>Format</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Revenue Summary</td><td>มิ.ย. 2569</td><td>฿285K · 8 เคสใหม่</td><td>PDF / CSV</td><td><button class="btn btn-outline btn-sm">Export</button></td></tr>
+              <tr><td>Check-in Compliance</td><td>7 วันล่าสุด</td><td>96% อัตราครบ</td><td>PDF / CSV</td><td><button class="btn btn-outline btn-sm">Export</button></td></tr>
+              <tr><td>Case Status Report</td><td>Real-time</td><td>24 Active · 3 รอมอบหมาย</td><td>PDF</td><td><button class="btn btn-outline btn-sm">Export</button></td></tr>
+              <tr><td>Caregiver Workload</td><td>มิ.ย. 2569</td><td>42 CG · เฉลี่ย 1.8 เคส/คน</td><td>CSV</td><td><button class="btn btn-outline btn-sm">Export</button></td></tr>
+              <tr><td>Invoice Aging</td><td>ค้างชำระ</td><td>2 ฉบับ · ฿20,600</td><td>PDF</td><td><button class="btn btn-outline btn-sm">Export</button></td></tr>
+              <tr><td>PDPA Audit Summary</td><td>30 วัน</td><td>128 Actions · 0 Violations</td><td>CSV</td><td><button class="btn btn-outline btn-sm">Export</button></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+
+      <!-- ADMIN: analytics, prescriptive, alerts, pdpa-audit, migration, settings -->
+      <div class="page" data-role="admin" data-page="analytics">
+        <div class="highlight-banner"><div><h3><i data-lucide="bar-chart-3" class="ic ic-white"></i> Analytics Dashboard</h3><p>วิเคราะห์รายได้และเคส — ข้อมูล Real-time จากระบบ</p></div><div class="vs-tags"><span class="vs-tag">vs AppSheet: ไม่มี Chart</span></div></div>
+        <div class="stats">
+          <div class="stat-card stat-card--coral"><div class="val">฿285K</div><div class="lbl">รายได้ มิ.ย. 2569</div><div class="change">↑ 8.2% MoM</div></div>
+          <div class="stat-card stat-card--green"><div class="val">24</div><div class="lbl">เคส Active</div><div class="change">↑ 2 เคสใหม่</div></div>
+          <div class="stat-card stat-card--sky"><div class="val">96%</div><div class="lbl">Check-in Rate</div></div>
+          <div class="stat-card stat-card--lav"><div class="val">18</div><div class="lbl">Check-in วันนี้</div></div>
+        </div>
+        <div class="grid-2">
+          <div class="card"><div class="card-head"><h3><i data-lucide="trending-up" class="ic"></i> รายได้รายเดือน (Revenue)</h3></div>
+            <div class="line-chart-wrap" id="admin-rev-chart"></div>
+            <div class="chart-legend"><span class="rev">รายได้ (฿K)</span></div>
+          </div>
+          <div class="card"><div class="card-head"><h3><i data-lucide="clipboard-list" class="ic"></i> จำนวนเคส Active</h3></div>
+            <div class="line-chart-wrap" id="admin-case-chart"></div>
+            <div class="chart-legend"><span class="cas">เคส Active</span></div>
+          </div>
+        </div>
+        <div class="card"><div class="card-head"><h3>สัดส่วนรายได้ตามประเภทบริการ</h3></div>
+          <div style="padding:20px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;">
+            <div class="pie-mock"></div>
+            <div style="font-size:.82rem;">
+              <div style="margin-bottom:6px;">🟢 รายวัน 45% · ฿128K</div>
+              <div style="margin-bottom:6px;">🔵 รายชม. 25% · ฿71K</div>
+              <div style="margin-bottom:6px;">🟣 กลางคืน 15% · ฿43K</div>
+              <div>🟠 Respite 15% · ฿43K</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="prescriptive">
+        <div class="highlight-banner"><div><h3><i data-lucide="sparkles" class="ic ic-white"></i> Prescriptive Analytics</h3><p>แนะนำผู้ดูแลที่เหมาะสมที่สุด — คะแนนจาก Skills, Location, Availability, Rating</p></div></div>
+        <div class="card"><div class="card-head"><h3>เคส #CS-0242 — คุณมาลี กิตติพงษ์ · รายชม. 08:00–12:00</h3><span class="badge badge-yellow">รอมอบหมาย</span></div>
+          <div style="padding:16px 20px;">
+            <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px;">ผู้ป่วย: หญิง 82 ปี · ลาดพร้าว · ต้องการ NA · ADL 3/5 · โรคประจำตัว: ความดัน, เบาหวาน</p>
+            <div class="rec-card rank-1"><span class="rank-badge">#1 แนะนำ</span>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><strong style="font-size:1rem;">คุณนิด ศรีสุข</strong> · NA · EMP-002</div><div class="score-val">94</div></div>
+              <div class="score-bar"><div class="score-fill" style="width:94%"></div></div>
+              <div class="rec-meta"><span><i data-lucide="map-pin" class="ic ic-xs"></i> 2.1 km</span><span><i data-lucide="star" class="ic ic-xs"></i> 4.9</span><span><i data-lucide="circle-check" class="ic ic-xs"></i> ว่างกะเช้า</span><span><i data-lucide="graduation-cap" class="ic ic-xs"></i> ADL Certified</span><span><i data-lucide="clipboard-list" class="ic ic-xs"></i> 3 เคส Active</span></div>
+              <button class="btn btn-primary btn-sm" style="margin-top:12px;">มอบหมายผู้ดูแลนี้</button>
+            </div>
+            <div class="rec-card"><span class="rank-badge">#2</span>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><strong style="font-size:1rem;">พญ. แอน วงศ์ดี</strong> · PN · EMP-001</div><div class="score-val">87</div></div>
+              <div class="score-bar"><div class="score-fill" style="width:87%"></div></div>
+              <div class="rec-meta"><span><i data-lucide="map-pin" class="ic ic-xs"></i> 4.5 km</span><span><i data-lucide="star" class="ic ic-xs"></i> 4.8</span><span><i data-lucide="circle-check" class="ic ic-xs"></i> ว่าง</span><span><i data-lucide="graduation-cap" class="ic ic-xs"></i> PN License</span></div>
+            </div>
+            <div class="rec-card"><span class="rank-badge">#3</span>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><strong style="font-size:1rem;">คุณเจ มั่นคง</strong> · Caregiver · EMP-003</div><div class="score-val">79</div></div>
+              <div class="score-bar"><div class="score-fill" style="width:79%"></div></div>
+              <div class="rec-meta"><span><i data-lucide="map-pin" class="ic ic-xs"></i> 3.8 km</span><span><i data-lucide="star" class="ic ic-xs"></i> 4.6</span><span><i data-lucide="triangle-alert" class="ic ic-xs"></i> มี 1 เคส overlap</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="alerts">
+        <div class="card"><div class="card-head"><h3><i data-lucide="triangle-alert" class="ic"></i> Risk Alerts — แจ้งเตือนความเสี่ยง</h3><span class="badge badge-red">6 รายการ</span></div>
+          <div class="alert-list">
+            <div class="alert-item"><span class="alert-dot warn"></span><div><strong>เคส #CS-0242</strong> เริ่มพรุ่งนี้ — ยังไม่มอบหมายผู้ดูแล · <span class="badge badge-red">Critical</span></div></div>
+            <div class="alert-item"><span class="alert-dot warn"></span><div><strong>คุณมาลี ก.</strong> Check-in ขาดวันนี้ (กะเช้า) · เคส #CS-0238 · <span class="badge badge-yellow">Warning</span></div></div>
+            <div class="alert-item"><span class="alert-dot warn"></span><div><strong>Invoice INV-070</strong> ค้างออก 3 วัน · คุณวิไล ร. · <span class="badge badge-yellow">Warning</span></div></div>
+            <div class="alert-item"><span class="alert-dot info"></span><div><strong>ผู้สมัคร 3 คน</strong> รอสอบข้อสอบ 60 ข้อเกิน 7 วัน</div></div>
+            <div class="alert-item"><span class="alert-dot info"></span><div><strong>Consent หมดอายุ</strong> คุณประเสริฐ ส. — ต้อง Renew PDPA</div></div>
+            <div class="alert-item"><span class="alert-dot info"></span><div><strong>Training</strong> พนักงาน 5 คนยังไม่ผ่าน Quiz บังคับ</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="pdpa-audit">
+        <div class="card"><div class="card-head"><h3><i data-lucide="shield-check" class="ic"></i> PDPA Audit Log</h3><button class="btn btn-outline btn-sm">Export CSV</button></div>
+          <div class="search-bar"><input type="text" placeholder="ค้นหา User / Action..." /><select><option>ทุก Action</option><option>View</option><option>Export</option><option>Consent</option></select></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>เวลา</th><th>User</th><th>Action</th><th>Resource</th><th>IP</th><th>รายละเอียด</th></tr></thead>
+            <tbody>
+              <tr><td>20 มิ.ย. 09:15</td><td>คุณวิภา</td><td><span class="badge badge-blue">View</span></td><td>Patient #P-0042</td><td>203.x.x.x</td><td>ดูข้อมูลสุขภาพ</td></tr>
+              <tr><td>20 มิ.ย. 08:42</td><td>Admin</td><td><span class="badge badge-green">Export</span></td><td>Report Revenue</td><td>171.x.x.x</td><td>Export PDF รายได้</td></tr>
+              <tr><td>19 มิ.ย. 16:30</td><td>คุณสมหญิง</td><td><span class="badge badge-purple">Consent</span></td><td>Patient #P-0001</td><td>49.x.x.x</td><td>ยินยอม PDPA v2.1</td></tr>
+              <tr><td>19 มิ.ย. 14:05</td><td>พญ. แอน</td><td><span class="badge badge-blue">View</span></td><td>Case #CS-0241</td><td>182.x.x.x</td><td>ดู Timeline Check-in</td></tr>
+              <tr><td>19 มิ.ย. 11:20</td><td>คุณรัตนา</td><td><span class="badge badge-blue">View</span></td><td>Applicant #A-015</td><td>171.x.x.x</td><td>ดูใบสมัคร</td></tr>
+              <tr><td>18 มิ.ย. 17:55</td><td>Admin</td><td><span class="badge badge-yellow">Update</span></td><td>User #U-008</td><td>171.x.x.x</td><td>เปลี่ยนสถานะ → Inactive</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="migration">
+        <div class="card"><div class="card-head"><h3><i data-lucide="database-backup" class="ic"></i> AppSheet Migration Status</h3><span class="badge badge-green">Phase 3 — 78% Complete</span></div>
+          <div style="padding:20px;">
+            <div style="margin-bottom:20px;"><div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:6px;"><span>ความคืบหน้ารวม</span><strong>78%</strong></div><div class="progress"><div class="progress-bar" style="width:78%"></div></div></div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Sheet / Table</th><th>Records</th><th>Imported</th><th>Status</th><th>Errors</th></tr></thead>
+              <tbody>
+                <tr><td>Patients</td><td>156</td><td>156</td><td><span class="badge badge-green"><i data-lucide="circle-check" class="ic ic-xs"></i> Done</span></td><td>0</td></tr>
+                <tr><td>Cases</td><td>89</td><td>89</td><td><span class="badge badge-green"><i data-lucide="circle-check" class="ic ic-xs"></i> Done</span></td><td>0</td></tr>
+                <tr><td>Caregivers</td><td>42</td><td>42</td><td><span class="badge badge-green"><i data-lucide="circle-check" class="ic ic-xs"></i> Done</span></td><td>0</td></tr>
+                <tr><td>Check-in History</td><td>4,820</td><td>4,820</td><td><span class="badge badge-green"><i data-lucide="circle-check" class="ic ic-xs"></i> Done</span></td><td>0</td></tr>
+                <tr><td>Invoices</td><td>312</td><td>298</td><td><span class="badge badge-yellow"><i data-lucide="clock" class="ic ic-xs"></i> In Progress</span></td><td>14</td></tr>
+                <tr><td>HR Applicants</td><td>67</td><td>45</td><td><span class="badge badge-yellow"><i data-lucide="clock" class="ic ic-xs"></i> In Progress</span></td><td>3</td></tr>
+                <tr><td>Training Records</td><td>380</td><td>0</td><td><span class="badge badge-gray">⏸ Pending</span></td><td>—</td></tr>
+              </tbody>
+            </table></div>
+            <button class="btn btn-primary" style="margin-top:16px;"><i data-lucide="play" class="ic ic-sm"></i> Run Migration</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="settings">
+        <div class="card"><div class="card-head"><h3><i data-lucide="settings" class="ic"></i> ตั้งค่าระบบ / Settings</h3></div>
+          <div style="padding:20px;max-width:560px;">
+            <div class="form-group"><label>ชื่อองค์กร</label><input type="text" value="PS Care Co., Ltd." /></div>
+            <div class="form-group"><label>Timezone</label><select><option selected>Asia/Bangkok (UTC+7)</option></select></div>
+            <div class="form-group"><label>PDPA Consent Version</label><input type="text" value="v2.1 — มิ.ย. 2569" /></div>
+            <div class="form-group"><label>OTP Provider</label><select><option selected>SMS Gateway (ThaiBulk)</option><option>Email OTP</option></select></div>
+            <div class="form-group"><label>Check-in Photo Required</label><select><option selected>บังคับทุกครั้ง</option><option>ไม่บังคับ</option></select></div>
+            <div class="form-group"><label>Quiz Pass Score (HR)</label><input type="text" value="40 / 60 ข้อ" /></div>
+            <button class="btn btn-primary">บันทึกการตั้งค่า</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADMIN: Core Care pages -->
+      <div class="page" data-role="admin" data-page="cases">
+        <div class="view-badge staff"><i data-lucide="shield-check" class="ic ic-xs"></i> Staff View · จัดการทุกเคสในระบบ</div>
+        <div class="card">
+          <div class="card-head">
+            <h3><i data-lucide="clipboard-list" class="ic"></i> จัดการเคสบริการ</h3>
+            <button class="btn btn-primary btn-sm">+ เปิดเคสใหม่</button>
+          </div>
+          <div class="search-bar">
+            <input type="text" placeholder="ค้นหาผู้ป่วย / เคส..." />
+            <select><option>ทุกสถานะ</option><option>Active</option><option>รอมอบหมาย</option></select>
+            <select><option>Check-in วันนี้</option><option>เข้าแล้ว</option><option>ยังไม่เข้า</option></select>
+          </div>
+          <div class="table-wrap"><table>
+            <thead>
+              <tr>
+                <th>รหัสเคส</th><th>ผู้ป่วย</th><th>ประเภท</th><th>ผู้ดูแล</th>
+                <th>สถานะเคส</th><th>Check-in วันนี้</th><th>เวลาเข้า</th>
+              </tr>
+            </thead>
+            <tbody id="mkt-cases-table"></tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="patients">
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="users" class="ic"></i> ข้อมูลผู้ป่วย / Patients</h3><button class="btn btn-primary btn-sm">+ เพิ่มผู้ป่วย</button></div>
+          <div class="search-bar"><input type="text" placeholder="ค้นหาชื่อ / พื้นที่..." /></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>ชื่อ</th><th>อายุ</th><th>พื้นที่</th><th>เคส Active</th><th>ผู้ประสานงาน</th><th></th></tr></thead>
+            <tbody id="mkt-patients-table"></tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="invoice">
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="receipt" class="ic"></i> ใบแจ้งหนี้ / Invoice</h3><button class="btn btn-primary btn-sm">+ สร้าง Invoice</button></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>เลขที่</th><th>ผู้ป่วย</th><th>เดือน</th><th>จำนวนเงิน</th><th>สถานะ</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>INV-069</td><td>คุณสมชาย บ.</td><td>มิ.ย. 2569</td><td>฿12,500</td><td><span class="badge badge-green">ออกแล้ว</span></td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+              <tr><td>INV-068</td><td>คุณประเสริฐ ส.</td><td>มิ.ย. 2569</td><td>฿9,800</td><td><span class="badge badge-blue">ร่าง</span></td><td><button class="btn btn-outline btn-sm">แก้ไข</button></td></tr>
+              <tr><td>INV-067</td><td>คุณวิไล ร.</td><td>มิ.ย. 2569</td><td>฿11,200</td><td><span class="badge badge-green">ออกแล้ว</span></td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+              <tr><td>INV-066</td><td>คุณสุดา ม.</td><td>พ.ค. 2569</td><td>฿13,500</td><td><span class="badge badge-green">ชำระแล้ว</span></td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+              <tr><td>INV-065</td><td>คุณชูศักดิ์ ว.</td><td>พ.ค. 2569</td><td>฿16,500</td><td><span class="badge badge-green">ชำระแล้ว</span></td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+              <tr><td>INV-064</td><td>คุณรำไพ ส.</td><td>พ.ค. 2569</td><td>฿8,400</td><td><span class="badge badge-yellow">ค้างออก</span></td><td><button class="btn btn-primary btn-sm">สร้าง</button></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+
+      <!-- ADMIN: Core Care (expanded) -->
+      <div class="page" data-role="admin" data-page="patient-detail">
+        <div class="card"><div class="card-head"><h3><i data-lucide="user" class="ic"></i> คุณสมชาย บุญเรือง · P-0001</h3><span class="badge badge-green">Active Case</span></div>
+          <div class="detail-grid">
+            <div class="detail-item"><div class="lbl">เพศ / อายุ</div><div class="val">ชาย · 78 ปี (15 มี.ค. 2491)</div></div>
+            <div class="detail-item"><div class="lbl">ที่อยู่</div><div class="val">45/12 ซ.ลาดพร้าว 71 บางกะปิ กทม.</div></div>
+            <div class="detail-item"><div class="lbl">ผู้ประสานงาน</div><div class="val">คุณสมหญิง (ลูกสาว) · 089-xxx-xxxx</div></div>
+            <div class="detail-item"><div class="lbl">โรคประจำตัว</div><div class="val">ความดัน, ข้อเข่าเสื่อม, เบาหวาน Type 2</div></div>
+            <div class="detail-item"><div class="lbl">แพ้ยา</div><div class="val">Penicillin</div></div>
+            <div class="detail-item"><div class="lbl">พื้นที่บริการ</div><div class="val">Zone A — บางกะปิ</div></div>
+          </div>
+        </div>
+        <div class="card"><div class="card-head"><h3><i data-lucide="heart-pulse" class="ic"></i> Health Profile — ADL Assessment</h3><span class="badge badge-blue">Score 3/5</span></div>
+          <div class="adl-grid">
+            <div class="adl-item"><div><i data-lucide="bath" class="ic ic-sm"></i> อาบน้ำ</div><div class="lvl">2</div><div>ต้องช่วยบางส่วน</div></div>
+            <div class="adl-item"><div><i data-lucide="shirt" class="ic ic-sm"></i> แต่งตัว</div><div class="lvl">3</div><div>ทำเองได้</div></div>
+            <div class="adl-item"><div><i data-lucide="accessibility" class="ic ic-sm"></i> ห้องน้ำ</div><div class="lvl">2</div><div>ต้องช่วย</div></div>
+            <div class="adl-item"><div><i data-lucide="footprints" class="ic ic-sm"></i> เคลื่อนไหว</div><div class="lvl">2</div><div>ใช้ Walker</div></div>
+            <div class="adl-item"><div><i data-lucide="utensils" class="ic ic-sm"></i> รับประทาน</div><div class="lvl">4</div><div>ทำเองได้</div></div>
+            <div class="adl-item"><div><i data-lucide="pill" class="ic ic-sm"></i> ให้ยา</div><div class="lvl">1</div><div>ต้องดูแลเต็ม</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="assign">
+        <div class="highlight-banner"><div><h3><i data-lucide="sparkles" class="ic ic-white"></i> Prescriptive — มอบหมายผู้ดูแล</h3><p>AI แนะนำ Top 3 ผู้ดูแลที่เหมาะสมที่สุดสำหรับเคส</p></div><div class="vs-tags"><span class="vs-tag">vs AppSheet: เลือกเอง</span></div></div>
+        <div class="card"><div class="card-head"><h3>เคส #CS-0242 — คุณมาลี กิตติพงษ์</h3><span class="badge badge-yellow">รอมอบหมาย</span></div>
+          <div style="padding:16px 20px;">
+            <p style="font-size:.85rem;margin-bottom:16px;">ประเภท: รายชม. · 08:00–12:00 · เริ่ม 21 มิ.ย. 2569 · Zone B ลาดพร้าว</p>
+            <div class="rec-card rank-1"><span class="rank-badge">#1 Score 94</span>
+              <strong>คุณนิด ศรีสุข</strong> · NA · 2.1 km · <i data-lucide="star" class="ic ic-xs"></i> 4.9 · ว่างกะเช้า
+              <div class="score-bar"><div class="score-fill" style="width:94%"></div></div>
+              <button class="btn btn-primary btn-sm" style="margin-top:10px;">✓ มอบหมาย</button>
+            </div>
+            <div class="rec-card"><span class="rank-badge">#2 Score 87</span>
+              <strong>พญ. แอน วงศ์ดี</strong> · PN · 4.5 km · <i data-lucide="star" class="ic ic-xs"></i> 4.8
+              <div class="score-bar"><div class="score-fill" style="width:87%"></div></div>
+              <button class="btn btn-outline btn-sm" style="margin-top:10px;">มอบหมาย</button>
+            </div>
+            <div class="rec-card"><span class="rank-badge">#3 Score 79</span>
+              <strong>คุณเจ มั่นคง</strong> · Caregiver · 3.8 km · <i data-lucide="star" class="ic ic-xs"></i> 4.6
+              <div class="score-bar"><div class="score-fill" style="width:79%"></div></div>
+              <button class="btn btn-outline btn-sm" style="margin-top:10px;">มอบหมาย</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="service-types">
+        <div class="card"><div class="card-head"><h3><i data-lucide="layers" class="ic"></i> ประเภทบริการ / Service Types</h3><button class="btn btn-primary btn-sm">+ เพิ่มประเภท</button></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>รหัส</th><th>ประเภท</th><th>ราคาลูกค้า</th><th>ค่าตอบแทน CG</th><th>หน่วย</th><th>สถานะ</th></tr></thead>
+            <tbody>
+              <tr><td>ST-01</td><td>ดูแลรายวัน (Day)</td><td>฿450</td><td>฿350</td><td>/วัน</td><td><span class="badge badge-green">Active</span></td></tr>
+              <tr><td>ST-02</td><td>ดูแลรายชม. (Hourly)</td><td>฿120</td><td>฿90</td><td>/ชม.</td><td><span class="badge badge-green">Active</span></td></tr>
+              <tr><td>ST-03</td><td>กลางคืน (Night)</td><td>฿550</td><td>฿420</td><td>/คืน</td><td><span class="badge badge-green">Active</span></td></tr>
+              <tr><td>ST-04</td><td>Respite Care</td><td>฿500</td><td>฿380</td><td>/วัน</td><td><span class="badge badge-green">Active</span></td></tr>
+              <tr><td>ST-05</td><td>ดูแลหลังผ่าตัด</td><td>฿600</td><td>฿450</td><td>/วัน</td><td><span class="badge badge-yellow">Draft</span></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="attendance">
+        <div class="card"><div class="card-head"><h3><i data-lucide="camera" class="ic"></i> ประวัติ Check-in (พร้อมรูปถ่าย)</h3></div>
+          <div class="search-bar"><input type="text" placeholder="ค้นหาผู้ป่วย / ผู้ดูแล..." /><input type="date" value="2026-06-20" /></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>วันที่</th><th>ผู้ป่วย</th><th>ผู้ดูแล</th><th>Check-in</th><th>Check-out</th><th>รูป</th><th>หมายเหตุ</th></tr></thead>
+            <tbody>
+              <tr><td>20 มิ.ย.</td><td>คุณสมชาย บ.</td><td>พญ. แอน</td><td>08:02</td><td>—</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>—</td></tr>
+              <tr><td>20 มิ.ย.</td><td>คุณประเสริฐ ส.</td><td>คุณนิด</td><td>07:55</td><td>—</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>—</td></tr>
+              <tr><td>19 มิ.ย.</td><td>คุณสมชาย บ.</td><td>พญ. แอน</td><td>08:02</td><td>16:58</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>ปกติ</td></tr>
+              <tr><td>19 มิ.ย.</td><td>คุณสุดา ม.</td><td>พญ. แอน</td><td>08:10</td><td>17:05</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>—</td></tr>
+              <tr><td>19 มิ.ย.</td><td>คุณวิไล ร.</td><td>คุณเจ</td><td>09:00</td><td>18:02</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>ให้ยาครบ</td></tr>
+              <tr><td>18 มิ.ย.</td><td>คุณสมชาย บ.</td><td>พญ. แอน</td><td>08:05</td><td>17:01</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>—</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="invite-customer">
+        <div class="card"><div class="card-head"><h3><i data-lucide="link-2" class="ic"></i> เชิญลูกค้า — Generate Portal Link</h3></div>
+          <div style="padding:20px;max-width:560px;">
+            <div class="form-group"><label>ผู้ป่วย</label><select><option>คุณสมชาย บุญเรือง (P-0001)</option><option>คุณมาลี กิตติพงษ์ (P-0002)</option></select></div>
+            <div class="form-group"><label>ผู้ประสานงาน (ลูกค้า)</label><input type="text" value="คุณสมหญิง บุญเรือง" /></div>
+            <div class="form-group"><label>เบอร์โทร (OTP Login)</label><input type="text" value="089-123-4567" /></div>
+            <button class="btn btn-primary" style="margin-bottom:16px;">สร้าง Link เชิญ</button>
+            <div class="link-box">https://portal.pscare.co.th/register?token=eyJhbGciOiJIUzI1NiJ9...P-0001</div>
+            <p style="font-size:.78rem;color:var(--muted);margin-top:10px;">Link หมดอายุใน 7 วัน · ส่งผ่าน LINE / SMS ได้</p>
+            <button class="btn btn-outline btn-sm" style="margin-top:12px;"><i data-lucide="clipboard" class="ic ic-sm"></i> Copy Link</button>
+            <button class="btn btn-outline btn-sm" style="margin-top:12px;">📱 ส่ง SMS</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="caregiver-reviews">
+        <div class="card">
+          <div class="card-head">
+            <h3><i data-lucide="star" class="ic"></i> รีวิวจากลูกค้า / Caregiver Reviews</h3>
+            <button class="btn btn-outline btn-sm">Export CSV</button>
+          </div>
+          <div class="search-bar">
+            <input type="text" placeholder="ค้นหาผู้ดูแล / เคส..." />
+            <select><option>ทุกคะแนน</option><option>1–2 ดาว (ต่ำ)</option><option>3–5 ดาว</option></select>
+            <select><option>ทุกสถานะ</option><option>Submitted</option><option>Flagged</option></select>
+          </div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>วันที่</th><th>ลูกค้า</th><th>ผู้ดูแล</th><th>เคส</th><th>คะแนน</th><th>ข้อความ</th><th>สถานะ</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>19 มิ.ย.</td><td>คุณสมหญิง</td><td>พญ. แอน</td><td>CS-0241</td><td><span class="review-stars-inline">★★★★★</span> 5</td><td>ดูแลละเอียด สื่อสารดี</td><td><span class="badge badge-green">Submitted</span></td><td><button class="btn btn-outline btn-sm">ดู</button></td></tr>
+              <tr><td>18 มิ.ย.</td><td>คุณสมหญิง</td><td>พญ. แอน</td><td>CS-0241</td><td><span class="review-stars-inline">★★★★☆</span> 4</td><td>ตรงเวลา</td><td><span class="badge badge-green">Submitted</span></td><td><button class="btn btn-outline btn-sm">ดู</button></td></tr>
+              <tr><td>15 มิ.ย.</td><td>คุณประเสริฐ</td><td>คุณนิด (แทน)</td><td>CS-0241</td><td><span class="review-stars-inline">★★☆☆☆</span> 2</td><td>มาช้า 15 นาที</td><td><span class="badge badge-yellow">Alert ส่ง Admin</span></td><td><button class="btn btn-primary btn-sm">ติดตาม</button></td></tr>
+              <tr><td>10 มิ.ย.</td><td>คุณสมหญิง</td><td>พญ. แอน</td><td>CS-0241</td><td><span class="review-stars-inline">★★★★★</span> 5</td><td>—</td><td><span class="badge badge-green">Submitted</span></td><td><button class="btn btn-outline btn-sm">ดู</button></td></tr>
+            </tbody>
+          </table></div>
+          <p style="padding:12px 16px;font-size:.78rem;color:var(--muted);">คะแนน ≤2 ดาว → แจ้ง Admin อัตโนมัติ · Caregiver เห็นเฉพาะคะแนนเฉลี่ยรวม · ใช้ใน Prescriptive matching (Phase 7)</p>
+        </div>
+      </div>
+
+      <!-- CAREGIVER PAGES -->
+      <div class="page" data-role="caregiver" data-page="jobs">
+        <div class="view-badge cg"><i data-lucide="briefcase" class="ic ic-xs"></i> Caregiver View · เฉพาะงานที่มอบหมายให้คุณ</div>
+        <div class="stats">
+          <div class="stat-card stat-card--green"><div class="val">2</div><div class="lbl">งานวันนี้</div></div>
+          <div class="stat-card stat-card--sky"><div class="val">1</div><div class="lbl">Check-in แล้ว</div></div>
+          <div class="stat-card stat-card--lav"><div class="val">4.6</div><div class="lbl">คะแนนจากลูกค้า</div><div class="change">90 วันล่าสุด</div></div>
+          <div class="stat-card stat-card--coral"><div class="val">1</div><div class="lbl">รอ Check-in</div></div>
+        </div>
+        <div class="grid-2" id="cg-jobs"></div>
+      </div>
+
+      <div class="page" data-role="caregiver" data-page="checkin">
+        <div class="checkin-card">
+          <h3>คุณสมชาย บุญเรือง</h3>
+          <div class="meta">เคส #CS-0241 · ดูแลที่บ้าน รายวัน · 08:00 – 17:00</div>
+          <div class="checkin-status">
+            <div class="ci-box in"><i data-lucide="circle-check" class="ic ic-sm"></i> Check-in<div class="time">08:02</div></div>
+            <div class="ci-box out"><i data-lucide="clock" class="ic ic-sm"></i> Check-out<div class="time">—</div></div>
+          </div>
+          <div class="photo-area" onclick="alert('Mockup: เปิดกล้องถ่ายรูปยืนยัน')"><i data-lucide="camera" class="ic ic-lg"></i> แตะเพื่อถ่ายรูปยืนยันการดูแล</div>
+          <div class="card" style="margin:16px 0 0;border:1px solid var(--border);box-shadow:none;">
+            <div class="card-head" style="padding:12px 16px;"><h3 style="font-size:.9rem;"><i data-lucide="clipboard-list" class="ic"></i> กิจกรรมที่ทำวันนี้</h3></div>
+            <div class="care-checklist" style="padding:0 16px 12px;">
+              <label><input type="checkbox" checked /> วัดสัญญาณชีพ — BP 130/80, Pulse 72</label>
+              <label><input type="checkbox" checked /> ให้ยาเช้า — ครบตามเวลา</label>
+              <label><input type="checkbox" checked /> อาหารเช้า — ข้าวต้ม ½ ถ้วย</label>
+              <label><input type="checkbox" checked /> อาบน้ำ / สุขอนามัย</label>
+              <label><input type="checkbox" /> พาเดินออกกำลังกาย</label>
+              <label><input type="checkbox" /> ทำกายภาพบำบัด</label>
+            </div>
+          </div>
+          <label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;">รายงานให้ญาติ (แสดงใน Portal ลูกค้า)</label>
+          <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2" placeholder="สรุปสิ่งที่ทำวันนี้ เช่น ให้ยาครบ · อาหารเช้าครบ...">ให้ยาครบ · BP 130/80 · อาหารเช้าครบ</textarea>
+          <label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;">หมายเหตุภายใน (Admin เท่านั้น)</label>
+          <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2" placeholder="หมายเหตุภายใน — ลูกค้าไม่เห็น"></textarea>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="alert('Mockup: บันทึก Check-out สำเร็จ')">บันทึก Check-out</button>
+        </div>
+      </div>
+
+      <div class="page" data-role="caregiver" data-page="daily-care">
+        <div class="view-badge cg"><i data-lucide="clipboard-list" class="ic ic-xs"></i> บันทึกการดูแลรายวัน · ลูกค้าเห็นเฉพาะรายงานที่อนุญาต</div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-head">
+            <h3><i data-lucide="calendar-check" class="ic"></i> วันนี้ — 20 มิ.ย. 2569</h3>
+            <button class="btn btn-primary btn-sm" onclick="navigate('caregiver','checkin')">Check-in/out →</button>
+          </div>
+          <div style="padding:16px;">
+            <p style="font-size:.85rem;margin-bottom:12px;"><strong>คุณสมชาย บุญเรือง</strong> · CS-0241 · Check-in 08:02 · <span class="badge badge-yellow">กำลังดูแล</span></p>
+            <div id="cg-today-care"></div>
+            <button class="btn btn-outline btn-sm" style="margin-top:12px;">+ เพิ่มกิจกรรม</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="history" class="ic"></i> ประวัติการดูแลรายวัน</h3></div>
+          <div style="padding:16px;" id="cg-care-history"></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="caregiver" data-page="training">
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="graduation-cap" class="ic"></i> Training — คลิปอบรม (12 หมวด)</h3><button class="btn btn-outline btn-sm" onclick="navigate('caregiver','quiz')">ทำ Quiz →</button></div>
+          <div class="video-grid" id="cg-training-grid"></div>
+        </div>
+      </div>
+
+
+      <div class="page" data-role="caregiver" data-page="attendance-history">
+        <div class="card"><div class="card-head"><h3><i data-lucide="history" class="ic"></i> ประวัติเข้างานของฉัน</h3></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>วันที่</th><th>ผู้ป่วย</th><th>เคส</th><th>Check-in</th><th>Check-out</th><th>ชม.</th><th>รูป</th></tr></thead>
+            <tbody>
+              <tr><td>20 มิ.ย.</td><td>คุณสมชาย บ.</td><td>CS-0241</td><td>08:02</td><td>—</td><td>—</td><td><i data-lucide="camera" class="ic ic-sm"></i></td></tr>
+              <tr><td>19 มิ.ย.</td><td>คุณสมชาย บ.</td><td>CS-0241</td><td>08:02</td><td>16:58</td><td>8.9</td><td><i data-lucide="camera" class="ic ic-sm"></i></td></tr>
+              <tr><td>19 มิ.ย.</td><td>คุณสุดา ม.</td><td>CS-0235</td><td>08:10</td><td>17:05</td><td>8.9</td><td><i data-lucide="camera" class="ic ic-sm"></i></td></tr>
+              <tr><td>18 มิ.ย.</td><td>คุณสมชาย บ.</td><td>CS-0241</td><td>08:05</td><td>17:01</td><td>8.9</td><td><i data-lucide="camera" class="ic ic-sm"></i></td></tr>
+              <tr><td>18 มิ.ย.</td><td>คุณสุดา ม.</td><td>CS-0235</td><td>09:02</td><td>18:00</td><td>9.0</td><td><i data-lucide="camera" class="ic ic-sm"></i></td></tr>
+              <tr><td>17 มิ.ย.</td><td>คุณสมชาย บ.</td><td>CS-0241</td><td>07:55</td><td>16:50</td><td>8.9</td><td><i data-lucide="camera" class="ic ic-sm"></i></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="caregiver" data-page="quiz">
+        <div class="card"><div class="card-head"><h3><i data-lucide="clipboard-check" class="ic"></i> แบบทดสอบ — การดูแลผู้สูงอายุ (ตัวอย่าง 5 ข้อ)</h3><span class="badge badge-blue">60 ข้อเต็มในระบบ HR</span></div>
+          <div class="quiz-q"><strong>1.</strong> ผู้สูงอายุที่เป็นเบาหวาน ควรตรวจน้ำตาลเมื่อใด?<div class="quiz-opt">A) ก่อนอาหารเช้า</div><div class="quiz-opt">B) หลังออกกำลังกาย</div><div class="quiz-opt">C) ก่อนนอนเท่านั้น</div></div>
+          <div class="quiz-q"><strong>2.</strong> ADL ย่อมาจาก?<div class="quiz-opt">A) Activities of Daily Living</div><div class="quiz-opt">B) Advanced Daily Learning</div></div>
+          <div class="quiz-q"><strong>3.</strong> การให้ยาทาง oral ที่ถูกต้อง?<div class="quiz-opt">A) ให้ยาพร้อมน้ำ ตรวจชื่อ-ขนาด</div><div class="quiz-opt">B) บดยาเม็ดทุกชนิด</div></div>
+          <div class="quiz-q"><strong>4.</strong> ส signs ของ Stroke เรียก?<div class="quiz-opt">A) FAST (Face, Arm, Speech, Time)</div><div class="quiz-opt">B) STOP</div></div>
+          <div class="quiz-q"><strong>5.</strong> การป้องกันแผลกดทับ?<div class="quiz-opt">A) เปลี่ยนท่าทุก 2 ชม.</div><div class="quiz-opt">B) นอนนิ่งตลอด</div></div>
+          <div style="padding:16px 20px;"><button class="btn btn-primary">ส่งคำตอบ</button></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="caregiver" data-page="earnings">
+        <div class="view-badge cg"><i data-lucide="wallet" class="ic ic-xs"></i> รายได้ของฉัน · ไม่แสดงข้อมูลบริษัท</div>
+        <div class="stats">
+          <div class="stat-card stat-card--green"><div class="val">฿17,300</div><div class="lbl">รายได้สุทธิ มิ.ย. 2569</div><div class="change">จาก 18 วันทำงาน</div></div>
+          <div class="stat-card stat-card--sky"><div class="val">฿350</div><div class="lbl">เฉลี่ย/วัน</div></div>
+          <div class="stat-card stat-card--coral"><div class="val">3</div><div class="lbl">เคส Active</div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="trending-up" class="ic"></i> รายได้ตามเคส — มิ.ย. 2569</h3></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>เคส</th><th>ผู้ป่วย</th><th>วันทำงาน</th><th>อัตรา</th><th>รายได้</th><th>สถานะ</th></tr></thead>
+            <tbody>
+              <tr><td>CS-0241</td><td>คุณสมชาย บ.</td><td>18 วัน</td><td>฿350/วัน</td><td><strong>฿6,300</strong></td><td><span class="badge badge-green">คิดแล้ว</span></td></tr>
+              <tr><td>CS-0235</td><td>คุณสุดา ม.</td><td>18 วัน</td><td>฿350/วัน</td><td><strong>฿6,300</strong></td><td><span class="badge badge-green">คิดแล้ว</span></td></tr>
+              <tr><td>CS-0228</td><td>คุณบุญมี ท.</td><td>12 วัน</td><td>฿90/ชม. × 4</td><td><strong>฿4,320</strong></td><td><span class="badge badge-yellow">รอปิดเดือน</span></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="caregiver" data-page="my-payslip">
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="wallet" class="ic"></i> สลิปเงินเดือนของฉัน</h3></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>เดือน</th><th>รายได้รวม</th><th>หัก</th><th>สุทธิ</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>พ.ค. 2569</td><td>฿18,500</td><td>฿1,200</td><td><strong>฿17,300</strong></td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+              <tr><td>เม.ย. 2569</td><td>฿17,800</td><td>฿1,200</td><td><strong>฿16,600</strong></td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+              <tr><td>มี.ค. 2569</td><td>฿17,200</td><td>฿1,150</td><td><strong>฿16,050</strong></td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+            </tbody>
+          </table></div>
+          <p style="padding:12px 20px 16px;font-size:.78rem;color:var(--muted);">ข้อมูลจาก HR · ดูได้เฉพาะสลิปของตัวเอง</p>
+        </div>
+      </div>
+
+      <!-- HR PAGES -->
+      <div class="page" data-role="hr" data-page="applicants">
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="user-plus" class="ic"></i> รายการผู้สมัคร / Applicants</h3><button class="btn btn-primary btn-sm">+ ดู Web Form</button></div>
+          <div class="search-bar">
+            <input type="text" placeholder="ค้นหาชื่อผู้สมัคร..." />
+            <select><option>ทุกสถานะ</option><option>รอสอบ</option><option>ผ่าน</option><option>ไม่ผ่าน</option></select>
+          </div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>ชื่อ</th><th>ตำแหน่ง</th><th>วันที่สมัคร</th><th>สถานะ</th><th>คะแนนสอบ</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>สมหญิง ใจดี</td><td>NA</td><td>15 มิ.ย. 69</td><td><span class="badge badge-purple">สอบแล้ว</span></td><td><strong>52/60</strong></td><td><button class="btn btn-outline btn-sm">ดู</button></td></tr>
+              <tr><td>วิชัย รักงาน</td><td>Caregiver</td><td>12 มิ.ย. 69</td><td><span class="badge badge-green">ผ่าน</span></td><td><strong>48/60</strong></td><td><button class="btn btn-outline btn-sm">ดู</button></td></tr>
+              <tr><td>นภา สุขสันต์</td><td>PN</td><td>18 มิ.ย. 69</td><td><span class="badge badge-yellow">รอสอบ</span></td><td>—</td><td><button class="btn btn-primary btn-sm">นัดสอบ</button></td></tr>
+              <tr><td>กมล วงศ์ดี</td><td>Caregiver</td><td>10 มิ.ย. 69</td><td><span class="badge badge-red">ไม่ผ่าน</span></td><td>28/60</td><td><button class="btn btn-outline btn-sm">ดู</button></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="hr" data-page="employees">
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="user" class="ic"></i> พนักงาน / Employees</h3></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>รหัส</th><th>ชื่อ</th><th>ตำแหน่ง</th><th>สถานะ</th><th>เคสปัจจุบัน</th></tr></thead>
+            <tbody>
+              <tr><td>EMP-001</td><td>พญ. แอน วงศ์ดี</td><td>PN</td><td><span class="badge badge-green">Active</span></td><td>3 เคส</td></tr>
+              <tr><td>EMP-002</td><td>คุณนิด ศรีสุข</td><td>NA</td><td><span class="badge badge-green">Active</span></td><td>2 เคส</td></tr>
+              <tr><td>EMP-003</td><td>คุณเจ มั่นคง</td><td>Caregiver</td><td><span class="badge badge-green">Active</span></td><td>1 เคส</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="hr" data-page="payslip">
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="wallet" class="ic"></i> PAY Slip</h3><button class="btn btn-primary btn-sm">+ สร้างสลิป</button></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>พนักงาน</th><th>เดือน</th><th>รายได้รวม</th><th>หัก</th><th>สุทธิ</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>พญ. แอน วงศ์ดี</td><td>พ.ค. 2569</td><td>฿18,500</td><td>฿1,200</td><td><strong>฿17,300</strong></td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+              <tr><td>คุณนิด ศรีสุข</td><td>พ.ค. 2569</td><td>฿15,200</td><td>฿950</td><td><strong>฿14,250</strong></td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+
+      <div class="page" data-role="hr" data-page="tracking">
+        <div class="card"><div class="card-head"><h3><i data-lucide="kanban" class="ic"></i> Tracking — Workflow Kanban</h3></div>
+          <div class="workflow-columns">
+            <div class="wf-col"><div class="wf-col-head"><i data-lucide="user-plus" class="ic ic-sm"></i> Applied (4)</div>
+              <div class="wf-card"><div class="name">นภา สุขสันต์</div><div class="sub">PN · 18 มิ.ย.</div></div>
+              <div class="wf-card"><div class="name">สุรชัย มั่นใจ</div><div class="sub">NA · 17 มิ.ย.</div></div>
+              <div class="wf-card"><div class="name">พิมพ์ใจ รักดี</div><div class="sub">CG · 16 มิ.ย.</div></div>
+              <div class="wf-card"><div class="name">อรุณ แสงทอง</div><div class="sub">CG · 15 มิ.ย.</div></div>
+            </div>
+            <div class="wf-col"><div class="wf-col-head"><i data-lucide="clipboard-list" class="ic ic-sm"></i> Quiz (3)</div>
+              <div class="wf-card"><div class="name">วิชัย รักงาน</div><div class="sub">CG · นัด 21 มิ.ย.</div></div>
+              <div class="wf-card"><div class="name">มณี ใสใจ</div><div class="sub">NA · รอสอบ</div></div>
+              <div class="wf-card"><div class="name">ชัย วีรกุล</div><div class="sub">PN · รอสอบ</div></div>
+            </div>
+            <div class="wf-col"><div class="wf-col-head"><i data-lucide="circle-check" class="ic ic-sm"></i> Passed (2)</div>
+              <div class="wf-card"><div class="name">สมหญิง ใจดี</div><div class="sub">NA · 52/60</div></div>
+              <div class="wf-card"><div class="name">กชกร สุวรรณ</div><div class="sub">CG · 45/60</div></div>
+            </div>
+            <div class="wf-col"><div class="wf-col-head"><i data-lucide="party-popper" class="ic ic-sm"></i> Hired (1)</div>
+              <div class="wf-card"><div class="name">วิชัย รักงาน</div><div class="sub">CG · EMP-004 · 1 มิ.ย.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="hr" data-page="quiz-admin">
+        <div class="card"><div class="card-head"><h3><i data-lucide="clipboard-list" class="ic"></i> Quiz Admin — 60 ข้อสอบ</h3><button class="btn btn-primary btn-sm">+ เพิ่มข้อ</button></div>
+          <div class="search-bar"><input type="text" placeholder="ค้นหาข้อสอบ..." /><select><option>ทุกหมวด</option><option>ADL</option><option>ยา</option><option>ฉุกเฉิน</option></select></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>#</th><th>คำถาม</th><th>หมวด</th><th>คำตอบ</th><th>สถานะ</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>ADL ย่อมาจากอะไร?</td><td>พื้นฐาน</td><td>A</td><td><span class="badge badge-green">Active</span></td></tr>
+              <tr><td>2</td><td>ผู้ป่วยเบาหวาน ตรวจน้ำตาลเมื่อ?</td><td>โรคเรื้อรัง</td><td>A</td><td><span class="badge badge-green">Active</span></td></tr>
+              <tr><td>3</td><td>FAST ใช้ประเมิน?</td><td>ฉุกเฉิน</td><td>A</td><td><span class="badge badge-green">Active</span></td></tr>
+              <tr><td>4</td><td>ป้องกันแผลกดทับ?</td><td>การดูแล</td><td>A</td><td><span class="badge badge-green">Active</span></td></tr>
+              <tr><td>5</td><td>ให้ยา oral ถูกต้อง?</td><td>ยา</td><td>A</td><td><span class="badge badge-green">Active</span></td></tr>
+              <tr><td colspan="5" style="text-align:center;color:var(--muted);">... แสดง 5 จาก 60 ข้อ ...</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="hr" data-page="documents">
+        <div class="card"><div class="card-head"><h3><i data-lucide="file-text" class="ic"></i> เอกสารพนักงาน / Documents</h3><button class="btn btn-primary btn-sm">+ อัปโหลด</button></div>
+          <div class="doc-list">
+            <div class="doc-item"><div><strong>สัญญาจ้าง — วิชัย รักงาน</strong><br><span style="font-size:.78rem;color:var(--muted);">contract_vichai_2026.pdf · 1 มิ.ย. 2569</span></div><button class="btn btn-outline btn-sm">📥 PDF</button></div>
+            <div class="doc-item"><div><strong>Offer Letter — สมหญิง ใจดี</strong><br><span style="font-size:.78rem;color:var(--muted);">offer_somying_2026.pdf · 15 พ.ค. 2569</span></div><button class="btn btn-outline btn-sm">📥 PDF</button></div>
+            <div class="doc-item"><div><strong>สัญญาจ้าง — พญ. แอน วงศ์ดี</strong><br><span style="font-size:.78rem;color:var(--muted);">contract_ann_2025.pdf · 1 ม.ค. 2568</span></div><button class="btn btn-outline btn-sm">📥 PDF</button></div>
+            <div class="doc-item"><div><strong>NDA — คุณนิด ศรีสุข</strong><br><span style="font-size:.78rem;color:var(--muted);">nda_nit_2025.pdf · 10 มี.ค. 2568</span></div><button class="btn btn-outline btn-sm">📥 PDF</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="hr" data-page="hr-reports">
+        <div class="card"><div class="card-head"><h3><i data-lucide="bar-chart-3" class="ic"></i> HR Reports</h3><button class="btn btn-outline btn-sm">Export CSV</button></div>
+          <div class="stats" style="padding:16px 20px 0;">
+            <div class="stat-card stat-card--green"><div class="val">12</div><div class="lbl">ผู้สมัครใหม่ (เดือนนี้)</div></div>
+            <div class="stat-card stat-card--sky"><div class="val">67%</div><div class="lbl">Pass Rate สอบ</div></div>
+            <div class="stat-card stat-card--lav"><div class="val">42</div><div class="lbl">พนักงาน Active</div></div>
+            <div class="stat-card stat-card--coral"><div class="val">3</div><div class="lbl">รอ Hired</div></div>
+          </div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>รายงาน</th><th>รายละเอียด</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Applicant Pipeline</td><td>Applied → Quiz → Passed → Hired</td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+              <tr><td>Quiz Score Summary</td><td>คะแนนเฉลี่ย 45.2/60</td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+              <tr><td>Headcount Report</td><td>42 Active · 3 Probation</td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+              <tr><td>PAY Slip Summary</td><td>พ.ค. 2569 · ฿742K รวม</td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <!-- CUSTOMER PAGES -->
+      <div class="page" data-role="customer" data-page="home">
+        <div class="portal-wrap">
+          <div class="consent-bar"><i data-lucide="shield-check" class="ic ic-sm"></i> PDPA — ยินยอมใช้ข้อมูลแล้ว · Consent granted</div>
+          <div class="review-pending-banner">
+            <span><i data-lucide="star" class="ic ic-sm"></i> มีการดูแล <strong>1 รอบ</strong> ที่ยังไม่ได้ประเมิน (19 มิ.ย. · พญ. แอน)</span>
+            <button class="btn btn-primary btn-sm" onclick="navigate('customer','review')">ประเมินเลย</button>
+          </div>
+          <div class="portal-card">
+            <h4>คุณสมชาย บุญเรือง</h4>
+            <p>เคสดูแลที่บ้าน · รายวัน · ฿450/วัน</p>
+            <div class="progress"><div class="progress-bar" style="width:75%"></div></div>
+            <p style="font-size:.78rem;color:var(--muted);margin-top:6px;">ความคืบหน้าเดือน มิ.ย. — 18/24 วัน (75%)</p>
+          </div>
+          <div class="portal-card">
+            <h4><i data-lucide="circle-check" class="ic ic-sm"></i> การดูแลวันนี้</h4>
+            <p>พญ. แอน — Check-in <strong>08:02</strong> · รอ Check-out</p>
+            <p style="font-size:.78rem;color:var(--muted);margin-top:6px;">ให้ยาครบ · BP 130/80 · อาหารเช้าครบ</p>
+            <button class="btn btn-outline btn-sm" style="margin-top:10px;" onclick="navigate('customer','care-report')">ดูรายงานวันนี้ →</button>
+          </div>
+          <div class="portal-card">
+            <h4><i data-lucide="receipt" class="ic ic-sm"></i> ใบแจ้งหนี้ล่าสุด</h4>
+            <p>INV-069 · มิ.ย. 2569 · <strong>฿12,500</strong> · <span class="badge badge-green">ออกแล้ว</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="customer" data-page="cases">
+        <div class="portal-wrap">
+          <div class="view-badge portal"><i data-lucide="eye" class="ic ic-xs"></i> Customer Portal · ดูอย่างเดียว · เฉพาะคนไข้ที่ลงทะเบียน</div>
+          <div class="portal-card">
+            <h4><i data-lucide="heart-pulse" class="ic ic-sm"></i> การดูแลของฉัน — คุณสมชาย บุญเรือง</h4>
+            <p>สัญญา #CS-0241 · Active · 1 ม.ค. – 31 ธ.ค. 2569</p>
+            <p style="margin-top:8px;">ประเภท: ดูแลรายวัน · <strong>฿450/วัน</strong></p>
+            <p style="margin-top:6px;">ผู้ดูแลวันนี้: พญ. แอน วงศ์ดี (กะ 08:00–17:00)</p>
+            <p style="margin-top:6px;">คะแนนเฉลี่ยผู้ดูแล: <span class="review-stars-inline">★★★★☆</span> 4.8/5 (12 รีวิว)</p>
+            <p style="font-size:.75rem;color:var(--muted);margin-top:10px;">ไม่แสดงหมายเหตุภายใน · ไม่สามารถแก้ไขเคส</p>
+          </div>
+          <div class="card" style="margin-top:16px;">
+            <div class="card-head">
+              <h3><i data-lucide="calendar-days" class="ic"></i> สรุปการดูแลล่าสุด</h3>
+              <button class="btn btn-outline btn-sm" onclick="navigate('customer','care-report')">รายงานทั้งหมด →</button>
+            </div>
+            <div style="padding:16px;font-size:.85rem;" id="cu-care-summary"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="customer" data-page="invoice">
+        <div class="portal-wrap">
+          <div class="portal-card">
+            <h4>ใบแจ้งหนี้ #INV-069</h4>
+            <p>คุณสมชาย บุญเรือง · มิ.ย. 2569</p>
+            <hr style="border:none;border-top:1px solid var(--border);margin:12px 0;" />
+            <div style="font-size:.85rem;display:flex;justify-content:space-between;margin-bottom:6px;"><span>บริการดูแลรายวัน × 25 วัน</span><span>฿11,250</span></div>
+            <div style="font-size:.85rem;display:flex;justify-content:space-between;margin-bottom:6px;"><span>ค่าบริการเพิ่มเติม</span><span>฿1,250</span></div>
+            <div style="font-size:1rem;font-weight:700;display:flex;justify-content:space-between;color:var(--p-dark);margin-top:10px;"><span>รวมทั้งสิ้น</span><span>฿12,500</span></div>
+            <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;">📥 ดาวน์โหลด PDF</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="page" data-role="customer" data-page="care-report">
+        <div class="portal-wrap" style="max-width:560px;">
+          <div class="view-badge portal"><i data-lucide="file-text" class="ic ic-xs"></i> รายงานการดูแลรายวัน · สิ่งที่พนักงานทำในแต่ละวัน</div>
+          <div class="search-bar" style="margin-bottom:16px;">
+            <select style="flex:1;"><option>คุณสมชาย บุญเรือง — CS-0241</option></select>
+            <select><option>มิ.ย. 2569</option><option>พ.ค. 2569</option></select>
+          </div>
+          <div id="cu-care-report"></div>
+          <p style="font-size:.72rem;color:var(--muted);margin-top:12px;text-align:center;">แสดงเฉพาะรายงานที่พนักงานส่งให้ญาติ · ไม่แสดงหมายเหตุภายใน</p>
+        </div>
+      </div>
+
+      <div class="page" data-role="customer" data-page="timeline">
+        <div class="portal-wrap" style="max-width:520px;">
+          <div class="card"><div class="card-head">
+            <h3><i data-lucide="calendar-days" class="ic"></i> Timeline — คุณสมชาย บุญเรือง</h3>
+            <button class="btn btn-outline btn-sm" onclick="navigate('customer','care-report')">รายงานรายวัน →</button>
+          </div>
+            <div class="timeline-list">
+              <div class="timeline-item"><div class="timeline-date">20 มิ.ย.</div><div><strong>Check-in 08:02</strong> · พญ. แอน · รูปยืนยัน <i data-lucide="camera" class="ic ic-xs"></i><br><span style="color:var(--muted);font-size:.78rem;">ให้ยาครบ · BP 130/80 · อาหารเช้าครบ</span></div></div>
+              <div class="timeline-item"><div class="timeline-date">19 มิ.ย.</div><div><strong>Check-in 08:02 → Out 16:58</strong> · พญ. แอน <i data-lucide="circle-check" class="ic ic-xs"></i><br><span style="color:var(--muted);font-size:.78rem;">ให้ยา · อาหาร · พาเดิน · อาบน้ำช่วย</span><br><button class="btn btn-outline btn-sm" style="margin-top:6px;" onclick="navigate('customer','care-report')">ดูรายงานวันนี้</button> · <button class="btn btn-primary btn-sm" style="margin-top:6px;" onclick="navigate('customer','review')">ประเมิน</button></div></div>
+              <div class="timeline-item"><div class="timeline-date">18 มิ.ย.</div><div><strong>Check-in 08:05 → Out 17:01</strong> · พญ. แอน <i data-lucide="circle-check" class="ic ic-xs"></i><br><span style="color:var(--muted);font-size:.78rem;">ให้ยา · อาหารกลางวัน · ทำแผลเล็ก</span> · <span class="review-stars-inline">★★★★☆</span></div></div>
+              <div class="timeline-item"><div class="timeline-date">17 มิ.ย.</div><div><strong>Check-in 07:55 → Out 16:50</strong> · พญ. แอน <i data-lucide="circle-check" class="ic ic-xs"></i><br><span style="color:var(--muted);font-size:.78rem;">ให้ยา · อาหาร · ดูแลสุขอนามัย</span></div></div>
+              <div class="timeline-item"><div class="timeline-date">16 มิ.ย.</div><div><strong>Check-in 08:00 → Out 17:00</strong> · พญ. แอน <i data-lucide="circle-check" class="ic ic-xs"></i> · หมายเหตุ: นัดพบแพทย์ 14:00</div></div>
+              <div class="timeline-item"><div class="timeline-date">15 มิ.ย.</div><div><strong>Check-in 08:03 → Out 16:55</strong> · คุณนิด (แทน) <i data-lucide="circle-check" class="ic ic-xs"></i></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="customer" data-page="review">
+        <div class="portal-wrap" style="max-width:480px;">
+          <div class="view-badge portal"><i data-lucide="star" class="ic ic-xs"></i> ประเมินหลัง Check-out · 1 visit = 1 review</div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-head"><h3><i data-lucide="clipboard-list" class="ic"></i> รอประเมิน</h3></div>
+            <div style="padding:16px;">
+              <div style="padding:12px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;">
+                <strong>19 มิ.ย. 2569</strong> · พญ. แอน · เคส CS-0241<br>
+                <span style="font-size:.78rem;color:var(--muted);">Check-in 08:02 → Out 16:58</span>
+                <button class="btn btn-primary btn-sm" style="margin-top:10px;width:100%;justify-content:center;">เลือกรอบนี้</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3><i data-lucide="star" class="ic"></i> ประเมินการดูแล</h3></div>
+            <div style="padding:20px;font-size:.85rem;">
+              <p style="margin-bottom:4px;color:var(--muted);">19 มิ.ย. 2569 · พญ. แอน วงศ์ดี</p>
+              <p style="margin-bottom:16px;font-size:.78rem;color:var(--muted);">เคส #CS-0241 · คุณสมชาย บุญเรือง</p>
+              <label style="display:block;margin-bottom:8px;font-weight:600;">ความพึงพอใจโดยรวม *</label>
+              <div class="star-rating" aria-label="ให้คะแนน 1-5 ดาว">
+                <span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star on">★</span><span class="star">★</span>
+              </div>
+              <label style="display:block;margin:16px 0 8px;font-weight:600;">ด้านที่ประทับใจ (เลือกได้หลายข้อ)</label>
+              <div class="review-tags">
+                <label><input type="checkbox" checked /><span>ตรงเวลา</span></label>
+                <label><input type="checkbox" checked /><span>สุภาพ</span></label>
+                <label><input type="checkbox" /><span>ดูแลละเอียด</span></label>
+                <label><input type="checkbox" /><span>สื่อสารดี</span></label>
+                <label><input type="checkbox" /><span>รายงานญาติชัดเจน</span></label>
+              </div>
+              <label style="display:block;margin-bottom:8px;font-weight:600;">ข้อเสนอแนะ (ไม่บังคับ)</label>
+              <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;" rows="3" placeholder="สูงสุด 500 ตัวอักษร..."></textarea>
+              <label style="display:flex;gap:8px;align-items:flex-start;margin:16px 0;"><input type="checkbox" checked /> ยินยอมให้ PS Care ใช้คะแนนเพื่อพัฒนาบริการ (ไม่เปิดเผยชื่อให้ผู้ดูแล)</label>
+              <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="alert('Mockup: ส่งความคิดเห็นสำเร็จ')">ส่งความคิดเห็น</button>
+              <p style="font-size:.72rem;color:var(--muted);margin-top:12px;text-align:center;">แก้ไขได้ภายใน 24 ชม. หลังส่ง · คะแนน ≤2 ดาว แจ้ง Admin โดยอัตโนมัติ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="customer" data-page="consent">
+        <div class="portal-wrap" style="max-width:480px;">
+          <div class="card"><div class="card-head"><h3><i data-lucide="shield-check" class="ic"></i> PDPA Consent Form</h3></div>
+            <div style="padding:20px;font-size:.85rem;line-height:1.6;">
+              <p style="margin-bottom:12px;"><strong>หนังสือยินยอมให้เก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคล</strong></p>
+              <p style="color:var(--muted);margin-bottom:16px;">PS Care Co., Ltd. ขอเก็บรวบรวมข้อมูลสุขภาพของคุณสมชาย บุญเรือง เพื่อให้บริการดูแลที่บ้าน ตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562</p>
+              <label style="display:flex;gap:8px;align-items:flex-start;margin-bottom:12px;"><input type="checkbox" checked /> ยินยอมให้เก็บข้อมูลสุขภาพและ ADL</label>
+              <label style="display:flex;gap:8px;align-items:flex-start;margin-bottom:12px;"><input type="checkbox" checked /> ยินยอมให้ส่งข้อมูลให้ผู้ดูแลที่มอบหมาย</label>
+              <label style="display:flex;gap:8px;align-items:flex-start;margin-bottom:16px;"><input type="checkbox" /> ยินยอมรับข่าวสารการตลาด</label>
+              <p style="font-size:.78rem;color:var(--muted);">Consent Version v2.1 · ยินยอมเมื่อ 15 ม.ค. 2569</p>
+              <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;">บันทึก Consent</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" data-role="customer" data-page="register">
+        <div class="portal-wrap" style="max-width:400px;">
+          <div class="card"><div class="card-head"><h3><i data-lucide="smartphone" class="ic"></i> เข้าสู่ระบบ / ลงทะเบียน</h3></div>
+            <div style="padding:20px;">
+              <div style="display:flex;gap:8px;margin-bottom:20px;">
+                <button class="btn btn-primary btn-sm" style="flex:1;justify-content:center;">OTP Login</button>
+                <button class="btn btn-outline btn-sm" style="flex:1;justify-content:center;">ลงทะเบียน</button>
+              </div>
+              <div class="form-group"><label>เบอร์โทรศัพท์</label><input type="text" value="089-123-4567" /></div>
+              <button class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:20px;">ส่ง OTP</button>
+              <div class="form-group"><label>รหัส OTP (6 หลัก)</label></div>
+              <div class="otp-boxes">
+                <div class="otp-box filled">4</div><div class="otp-box filled">8</div><div class="otp-box filled">2</div>
+                <div class="otp-box filled">9</div><div class="otp-box filled">1</div><div class="otp-box">·</div>
+              </div>
+              <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;">เข้าสู่ระบบ</button>
+              <hr style="border:none;border-top:1px solid var(--border);margin:20px 0;" />
+              <p style="font-size:.78rem;color:var(--muted);text-align:center;margin-bottom:12px;">หรือลงทะเบียนด้วย Link เชิญจาก Staff</p>
+              <div class="form-group"><label>Invite Token</label><input type="text" placeholder="วาง Link หรือ Token..." /></div>
+              <button class="btn btn-outline" style="width:100%;justify-content:center;">ลงทะเบียน →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+const CASES = [
+  { id:'CS-0241', patient:'คุณสมชาย บ.', type:'รายวัน', caregiver:'พญ. แอน', status:'Active', checkedIn:true,  time:'08:02' },
+  { id:'CS-0242', patient:'คุณมาลี ก.', type:'รายชม.', caregiver:'—', status:'รอมอบหมาย', checkedIn:false, time:'—' },
+  { id:'CS-0240', patient:'คุณประเสริฐ ส.', type:'รายวัน', caregiver:'คุณนิด', status:'Active', checkedIn:true,  time:'07:55' },
+  { id:'CS-0238', patient:'คุณวิไล ร.', type:'รายวัน', caregiver:'คุณเจ', status:'Active', checkedIn:false, time:'—' },
+  { id:'CS-0235', patient:'คุณสุดา ม.', type:'รายวัน', caregiver:'พญ. แอน', status:'Active', checkedIn:true,  time:'08:10' },
+  { id:'CS-0233', patient:'คุณชูศักดิ์ ว.', type:'กลางคืน', caregiver:'คุณนิด', status:'Active', checkedIn:true,  time:'20:05' },
+  { id:'CS-0230', patient:'คุณรำไพ ส.', type:'Respite', caregiver:'คุณเจ', status:'Active', checkedIn:false, time:'—' },
+  { id:'CS-0228', patient:'คุณบุญมี ท.', type:'รายชม.', caregiver:'พญ. แอน', status:'Active', checkedIn:true,  time:'09:15' },
+];
+
+const CARE_DAILY_LOGS = [
+  {
+    date: '20 มิ.ย. 2569', shortDate: '20 มิ.ย.', patient: 'คุณสมชาย บุญเรือง', caseId: 'CS-0241',
+    caregiver: 'พญ. แอน', checkIn: '08:02', checkOut: null, inProgress: true,
+    customerSummary: 'ให้ยาครบ · BP 130/80 · อาหารเช้าครบ',
+    activities: [
+      { time: '08:15', task: 'วัดสัญญาณชีพ', detail: 'BP 130/80, Pulse 72' },
+      { time: '08:30', task: 'ให้ยาเช้า', detail: 'ยาความดัน + วิตามิน ครบ' },
+      { time: '09:00', task: 'อาหารเช้า', detail: 'ข้าวต้ม ½ ถ้วย, น้ำ 1 แก้ว' },
+    ],
+  },
+  {
+    date: '19 มิ.ย. 2569', shortDate: '19 มิ.ย.', patient: 'คุณสมชาย บุญเรือง', caseId: 'CS-0241',
+    caregiver: 'พญ. แอน', checkIn: '08:02', checkOut: '16:58', inProgress: false,
+    customerSummary: 'ให้ยา · อาหาร · พาเดิน · อาบน้ำช่วย',
+    activities: [
+      { time: '08:10', task: 'วัดสัญญาณชีพ', detail: 'BP 128/78' },
+      { time: '08:25', task: 'ให้ยาเช้า', detail: 'ครบตามเวลา' },
+      { time: '09:00', task: 'อาหารเช้า', detail: 'โจ๊กไก่ 1 ชาม' },
+      { time: '10:30', task: 'พาเดินออกกำลัง', detail: '15 นาที รอบบ้าน' },
+      { time: '14:00', task: 'อาบน้ำช่วย', detail: 'อาบน้ำอุ่น + เปลี่ยนเสื้อผ้า' },
+      { time: '16:00', task: 'อาหารเย็น', detail: 'ข้าวต้มปลา' },
+    ],
+  },
+  {
+    date: '18 มิ.ย. 2569', shortDate: '18 มิ.ย.', patient: 'คุณสมชาย บุญเรือง', caseId: 'CS-0241',
+    caregiver: 'พญ. แอน', checkIn: '08:05', checkOut: '17:01', inProgress: false,
+    customerSummary: 'ให้ยา · อาหารกลางวัน · ทำแผลเล็ก',
+    activities: [
+      { time: '08:15', task: 'ให้ยาเช้า', detail: 'ครบ' },
+      { time: '12:00', task: 'อาหารกลางวัน', detail: 'ข้าว + ไข่ต้ม' },
+      { time: '15:00', task: 'ทำแผล', detail: 'แผลที่ขา ขวา — ทำความสะอาดแล้ว' },
+    ],
+  },
+  {
+    date: '17 มิ.ย. 2569', shortDate: '17 มิ.ย.', patient: 'คุณสมชาย บุญเรือง', caseId: 'CS-0241',
+    caregiver: 'พญ. แอน', checkIn: '07:55', checkOut: '16:50', inProgress: false,
+    customerSummary: 'ให้ยา · อาหาร · ดูแลสุขอนามัย',
+    activities: [
+      { time: '08:00', task: 'ให้ยา', detail: 'ครบ' },
+      { time: '09:30', task: 'สุขอนามัย', detail: 'เปลี่ยนผ้าอ้อม · เช็ดตัว' },
+      { time: '12:00', task: 'อาหารกลางวัน', detail: 'บะหมี่น้ำ' },
+    ],
+  },
+];
+
+const ROLES = {
+  admin: {
+    label: 'Admin · ผู้ดูแลระบบ',
+    user: { name: 'คุณสมศักดิ์', avatar: 'A' },
+    defaultPage: 'dashboard',
+    hasBanner: true,
+    menuGroups: [
+      { group: 'CORE', items: [
+        { page:'dashboard', icon:'layout-dashboard', th:'Dashboard', en:'ภาพรวม' },
+        { page:'users', icon:'users', th:'ผู้ใช้', en:'Users' },
+        { page:'settings', icon:'settings', th:'ตั้งค่า', en:'Settings' },
+      ]},
+      { group: 'CARE', items: [
+        { page:'patients', icon:'users', th:'ผู้ป่วย', en:'Patients' },
+        { page:'patient-detail', icon:'heart-pulse', th:'Health Profile', en:'ADL' },
+        { page:'cases', icon:'clipboard-list', th:'จัดการเคส', en:'All Cases' },
+        { page:'assign', icon:'sparkles', th:'มอบหมาย', en:'Prescriptive' },
+      ]},
+      { group: 'OPERATIONS', items: [
+        { page:'service-types', icon:'layers', th:'ประเภทบริการ', en:'' },
+        { page:'attendance', icon:'camera', th:'Check-in', en:'ประวัติ' },
+        { page:'invoice', icon:'receipt', th:'Invoice', en:'' },
+        { page:'invite-customer', icon:'link-2', th:'เชิญลูกค้า', en:'Portal Link' },
+      ]},
+      { group: 'ANALYTICS', items: [
+        { page:'analytics', icon:'trending-up', th:'Analytics', en:'รายได้/เคส' },
+        { page:'prescriptive', icon:'sparkles', th:'Prescriptive', en:'แนะนำ AI' },
+        { page:'reports', icon:'file-text', th:'รายงาน', en:'Reports' },
+      ]},
+      { group: 'COMPLIANCE', items: [
+        { page:'alerts', icon:'bell-ring', th:'Alerts', en:'ความเสี่ยง' },
+        { page:'caregiver-reviews', icon:'star', th:'รีวิวลูกค้า', en:'Caregiver Reviews' },
+        { page:'pdpa-audit', icon:'shield-check', th:'PDPA Audit', en:'Audit Log' },
+      ]},
+      { group: 'SYSTEM', items: [
+        { page:'migration', icon:'database-backup', th:'Migration', en:'AppSheet' },
+      ]},
+    ],
+    pages: {
+      dashboard: { title:'Dashboard', sub:'ภาพรวมระบบ · System Overview' },
+      patients: { title:'ข้อมูลผู้ป่วย', sub:'Patients · 8 ราย · Staff CRUD' },
+      'patient-detail': { title:'Health Profile', sub:'ADL Assessment · คุณสมชาย บ.' },
+      cases: { title:'จัดการเคสบริการ', sub:'Staff · ทุกเคส · CRUD + Check-in' },
+      assign: { title:'มอบหมายผู้ดูแล', sub:'Prescriptive Top 3 Recommendation' },
+      'service-types': { title:'ประเภทบริการ', sub:'Service Types Master' },
+      attendance: { title:'ประวัติ Check-in', sub:'Attendance History with Photos' },
+      invoice: { title:'Invoice', sub:'ใบแจ้งหนี้ / ใบเสร็จ' },
+      'invite-customer': { title:'เชิญลูกค้า', sub:'Generate Customer Portal Link' },
+      analytics: { title:'Analytics', sub:'รายได้ & เคส · Revenue & Cases' },
+      prescriptive: { title:'Prescriptive Analytics', sub:'แนะนำผู้ดูแล Top 3 · AI Scoring' },
+      alerts: { title:'Risk Alerts', sub:'แจ้งเตือนความเสี่ยง · Risk Monitoring' },
+      'caregiver-reviews': { title:'รีวิวจากลูกค้า', sub:'Customer Caregiver Reviews · Moderation' },
+      'pdpa-audit': { title:'PDPA Audit Log', sub:'Audit Trail · Compliance' },
+      users: { title:'จัดการผู้ใช้', sub:'Users Management' },
+      migration: { title:'AppSheet Migration', sub:'สถานะการย้ายข้อมูล' },
+      reports: { title:'รายงาน', sub:'Reports & Export' },
+      settings: { title:'ตั้งค่าระบบ', sub:'System Settings' },
+    },
+  },
+  caregiver: {
+    label: 'พนักงานดูแล · Caregiver',
+    user: { name: 'พญ. แอน', avatar: 'แ' },
+    defaultPage: 'jobs',
+    menuGroups: [
+      { group: 'CORE', items: [
+        { page:'jobs', icon:'briefcase', th:'งานของฉัน', en:'Assigned Only' },
+        { page:'daily-care', icon:'clipboard-list', th:'บันทึกการดูแล', en:'Daily Care Log' },
+        { page:'checkin', icon:'map-pin-check', th:'Check-in/out', en:'' },
+        { page:'attendance-history', icon:'history', th:'ประวัติเข้างาน', en:'' },
+      ]},
+      { group: 'FINANCE', items: [
+        { page:'earnings', icon:'wallet', th:'รายได้ของฉัน', en:'Earnings' },
+        { page:'my-payslip', icon:'receipt', th:'สลิปเงินเดือน', en:'PAY Slip' },
+      ]},
+      { group: 'LEARNING', items: [
+        { page:'training', icon:'graduation-cap', th:'Training', en:'อบรม' },
+        { page:'quiz', icon:'clipboard-check', th:'Quiz', en:'แบบทดสอบ' },
+      ]},
+    ],
+    pages: {
+      jobs: { title:'งานของฉัน', sub:'Assigned Jobs Only — วันนี้' },
+      'daily-care': { title:'บันทึกการดูแลรายวัน', sub:'กิจกรรมที่ทำแต่ละวัน · ส่งรายงานให้ลูกค้า' },
+      checkin: { title:'Check-in / Check-out', sub:'บันทึกเวลา รูปถ่าย และกิจกรรมการดูแล' },
+      'attendance-history': { title:'ประวัติเข้างาน', sub:'Attendance History · ของฉัน' },
+      earnings: { title:'รายได้ของฉัน', sub:'ค่าตอบแทนตามเคส · มิ.ย. 2569' },
+      'my-payslip': { title:'สลิปเงินเดือน', sub:'PAY Slip · ดูเฉพาะของตัวเอง' },
+      training: { title:'Training', sub:'คลิปอบรมและแบบทดสอบ' },
+      quiz: { title:'Quiz', sub:'แบบทดสอบความรู้' },
+    },
+  },
+  hr: {
+    label: 'ฝ่าย HR · Human Resources',
+    user: { name: 'คุณรัตนา', avatar: 'ร' },
+    defaultPage: 'applicants',
+    menuGroups: [
+      { group: 'RECRUITMENT', items: [
+        { page:'applicants', icon:'user-plus', th:'ผู้สมัคร', en:'Applicants' },
+        { page:'tracking', icon:'kanban', th:'Tracking', en:'Kanban' },
+        { page:'quiz-admin', icon:'clipboard-list', th:'Quiz Admin', en:'60 ข้อ' },
+      ]},
+      { group: 'EMPLOYEE', items: [
+        { page:'employees', icon:'user', th:'พนักงาน', en:'' },
+        { page:'documents', icon:'file-text', th:'เอกสาร', en:'PDF' },
+        { page:'payslip', icon:'wallet', th:'PAY Slip', en:'' },
+      ]},
+      { group: 'REPORTS', items: [
+        { page:'hr-reports', icon:'bar-chart-3', th:'HR Reports', en:'' },
+      ]},
+    ],
+    pages: {
+      applicants: { title:'รายการผู้สมัคร', sub:'Applicants · ติดตามสถานะ' },
+      tracking: { title:'Tracking Kanban', sub:'Applied → Quiz → Passed → Hired' },
+      'quiz-admin': { title:'Quiz Admin', sub:'จัดการข้อสอบ 60 ข้อ' },
+      employees: { title:'พนักงาน', sub:'Employees' },
+      documents: { title:'เอกสาร', sub:'Contract · Offer Letter · PDF' },
+      payslip: { title:'PAY Slip', sub:'สลิปเงินเดือน' },
+      'hr-reports': { title:'HR Reports', sub:'รายงาน HR' },
+    },
+  },
+  customer: {
+    label: 'ลูกค้า · Customer Portal',
+    user: { name: 'คุณสมหญิง', avatar: 'ส' },
+    defaultPage: 'home',
+    menuGroups: [
+      { group: 'PORTAL', items: [
+        { page:'home', icon:'home', th:'หน้าหลัก', en:'Home' },
+        { page:'cases', icon:'heart-pulse', th:'การดูแลของฉัน', en:'Read-only' },
+        { page:'care-report', icon:'file-text', th:'รายงานการดูแล', en:'Daily Report' },
+        { page:'timeline', icon:'calendar-days', th:'Timeline', en:'ภาพรวม' },
+        { page:'review', icon:'star', th:'ประเมินผู้ดูแล', en:'Review' },
+        { page:'invoice', icon:'receipt', th:'Invoice', en:'' },
+      ]},
+      { group: 'ACCOUNT', items: [
+        { page:'consent', icon:'shield-check', th:'PDPA Consent', en:'' },
+        { page:'register', icon:'smartphone', th:'Login/Register', en:'OTP' },
+      ]},
+    ],
+    pages: {
+      home: { title:'Customer Portal', sub:'ยินดีต้อนรับ · Welcome' },
+      cases: { title:'การดูแลของฉัน', sub:'Customer Portal · Read-only · เฉพาะคนไข้ที่ลงทะเบียน' },
+      'care-report': { title:'รายงานการดูแลรายวัน', sub:'สิ่งที่พนักงานทำในแต่ละวัน' },
+      timeline: { title:'Timeline', sub:'ภาพรวม Check-in + สรุปกิจกรรม' },
+      review: { title:'ประเมินผู้ดูแล', sub:'Customer Review · ผูก Check-in จริง' },
+      invoice: { title:'Invoice', sub:'ใบแจ้งหนี้ / ใบเสร็จ' },
+      consent: { title:'PDPA Consent', sub:'หนังสือยินยอม' },
+      register: { title:'Login / Register', sub:'OTP หรือ Self-Register' },
+    },
+  },
+};
+
+let currentRole = null;
+let currentPage = null;
+
+function ic(name, cls = 'ic ic-sm') {
+  return `<i data-lucide="${name}" class="${cls}"></i>`;
+}
+
+function refreshIcons() {
+  if (window.lucide) lucide.createIcons();
+}
+
+function statusBadge(s) {
+  const m = { Active:'badge-green', 'รอมอบหมาย':'badge-blue', 'รอเปิดเคส':'badge-yellow' };
+  return `<span class="badge ${m[s]||'badge-gray'}">${s}</span>`;
+}
+
+function checkinCell(c) {
+  if (c.checkedIn) return `<span class="check-icon check-yes">${ic('circle-check','ic ic-xs')} เข้าแล้ว</span>`;
+  return `<span class="check-icon check-no">${ic('clock','ic ic-xs')} ยังไม่เข้า</span>`;
+}
+
+function renderCaseRows(targetId, cols) {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+  el.innerHTML = CASES.map(c => {
+    if (cols === 'dash') {
+      return `<tr>
+        <td>${c.patient}</td><td>${c.id}</td><td>${c.caregiver}</td>
+        <td>${checkinCell(c)} ${c.checkedIn ? c.time : ''}</td>
+      </tr>`;
+    }
+    return `<tr>
+      <td><strong>${c.id}</strong></td>
+      <td>${c.patient}</td><td>${c.type}</td><td>${c.caregiver}</td>
+      <td>${statusBadge(c.status)}</td>
+      <td>${checkinCell(c)}</td>
+      <td>${c.time}</td>
+    </tr>`;
+  }).join('');
+  refreshIcons();
+}
+
+function renderCaregiverJobs() {
+  const el = document.getElementById('cg-jobs');
+  const jobs = [
+    { patient:'คุณสมชาย บุญเรือง', id:'CS-0241', time:'08:00–17:00', done:true,  in:'08:02' },
+    { patient:'คุณสุดา มณี', id:'CS-0235', time:'09:00–18:00', done:false, in:'—' },
+  ];
+  el.innerHTML = jobs.map(j => `
+    <div class="portal-card">
+      <h4>${j.patient}</h4>
+      <p>${j.id} · ${j.time}</p>
+      <p style="margin-top:8px;">Check-in: ${j.done ? ic('circle-check','ic ic-xs')+' '+j.in : ic('clock','ic ic-xs')+' รอ Check-in'}</p>
+      <button class="btn ${j.done ? 'btn-outline' : 'btn-primary'} btn-sm" style="margin-top:12px;"
+        onclick="navigate('caregiver','checkin')">${j.done ? 'ดูรายละเอียด' : 'Check-in →'}</button>
+    </div>
+  `).join('');
+  refreshIcons();
+}
+
+function buildSidebar(role) {
+  const cfg = ROLES[role];
+  document.getElementById('sidebar-role-label').textContent = cfg.label;
+  document.getElementById('sidebar-nav').innerHTML = cfg.menuGroups.map(g => `
+    <div class="nav-group-label">${g.group}</div>
+    ${g.items.map(m => `
+      <button class="nav-item" data-page="${m.page}">
+        <span class="ico"><i data-lucide="${m.icon}"></i></span>
+        <span>${m.th}${m.en ? ' <span style="opacity:.6;font-size:.75rem;">/ '+m.en+'</span>' : ''}</span>
+      </button>
+    `).join('')}
+  `).join('');
+  document.querySelectorAll('.nav-item').forEach(btn => {
+    btn.addEventListener('click', () => navigate(role, btn.dataset.page));
+  });
+  refreshIcons();
+}
+
+function navigate(role, page) {
+  currentRole = role;
+  currentPage = page;
+  const cfg = ROLES[role];
+  const pg = cfg.pages[page];
+
+  document.getElementById('page-title').textContent = pg.title;
+  document.getElementById('page-subtitle').textContent = pg.sub;
+  document.getElementById('user-name').textContent = cfg.user.name;
+  document.getElementById('user-avatar').textContent = cfg.user.avatar;
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.querySelector(`.page[data-role="${role}"][data-page="${page}"]`);
+  if (target) target.classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach(n => {
+    n.classList.toggle('active', n.dataset.page === page);
+  });
+
+  document.getElementById('sidebar').classList.remove('open');
+  refreshIcons();
+}
+
+function enterRole(role) {
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('app').classList.add('active');
+  buildSidebar(role);
+  navigate(role, ROLES[role].defaultPage);
+}
+
+function backToLanding() {
+  document.getElementById('app').classList.remove('active');
+  document.getElementById('landing').style.display = 'flex';
+  currentRole = null;
+}
+
+document.querySelectorAll('.role-card').forEach(card => {
+  card.addEventListener('click', () => enterRole(card.dataset.role));
+});
+document.getElementById('btn-back').addEventListener('click', backToLanding);
+document.getElementById('menu-toggle').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.toggle('open');
+});
+
+function renderCareActivities(activities) {
+  return activities.map(a => `
+    <div class="care-activity">
+      <span class="time">${a.time}</span>
+      <span class="task">${a.task}</span>
+      <span>${a.detail}</span>
+    </div>
+  `).join('');
+}
+
+function renderCareDayCard(log, { showInternal } = { showInternal: false }) {
+  const timeRange = log.checkOut
+    ? `Check-in ${log.checkIn} → Out ${log.checkOut}`
+    : `Check-in ${log.checkIn} · กำลังดูแล`;
+  const status = log.inProgress
+    ? '<span class="badge badge-yellow">กำลังดูแล</span>'
+    : '<span class="badge badge-green">เสร็จสิ้น</span>';
+  return `
+    <div class="care-day-card">
+      <div class="care-day-head">
+        <div><strong>${log.date}</strong> · ${log.patient}<br>
+          <span style="font-size:.75rem;color:var(--muted);">${log.caregiver} · ${timeRange}</span>
+        </div>
+        ${status}
+      </div>
+      <div class="care-day-body">
+        ${log.customerSummary ? `<p style="margin-bottom:10px;color:var(--p-dark);"><strong>สรุป:</strong> ${log.customerSummary}</p>` : ''}
+        ${renderCareActivities(log.activities)}
+      </div>
+    </div>
+  `;
+}
+
+function renderCaregiverDailyCare() {
+  const today = CARE_DAILY_LOGS.find(l => l.inProgress);
+  const todayEl = document.getElementById('cg-today-care');
+  if (todayEl && today) todayEl.innerHTML = renderCareActivities(today.activities);
+
+  const histEl = document.getElementById('cg-care-history');
+  if (histEl) {
+    histEl.innerHTML = CARE_DAILY_LOGS.filter(l => !l.inProgress)
+      .map(l => renderCareDayCard(l)).join('');
+  }
+}
+
+function renderCustomerCareReport() {
+  const reportEl = document.getElementById('cu-care-report');
+  if (reportEl) reportEl.innerHTML = CARE_DAILY_LOGS.map(l => renderCareDayCard(l)).join('');
+
+  const summaryEl = document.getElementById('cu-care-summary');
+  if (summaryEl) {
+    summaryEl.innerHTML = CARE_DAILY_LOGS.filter(l => !l.inProgress).slice(0, 3).map(l => `
+      <div style="padding:8px 0;border-bottom:1px solid #eef5f2;">
+        <strong>${l.shortDate}</strong> · ${l.caregiver} · ${l.checkIn}${l.checkOut ? ' → '+l.checkOut : ''}
+        <i data-lucide="circle-check" class="ic ic-xs"></i><br>
+        <span style="font-size:.78rem;color:var(--muted);">${l.customerSummary}</span>
+      </div>
+    `).join('');
+    refreshIcons();
+  }
+}
+
+renderCaseRows('mkt-cases-table', 'full');
+renderCaregiverJobs();
+renderCaregiverDailyCare();
+renderCustomerCareReport();
+
+function buildLineChartSvg({ labels, data, color, fill, maxY, yTicks, ariaLabel, formatValue }) {
+  const fmt = formatValue || (v => v);
+  const W = 360, H = 168;
+  const pad = { l: 36, r: 16, t: 22, b: 28 };
+  const cw = W - pad.l - pad.r;
+  const ch = H - pad.t - pad.b;
+  const n = labels.length;
+
+  const pt = (i, v) => ({
+    x: pad.l + (n > 1 ? (i / (n - 1)) * cw : cw / 2),
+    y: pad.t + ch - (v / maxY) * ch,
+    v,
+  });
+
+  const linePath = (series) => series.map((v, i) => {
+    const { x, y } = pt(i, v);
+    return `${i ? 'L' : 'M'}${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+
+  const areaPath = (series) => {
+    const pts = series.map((v, i) => pt(i, v));
+    const base = pad.t + ch;
+    return [
+      `M${pts[0].x.toFixed(1)},${base}`,
+      ...pts.map(p => `L${p.x.toFixed(1)},${p.y.toFixed(1)}`),
+      `L${pts[pts.length - 1].x.toFixed(1)},${base}`,
+      'Z',
+    ].join(' ');
+  };
+
+  const grid = yTicks.map(t => {
+    const y = pad.t + ch - (t / maxY) * ch;
+    return `
+      <line x1="${pad.l}" y1="${y.toFixed(1)}" x2="${W - pad.r}" y2="${y.toFixed(1)}" stroke="#e0ece6" stroke-width="1"/>
+      <text x="${pad.l - 6}" y="${y + 4}" text-anchor="end" fill="#5c7268" font-size="10" font-family="Prompt,sans-serif">${t}</text>`;
+  }).join('');
+
+  const line = `
+    <path d="${areaPath(data)}" fill="${fill}" stroke="none"/>
+    <path d="${linePath(data)}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    ${data.map((v, i) => {
+      const p = pt(i, v);
+      return `
+        <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" fill="#fff" stroke="${color}" stroke-width="2"/>
+        <text x="${p.x.toFixed(1)}" y="${(p.y - 8).toFixed(1)}" text-anchor="middle" fill="${color}" font-size="10" font-weight="600" font-family="Prompt,sans-serif">${fmt(v)}</text>`;
+    }).join('')}
+  `;
+
+  const xLabels = labels.map((d, i) => {
+    const p = pt(i, 0);
+    return `<text x="${p.x.toFixed(1)}" y="${H - 8}" text-anchor="middle" fill="#5c7268" font-size="10" font-family="Prompt,sans-serif">${d}</text>`;
+  }).join('');
+
+  return `<svg viewBox="0 0 ${W} ${H}" aria-label="${ariaLabel}">${grid}${line}${xLabels}</svg>`;
+}
+
+function renderDashTrendChart() {
+  const el = document.getElementById('dash-trend-chart');
+  if (!el) return;
+  el.innerHTML = buildLineChartSvg({
+    labels: ['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.'],
+    data: [22, 23, 22, 23, 24, 24, 24],
+    color: '#14a269',
+    fill: 'rgba(20,162,105,.12)',
+    maxY: 28,
+    yTicks: [0, 7, 14, 21, 28],
+    ariaLabel: 'กราฟเส้นแนวโน้มเคส 7 วัน',
+  });
+}
+
+function renderAdminCharts() {
+  const months = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.'];
+  const rev = [220, 235, 248, 260, 264, 285];
+  const cas = [18, 19, 20, 21, 22, 24];
+  const revEl = document.getElementById('admin-rev-chart');
+  const casEl = document.getElementById('admin-case-chart');
+  if (revEl) revEl.innerHTML = buildLineChartSvg({
+    labels: months,
+    data: rev,
+    color: '#14a269',
+    fill: 'rgba(20,162,105,.12)',
+    maxY: 300,
+    yTicks: [0, 75, 150, 225, 300],
+    ariaLabel: 'กราฟเส้นรายได้รายเดือน',
+  });
+  if (casEl) casEl.innerHTML = buildLineChartSvg({
+    labels: months,
+    data: cas,
+    color: '#5bb8e8',
+    fill: 'rgba(91,184,232,.12)',
+    maxY: 28,
+    yTicks: [0, 7, 14, 21, 28],
+    ariaLabel: 'กราฟเส้นจำนวนเคส Active',
+  });
+}
+
+const PATIENTS = [
+  { name:'คุณสมชาย บุญเรือง', age:78, area:'บางกะปิ', cases:'1', coord:'คุณสมหญิง (ลูกสาว)' },
+  { name:'คุณมาลี กิตติพงษ์', age:82, area:'ลาดพร้าว', cases:'รอเปิดเคส', coord:'คุณประเสริฐ (ลูกชาย)' },
+  { name:'คุณประเสริฐ สุขใจ', age:75, area:'สุขุมวิท', cases:'1', coord:'คุณวิไล (ภรรยา)' },
+  { name:'คุณวิไล รัตนา', age:80, area:'พหลโยธิน', cases:'1', coord:'คุณสมศักดิ์ (ลูกชาย)' },
+  { name:'คุณสุดา มณีรัตน์', age:77, area:'รามคำแหง', cases:'1', coord:'คุณนภา (ลูกสาว)' },
+  { name:'คุณชูศักดิ์ วงษ์ใหญ่', age:85, area:'บางนา', cases:'1', coord:'คุณพิมพ์ (ภรรยา)' },
+  { name:'คุณรำไพ สว่างจิต', age:79, area:'ลาดพร้าว', cases:'0', coord:'คุณอรุณ (ลูกชาย)' },
+  { name:'คุณบุญมี ทองดี', age:83, area:'มีนบุรี', cases:'รอเปิดเคส', coord:'คุณสายใจ (ลูกสาว)' },
+];
+
+function renderPatientsTable() {
+  const el = document.getElementById('mkt-patients-table');
+  if (!el) return;
+  el.innerHTML = PATIENTS.map(p => `<tr>
+    <td>${p.name}</td><td>${p.age}</td><td>${p.area}</td>
+    <td>${p.cases==='1'?'<span class="badge badge-green">1</span>':p.cases==='0'?'<span class="badge badge-gray">0</span>':'<span class="badge badge-yellow">'+p.cases+'</span>'}</td>
+    <td>${p.coord}</td><td><button class="btn btn-outline btn-sm" onclick="navigate('admin','patient-detail')">ดู</button></td>
+  </tr>`).join('');
+}
+
+function renderTrainingVideos() {
+  const el = document.getElementById('cg-training-grid');
+  if (!el) return;
+  const cats = [
+    { cat:'การให้ยา', items:['บทที่ 3: การให้ยาผู้สูงอายุ','บทที่ 7: Insulin'] },
+    { cat:'ADL', items:['บทที่ 5: การดูแล ADL','บทที่ 8: การอาบน้ำ'] },
+    { cat:'ฉุกเฉิน', items:['บทที่ 10: FAST Stroke','บทที่ 12: CPR พื้นฐาน'] },
+    { cat:'โรคเรื้อรัง', items:['บทที่ 15: เบาหวาน','บทที่ 18: ความดัน'] },
+  ];
+  el.innerHTML = cats.map(c => c.items.map((t,i) => `
+    <div class="video-item"><div class="video-thumb"><i data-lucide="circle-play" class="ic ic-lg"></i></div><div class="video-info"><span class="badge badge-blue" style="font-size:.65rem;">${c.cat}</span><h4>${t}</h4><p>${i===0?'ดูแล้ว 80%':'ยังไม่ได้ดู'} · ${10+i*2} นาที</p></div></div>
+  `).join('')).join('');
+}
+
+renderAdminCharts();
+renderDashTrendChart();
+renderPatientsTable();
+renderTrainingVideos();
+refreshIcons();
+</script>
+</body>
+</html>

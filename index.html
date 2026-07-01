@@ -588,6 +588,53 @@
     .check-yes { color: var(--p); }
     .check-no { color: #ccc; }
 
+    .client-brief-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px;
+      margin-bottom: 24px; padding: 14px; background: #f0faf5; border: 1px solid #c8e8d8;
+      border-radius: var(--radius);
+    }
+    .client-brief-item {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 10px 12px; cursor: pointer; transition: all .15s; text-align: left;
+    }
+    .client-brief-item:hover { border-color: var(--p); box-shadow: var(--shadow); transform: translateY(-1px); }
+    .client-brief-item .num {
+      display: inline-block; background: var(--p); color: #fff; font-size: .65rem; font-weight: 700;
+      width: 18px; height: 18px; line-height: 18px; text-align: center; border-radius: 50%; margin-bottom: 4px;
+    }
+    .client-brief-item strong { display: block; font-size: .72rem; color: var(--p-dark); margin-bottom: 2px; }
+    .client-brief-item span { font-size: .65rem; color: var(--muted); line-height: 1.3; }
+    .client-ref {
+      display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 600;
+      padding: 4px 10px; border-radius: 16px; background: #fff8e6; color: #8a6020;
+      border: 1px solid #f0d890; margin-bottom: 14px;
+    }
+    .client-ref .num { background: #e8a020; color: #fff; padding: 1px 6px; border-radius: 8px; font-size: .62rem; }
+    .step-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+    .step-tab {
+      flex: 1; padding: 10px; border: 2px solid var(--border); border-radius: 10px;
+      background: var(--bg); font-family: inherit; font-size: .82rem; font-weight: 600;
+      cursor: pointer; color: var(--muted); transition: all .15s;
+    }
+    .step-tab.active { border-color: var(--p); background: var(--p-light); color: var(--p-dark); }
+    .step-panel { display: none; }
+    .step-panel.active { display: block; }
+    .vital-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+    .vital-chip {
+      font-size: .72rem; padding: 4px 10px; border-radius: 16px; background: var(--sky-light);
+      color: #2a6a8a; font-weight: 600;
+    }
+    .avatar-thumb {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--p-light);
+      border: 2px solid #c8e8d8; display: inline-flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 700; color: var(--p-dark);
+    }
+    .brief-checklist {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px;
+      padding: 14px 16px; font-size: .78rem;
+    }
+    .brief-checklist div { display: flex; align-items: center; gap: 6px; color: var(--p-dark); }
+
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); }
       .sidebar.open { transform: translateX(0); }
@@ -605,11 +652,23 @@
     <div class="landing-header">
       <img src="assets/logo.png" alt="PS Care" />
       <h1>PS Care Web Application</h1>
-      <p>ระบบบริหารจัดการ Home Care ครบวงจร — แทนที่ AppSheet ด้วย 16 Smart Modules</p>
-      <span class="demo-badge">UI Mockup — Demo / Reference</span>
+      <p>ระบบบริหารจัดการ Home Care ครบวงจร — ออกแบบตาม Brief ลูกค้า (คุณประสาน)</p>
+      <span class="demo-badge">UI Mockup v4.1 · Demo ส่งลูกค้า</span>
     </div>
-    <div style="text-align:center;margin-bottom:20px;">
-      <span class="modules-badge"><i data-lucide="sparkles" class="ic ic-sm ic-white"></i> 16 SMART MODULES <i data-lucide="sparkles" class="ic ic-sm ic-white"></i></span>
+    <div style="text-align:center;margin-bottom:12px;">
+      <span class="modules-badge"><i data-lucide="clipboard-list" class="ic ic-sm ic-white"></i> 7 ข้อตาม Brief ลูกค้า · คลิกเพื่อดูตัวอย่าง</span>
+    </div>
+    <div class="client-brief-grid">
+      <div class="client-brief-item" onclick="enterBrief('admin','patients')"><span class="num">1</span><strong>ฐานข้อมูล</strong><span>ผู้ป่วย/CG · รูป · บัตร ปชช. · ประวัติบริการ</span></div>
+      <div class="client-brief-item" onclick="enterBrief('caregiver','checkin')"><span class="num">2</span><strong>Check-in/out</strong><span>GPS · รูป · Vital · อาหาร · ADL</span></div>
+      <div class="client-brief-item" onclick="enterBrief('hr','hr-audit')"><span class="num">3</span><strong>HR Audit</strong><span>ตรวจกะ · สรุปกะ · ค่าตอบแทนอัตโนมัติ</span></div>
+      <div class="client-brief-item" onclick="enterBrief('admin','accounting-report')"><span class="num">4</span><strong>บัญชี/การตลาด</strong><span>รายรับ − ค่า CG = กำไร</span></div>
+      <div class="client-brief-item" onclick="enterBrief('admin','clinical-report')"><span class="num">5</span><strong>รายงานแพทย์</strong><span>กราฟสุขภาพ · เอกสารแนบ</span></div>
+      <div class="client-brief-item" onclick="enterBrief('admin','dashboard')"><span class="num">6</span><strong>Dashboard</strong><span>กะ/เดือน · กำไร · แผนที่ GPS</span></div>
+      <div class="client-brief-item" onclick="enterBrief('customer','care-report')"><span class="num">7</span><strong>Portal ลูกค้า</strong><span>รายงานดูแล · UX/UI</span></div>
+    </div>
+    <div style="text-align:center;margin-bottom:16px;">
+      <span class="modules-badge" style="background:linear-gradient(135deg,#064a2e,#14a269);"><i data-lucide="sparkles" class="ic ic-sm ic-white"></i> เลือก Role เพื่อดูทั้งระบบ</span>
     </div>
     <div class="compare-strip">
       <div class="compare-item"><span class="ico"><i data-lucide="sparkles"></i></span><strong>Prescriptive AI</strong>แนะนำผู้ดูแล Top 3</div>
@@ -648,7 +707,7 @@
         <div>
           <h3>Admin</h3>
           <div class="en">Administrator</div>
-          <p>Core Care, ผู้ป่วย/เคส, Invoice, Analytics, PDPA, Migration</p>
+          <p>Core Care, รายงาน 7 ข้อ, Analytics, PDPA</p>
           <span class="role-mod-count">21 หน้า · 6 กลุ่มเมนู</span>
         </div>
       </div>
@@ -680,7 +739,7 @@
         </div>
       </div>
     </div>
-    <div class="landing-footer">PS Care · Mockup v4.0 · มิถุนายน 2569 · อัปเดตตาม Feedback ลูกค้า</div>
+    <div class="landing-footer">PS Care · Mockup v4.1 · Brief ลูกค้า คุณประสาน · มิถุนายน 2569</div>
   </div>
 </div>
 
@@ -722,6 +781,7 @@
 
       <!-- ADMIN PAGES -->
       <div class="page" data-role="admin" data-page="dashboard">
+        <div class="client-ref"><span class="num">ข้อ 6</span> Dashboard สรุป — ตาม Brief ลูกค้า</div>
         <div class="date-range-bar">
           <strong>ช่วงวันที่:</strong>
           <input type="date" value="2026-06-01" /> — <input type="date" value="2026-06-20" />
@@ -786,6 +846,18 @@
           </div>
         </div>
         <div class="card">
+          <div class="card-head"><h3>ครบ Brief ลูกค้า 7 ข้อ</h3><span class="badge badge-green">Demo Ready</span></div>
+          <div class="brief-checklist">
+            <div><i data-lucide="circle-check" class="ic ic-xs"></i> 1 ฐานข้อมูล รูป/บัตร ปชช.</div>
+            <div><i data-lucide="circle-check" class="ic ic-xs"></i> 2 Check-in/out + GPS + Vital</div>
+            <div><i data-lucide="circle-check" class="ic ic-xs"></i> 3 HR Audit + ค่าตอบแทน</div>
+            <div><i data-lucide="circle-check" class="ic ic-xs"></i> 4 รายงานบัญชี/กำไร</div>
+            <div><i data-lucide="circle-check" class="ic ic-xs"></i> 5 รายงานคลินิก/กราฟ</div>
+            <div><i data-lucide="circle-check" class="ic ic-xs"></i> 6 Dashboard + GPS</div>
+            <div><i data-lucide="circle-check" class="ic ic-xs"></i> 7 Portal ลูกค้า</div>
+          </div>
+        </div>
+        <div class="card">
           <div class="card-head"><h3>สรุปตามโมดูล</h3></div>
           <div class="table-wrap"><table>
             <thead><tr><th>โมดูล</th><th>Module</th><th>สถานะ</th><th>หมายเหตุ</th></tr></thead>
@@ -838,6 +910,7 @@
       </div>
 
       <div class="page" data-role="admin" data-page="accounting-report">
+        <div class="client-ref"><span class="num">ข้อ 4</span> รายงานฝ่ายการตลาด/บัญชี — ค่าบริการ · กำไรหลังหัก CG</div>
         <div class="highlight-banner"><div><h3><i data-lucide="calculator" class="ic ic-white"></i> รายงานการตลาด / บัญชี</h3><p>ค่าบริการจากลูกค้า − ค่าตอบแทน CG = กำไร</p></div></div>
         <div class="date-range-bar">
           <strong>ช่วงวันที่:</strong>
@@ -884,6 +957,7 @@
       </div>
 
       <div class="page" data-role="admin" data-page="clinical-report">
+        <div class="client-ref"><span class="num">ข้อ 5</span> รายงานดูแลผู้ป่วย/แพทย์ — ประวัติอาการ · กราฟ · เอกสารวินิจฉัย</div>
         <div class="highlight-banner"><div><h3><i data-lucide="stethoscope" class="ic ic-white"></i> รายงานดูแลผู้ป่วย / คลินิก</h3><p>ประวัติอาการ · กราฟแนวโน้มสุขภาพ · เอกสารวินิจฉัย</p></div></div>
         <div class="search-bar" style="border-bottom:none;">
           <input type="text" value="คุณสมชาย บุญเรือง" placeholder="ค้นหาชื่อผู้ป่วย..." />
@@ -1065,11 +1139,12 @@
       </div>
 
       <div class="page" data-role="admin" data-page="patients">
+        <div class="client-ref"><span class="num">ข้อ 1</span> ฐานข้อมูลผู้ป่วย — รูป · ที่อยู่ · บัตรประชาชน · ผูกประวัติบริการ</div>
         <div class="card">
           <div class="card-head"><h3><i data-lucide="users" class="ic"></i> ข้อมูลผู้ป่วย / Patients</h3><button class="btn btn-primary btn-sm">+ เพิ่มผู้ป่วย</button></div>
-          <div class="search-bar"><input type="text" placeholder="ค้นหาชื่อ / พื้นที่..." /></div>
+          <div class="search-bar"><input type="text" placeholder="ค้นหาชื่อ / พื้นที่ / เลขบัตร..." /></div>
           <div class="table-wrap"><table>
-            <thead><tr><th>ชื่อ</th><th>อายุ</th><th>พื้นที่</th><th>เคส Active</th><th>ผู้ประสานงาน</th><th></th></tr></thead>
+            <thead><tr><th></th><th>ชื่อ</th><th>บัตร ปชช.</th><th>อายุ</th><th>พื้นที่</th><th>เคส</th><th>ผู้ประสานงาน</th><th></th></tr></thead>
             <tbody id="mkt-patients-table"></tbody>
           </table></div>
         </div>
@@ -1229,61 +1304,60 @@
       </div>
 
       <div class="page" data-role="caregiver" data-page="checkin">
-        <div class="checkin-card">
-          <h3>คุณสมชาย บุญเรือง</h3>
-          <div class="meta">เคส #CS-0241 · ดูแลที่บ้าน รายวัน · 08:00 – 17:00 · พญ. แอน วงศ์ดี</div>
+        <div class="client-ref"><span class="num">ข้อ 2</span> ระบบ Check-in/out — เลือกผู้ป่วย · GPS · รูป · ฟอร์ม Vital ครบชุด</div>
+        <div class="checkin-card" style="max-width:680px;">
+          <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div><label>ผู้ดูแล (Caregiver)</label><select><option selected>พญ. แอน วงศ์ดี (ฉัน)</option></select></div>
+            <div><label>ผู้ป่วย (Patient)</label><select><option selected>คุณสมชาย บุญเรือง — CS-0241</option><option>คุณสุดา มณี — CS-0235</option></select></div>
+          </div>
+          <div class="meta" style="margin-top:8px;">เวลาอัตโนมัติ · 20 มิ.ย. 2569 · กะ 08:00–17:00 · ดูแลที่บ้าน รายวัน</div>
           <div class="checkin-status">
             <div class="ci-box in"><i data-lucide="circle-check" class="ic ic-sm"></i> Check-in<div class="time">08:02</div></div>
             <div class="ci-box out"><i data-lucide="clock" class="ic ic-sm"></i> Check-out<div class="time">—</div></div>
           </div>
-          <div class="gps-box">
-            <div><i data-lucide="map-pin" class="ic ic-sm"></i> <strong>ตำแหน่ง Check-in (GPS)</strong></div>
-            <div class="coords">13.7821, 100.6012 · บางกะปี กทม.</div>
-            <div class="gps-map-mock"><div class="gps-pin" style="left:50%;top:45%;"></div></div>
+          <div class="step-tabs">
+            <button type="button" class="step-tab active" onclick="switchCheckStep('in', this)"><i data-lucide="map-pin-check" class="ic ic-xs"></i> Check-in</button>
+            <button type="button" class="step-tab" onclick="switchCheckStep('out', this)"><i data-lucide="clipboard-check" class="ic ic-xs"></i> Check-out / สรุปกะ</button>
           </div>
-          <div class="photo-area" onclick="alert('Mockup: เปิดกล้องถ่ายรูปยืนยัน Check-in')"><i data-lucide="camera" class="ic ic-lg"></i> รูปยืนยัน Check-in</div>
-
-          <div class="checkout-section">
-            <h4><i data-lucide="clipboard-check" class="ic ic-sm"></i> ฟอร์ม Check-out (สรุปกะ)</h4>
-            <div class="form-row"><label>โรคประจำตัว</label><input type="text" value="ความดัน, เบาหวาน Type 2" readonly style="background:var(--bg);" /></div>
-            <div class="form-row"><label>อาการ / อาการปัจจุบัน</label><textarea rows="2">อาการทั่วไปดี · ไม่มีไข้</textarea></div>
-            <div class="form-row"><label>ยาที่ให้วันนี้</label><textarea rows="2">Amlodipine 5mg เช้า · Metformin 500mg หลังอาหาร</textarea></div>
-            <div class="vital-grid">
-              <div><label>BP (mmHg)</label><input type="text" value="130/80" /></div>
-              <div><label>Pulse (/min)</label><input type="text" value="72" /></div>
-              <div><label>Temp (°C)</label><input type="text" value="36.5" /></div>
+          <div id="step-checkin" class="step-panel active">
+            <div class="gps-box">
+              <div><i data-lucide="map-pin" class="ic ic-sm"></i> <strong>Google Maps / GPS อัตโนมัติ</strong></div>
+              <div class="coords">13.7821, 100.6012 · บางกะปี กทม. · บันทึกเมื่อ Check-in</div>
+              <div class="gps-map-mock"><div class="gps-pin" style="left:50%;top:45%;"></div></div>
             </div>
-            <div class="form-row"><label>อาหาร</label>
-              <div class="radio-group">
-                <label><input type="radio" name="food" /> <span>น้อย</span></label>
-                <label><input type="radio" name="food" checked /> <span>ปานกลาง</span></label>
-                <label><input type="radio" name="food" /> <span>ดี</span></label>
+            <div class="photo-area" onclick="alert('Mockup: เปิดกล้องถ่ายรูปยืนยัน Check-in')"><i data-lucide="camera" class="ic ic-lg"></i> รูปยืนยัน Check-in (บังคับ)</div>
+            <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px;" onclick="alert('Mockup: Check-in สำเร็จ · บันทึก GPS + รูปแล้ว')">บันทึก Check-in</button>
+          </div>
+          <div id="step-checkout" class="step-panel">
+            <div class="checkout-section" style="border-top:none;padding-top:0;margin-top:0;">
+              <div class="form-row"><label>โรคประจำตัว</label><input type="text" value="ความดัน, เบาหวาน Type 2" readonly style="background:var(--bg);" /></div>
+              <div class="form-row"><label>อาการ / อาการปัจจุบัน</label><textarea rows="2">อาการทั่วไปดี · ไม่มีไข้</textarea></div>
+              <div class="form-row"><label>ยาที่ใช้วันนี้</label><textarea rows="2">Amlodipine 5mg เช้า · Metformin 500mg หลังอาหาร</textarea></div>
+              <div class="vital-grid">
+                <div><label>BP (mmHg)</label><input type="text" value="130/80" /></div>
+                <div><label>Pulse (/min)</label><input type="text" value="72" /></div>
+                <div><label>Temp (°C)</label><input type="text" value="36.5" /></div>
               </div>
+              <div class="form-row"><label>อาหาร (น้อย / ปานกลาง / ดี)</label>
+                <div class="radio-group">
+                  <label><input type="radio" name="food" /> <span>น้อย</span></label>
+                  <label><input type="radio" name="food" checked /> <span>ปานกลาง</span></label>
+                  <label><input type="radio" name="food" /> <span>ดี</span></label>
+                </div>
+              </div>
+              <div class="vital-grid" style="grid-template-columns:1fr 1fr;">
+                <div><label>ขับถ่าย (ครั้ง)</label><input type="number" value="2" /></div>
+                <div><label>การนอน (ชม.)</label><input type="number" value="7" step="0.5" /></div>
+              </div>
+              <div class="form-row"><label>กายภาพ / OT</label><textarea rows="2">พาเดินในบ้าน 15 นาที · ยืดแขนขา</textarea></div>
+              <div class="photo-area" style="height:100px;margin-bottom:12px;" onclick="alert('Mockup: ถ่ายรูปกิจกรรมวันนี้')"><i data-lucide="image" class="ic ic-lg"></i> รูปกิจกรรมวันนี้ (Check-out)</div>
             </div>
-            <div class="vital-grid" style="grid-template-columns:1fr 1fr;">
-              <div><label>ขับถ่าย (ครั้ง)</label><input type="number" value="2" /></div>
-              <div><label>การนอน (ชม.)</label><input type="number" value="7" step="0.5" /></div>
-            </div>
-            <div class="form-row"><label>กายภาพ / OT</label><textarea rows="2">พาเดินในบ้าน 15 นาที · ยืดแขนขา</textarea></div>
-            <div class="photo-area" style="height:100px;margin-bottom:12px;" onclick="alert('Mockup: ถ่ายรูปกิจกรรมวันนี้')"><i data-lucide="image" class="ic ic-lg"></i> รูปกิจกรรมวันนี้</div>
+            <label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;">รายงานให้ญาติ (แสดงใน Portal — ข้อ 7)</label>
+            <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2">ให้ยาครบ · BP 130/80 · อาหารปานกลาง · นอนหลับ 7 ชม.</textarea>
+            <label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;">หมายเหตุภายใน (Admin เท่านั้น)</label>
+            <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2" placeholder="หมายเหตุภายใน — ลูกค้าไม่เห็น"></textarea>
+            <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="alert('Mockup: Check-out + สรุปกะสำเร็จ · ส่งรายงานให้ลูกค้าแล้ว')">บันทึก Check-out + ส่งสรุปกะ</button>
           </div>
-
-          <div class="card" style="margin:16px 0 0;border:1px solid var(--border);box-shadow:none;">
-            <div class="card-head" style="padding:12px 16px;"><h3 style="font-size:.9rem;"><i data-lucide="clipboard-list" class="ic"></i> กิจกรรมที่ทำวันนี้</h3></div>
-            <div class="care-checklist" style="padding:0 16px 12px;">
-              <label><input type="checkbox" checked /> วัดสัญญาณชีพ — BP 130/80, Pulse 72</label>
-              <label><input type="checkbox" checked /> ให้ยาเช้า — ครบตามเวลา</label>
-              <label><input type="checkbox" checked /> อาหารเช้า — ข้าวต้ม ½ ถ้วย</label>
-              <label><input type="checkbox" checked /> อาบน้ำ / สุขอนามัย</label>
-              <label><input type="checkbox" /> พาเดินออกกำลังกาย</label>
-              <label><input type="checkbox" /> ทำกายภาพบำบัด</label>
-            </div>
-          </div>
-          <label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;">รายงานให้ญาติ (แสดงใน Portal ลูกค้า)</label>
-          <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2">ให้ยาครบ · BP 130/80 · อาหารปานกลาง · นอนหลับ 7 ชม.</textarea>
-          <label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;">หมายเหตุภายใน (Admin เท่านั้น)</label>
-          <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2" placeholder="หมายเหตุภายใน — ลูกค้าไม่เห็น"></textarea>
-          <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="alert('Mockup: บันทึก Check-out + สรุปกะสำเร็จ')">บันทึก Check-out + ส่งสรุปกะ</button>
         </div>
       </div>
 
@@ -1397,14 +1471,15 @@
       </div>
 
       <div class="page" data-role="hr" data-page="employees">
+        <div class="client-ref"><span class="num">ข้อ 1</span> ข้อมูลผู้ดูแล — รูป · ประเภทจ้าง · ผูกประวัติบริการ</div>
         <div class="card">
           <div class="card-head"><h3><i data-lucide="user" class="ic"></i> พนักงาน / Employees</h3></div>
           <div class="table-wrap"><table>
-            <thead><tr><th>รหัส</th><th>ชื่อ</th><th>ตำแหน่ง</th><th>ประเภทจ้าง</th><th>สถานะ</th><th>เคสปัจจุบัน</th></tr></thead>
+            <thead><tr><th></th><th>รหัส</th><th>ชื่อ</th><th>ตำแหน่ง</th><th>ประเภทจ้าง</th><th>สถานะ</th><th>เคสปัจจุบัน</th><th>กะเดือนนี้</th></tr></thead>
             <tbody>
-              <tr><td>EMP-001</td><td>พญ. แอน วงศ์ดี</td><td>PN</td><td>พนักงานประจำ</td><td><span class="badge badge-green">Active</span></td><td>3 เคส</td></tr>
-              <tr><td>EMP-002</td><td>คุณนิด ศรีสุข</td><td>NA</td><td>รายวัน</td><td><span class="badge badge-green">Active</span></td><td>2 เคส</td></tr>
-              <tr><td>EMP-003</td><td>คุณเจ มั่นคง</td><td>Caregiver</td><td>สัญญาจ้าง</td><td><span class="badge badge-green">Active</span></td><td>1 เคส</td></tr>
+              <tr><td><span class="avatar-thumb">แ</span></td><td>EMP-001</td><td>พญ. แอน วงศ์ดี</td><td>PN</td><td>พนักงานประจำ</td><td><span class="badge badge-green">Active</span></td><td>3 เคส</td><td>42 กะ</td></tr>
+              <tr><td><span class="avatar-thumb">น</span></td><td>EMP-002</td><td>คุณนิด ศรีสุข</td><td>NA</td><td>รายวัน</td><td><span class="badge badge-green">Active</span></td><td>2 เคส</td><td>38 กะ</td></tr>
+              <tr><td><span class="avatar-thumb">จ</span></td><td>EMP-003</td><td>คุณเจ มั่นคง</td><td>Caregiver</td><td>สัญญาจ้าง</td><td><span class="badge badge-green">Active</span></td><td>1 เคส</td><td>28 กะ</td></tr>
             </tbody>
           </table></div>
         </div>
@@ -1478,6 +1553,7 @@
       </div>
 
       <div class="page" data-role="hr" data-page="hr-audit">
+        <div class="client-ref"><span class="num">ข้อ 3</span> Report ฝ่ายบุคคลตรวจสอบ — Check-in/out · สรุปกะ · ค่าตอบแทน</div>
         <div class="highlight-banner"><div><h3><i data-lucide="clipboard-check" class="ic ic-white"></i> HR Audit — ตรวจสอบ Check-in/out</h3><p>ใครยังไม่ check-in/out · ยังไม่ส่งสรุปกะ · ค่าตอบแทน = กะ × อัตรา</p></div></div>
         <div class="search-bar">
           <input type="text" placeholder="ค้นหาชื่อผู้ดูแล..." />
@@ -1592,7 +1668,8 @@
 
       <div class="page" data-role="customer" data-page="care-report">
         <div class="portal-wrap" style="max-width:560px;">
-          <div class="view-badge portal"><i data-lucide="file-text" class="ic ic-xs"></i> รายงานการดูแลรายวัน · สิ่งที่พนักงานทำในแต่ละวัน</div>
+          <div class="client-ref"><span class="num">ข้อ 7</span> รายงานการดูแลรายวัน — ลูกค้าเห็นสรุป Check-out + Vital</div>
+          <div class="view-badge portal"><i data-lucide="file-text" class="ic ic-xs"></i> สิ่งที่พนักงานบันทึกในแต่ละวัน (ไม่เห็นหมายเหตุภายใน)</div>
           <div class="search-bar" style="margin-bottom:16px;">
             <select style="flex:1;"><option>คุณสมชาย บุญเรือง — CS-0241</option></select>
             <select><option>มิ.ย. 2569</option><option>พ.ค. 2569</option></select>
@@ -1723,6 +1800,7 @@ const CARE_DAILY_LOGS = [
     date: '20 มิ.ย. 2569', shortDate: '20 มิ.ย.', patient: 'คุณสมชาย บุญเรือง', caseId: 'CS-0241',
     caregiver: 'พญ. แอน', checkIn: '08:02', checkOut: null, inProgress: true,
     customerSummary: 'ให้ยาครบ · BP 130/80 · อาหารเช้าครบ',
+    vitals: { bp: '130/80', pulse: 72, temp: 36.5, food: 'ปานกลาง', excretion: 1, sleep: null },
     activities: [
       { time: '08:15', task: 'วัดสัญญาณชีพ', detail: 'BP 130/80, Pulse 72' },
       { time: '08:30', task: 'ให้ยาเช้า', detail: 'ยาความดัน + วิตามิน ครบ' },
@@ -1733,6 +1811,7 @@ const CARE_DAILY_LOGS = [
     date: '19 มิ.ย. 2569', shortDate: '19 มิ.ย.', patient: 'คุณสมชาย บุญเรือง', caseId: 'CS-0241',
     caregiver: 'พญ. แอน', checkIn: '08:02', checkOut: '16:58', inProgress: false,
     customerSummary: 'ให้ยา · อาหาร · พาเดิน · อาบน้ำช่วย',
+    vitals: { bp: '128/78', pulse: 70, temp: 36.4, food: 'ดี', excretion: 2, sleep: 7 },
     activities: [
       { time: '08:10', task: 'วัดสัญญาณชีพ', detail: 'BP 128/78' },
       { time: '08:25', task: 'ให้ยาเช้า', detail: 'ครบตามเวลา' },
@@ -1746,6 +1825,7 @@ const CARE_DAILY_LOGS = [
     date: '18 มิ.ย. 2569', shortDate: '18 มิ.ย.', patient: 'คุณสมชาย บุญเรือง', caseId: 'CS-0241',
     caregiver: 'พญ. แอน', checkIn: '08:05', checkOut: '17:01', inProgress: false,
     customerSummary: 'ให้ยา · อาหารกลางวัน · ทำแผลเล็ก',
+    vitals: { bp: '132/82', pulse: 74, temp: 36.6, food: 'ปานกลาง', excretion: 2, sleep: 6.5 },
     activities: [
       { time: '08:15', task: 'ให้ยาเช้า', detail: 'ครบ' },
       { time: '12:00', task: 'อาหารกลางวัน', detail: 'ข้าว + ไข่ต้ม' },
@@ -1756,6 +1836,7 @@ const CARE_DAILY_LOGS = [
     date: '17 มิ.ย. 2569', shortDate: '17 มิ.ย.', patient: 'คุณสมชาย บุญเรือง', caseId: 'CS-0241',
     caregiver: 'พญ. แอน', checkIn: '07:55', checkOut: '16:50', inProgress: false,
     customerSummary: 'ให้ยา · อาหาร · ดูแลสุขอนามัย',
+    vitals: { bp: '129/76', pulse: 71, temp: 36.5, food: 'ดี', excretion: 1, sleep: 8 },
     activities: [
       { time: '08:00', task: 'ให้ยา', detail: 'ครบ' },
       { time: '09:30', task: 'สุขอนามัย', detail: 'เปลี่ยนผ้าอ้อม · เช็ดตัว' },
@@ -2028,6 +2109,19 @@ function enterRole(role) {
   navigate(role, ROLES[role].defaultPage);
 }
 
+function enterBrief(role, page) {
+  enterRole(role);
+  if (page) navigate(role, page);
+}
+
+function switchCheckStep(step, btn) {
+  document.querySelectorAll('.step-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(step === 'in' ? 'step-checkin' : 'step-checkout').classList.add('active');
+  refreshIcons();
+}
+
 function backToLanding() {
   document.getElementById('app').classList.remove('active');
   document.getElementById('landing').style.display = 'flex';
@@ -2052,6 +2146,19 @@ function renderCareActivities(activities) {
   `).join('');
 }
 
+function renderVitalChips(v) {
+  if (!v) return '';
+  const chips = [];
+  if (v.bp) chips.push(`BP ${v.bp}`);
+  if (v.pulse) chips.push(`Pulse ${v.pulse}`);
+  if (v.temp) chips.push(`Temp ${v.temp}°C`);
+  if (v.food) chips.push(`อาหาร: ${v.food}`);
+  if (v.excretion != null) chips.push(`ขับถ่าย ${v.excretion} ครั้ง`);
+  if (v.sleep != null) chips.push(`นอน ${v.sleep} ชม.`);
+  if (!chips.length) return '';
+  return `<div class="vital-chips">${chips.map(c => `<span class="vital-chip">${c}</span>`).join('')}</div>`;
+}
+
 function renderCareDayCard(log, { showInternal } = { showInternal: false }) {
   const timeRange = log.checkOut
     ? `Check-in ${log.checkIn} → Out ${log.checkOut}`
@@ -2068,7 +2175,8 @@ function renderCareDayCard(log, { showInternal } = { showInternal: false }) {
         ${status}
       </div>
       <div class="care-day-body">
-        ${log.customerSummary ? `<p style="margin-bottom:10px;color:var(--p-dark);"><strong>สรุป:</strong> ${log.customerSummary}</p>` : ''}
+        ${log.customerSummary ? `<p style="margin-bottom:8px;color:var(--p-dark);"><strong>สรุป:</strong> ${log.customerSummary}</p>` : ''}
+        ${renderVitalChips(log.vitals)}
         ${renderCareActivities(log.activities)}
       </div>
     </div>
@@ -2206,21 +2314,22 @@ function renderAdminCharts() {
 }
 
 const PATIENTS = [
-  { name:'คุณสมชาย บุญเรือง', age:78, area:'บางกะปิ', cases:'1', coord:'คุณสมหญิง (ลูกสาว)' },
-  { name:'คุณมาลี กิตติพงษ์', age:82, area:'ลาดพร้าว', cases:'รอเปิดเคส', coord:'คุณประเสริฐ (ลูกชาย)' },
-  { name:'คุณประเสริฐ สุขใจ', age:75, area:'สุขุมวิท', cases:'1', coord:'คุณวิไล (ภรรยา)' },
-  { name:'คุณวิไล รัตนา', age:80, area:'พหลโยธิน', cases:'1', coord:'คุณสมศักดิ์ (ลูกชาย)' },
-  { name:'คุณสุดา มณีรัตน์', age:77, area:'รามคำแหง', cases:'1', coord:'คุณนภา (ลูกสาว)' },
-  { name:'คุณชูศักดิ์ วงษ์ใหญ่', age:85, area:'บางนา', cases:'1', coord:'คุณพิมพ์ (ภรรยา)' },
-  { name:'คุณรำไพ สว่างจิต', age:79, area:'ลาดพร้าว', cases:'0', coord:'คุณอรุณ (ลูกชาย)' },
-  { name:'คุณบุญมี ทองดี', age:83, area:'มีนบุรี', cases:'รอเปิดเคส', coord:'คุณสายใจ (ลูกสาว)' },
+  { name:'คุณสมชาย บุญเรือง', initial:'ส', idCard:'1-2345-67890-12-3', age:78, area:'บางกะปิ', cases:'1', coord:'คุณสมหญิง (ลูกสาว)' },
+  { name:'คุณมาลี กิตติพงษ์', initial:'ม', idCard:'3-4567-89012-34-5', age:82, area:'ลาดพร้าว', cases:'รอเปิดเคส', coord:'คุณประเสริฐ (ลูกชาย)' },
+  { name:'คุณประเสริฐ สุขใจ', initial:'ป', idCard:'1-1111-22222-33-4', age:75, area:'สุขุมวิท', cases:'1', coord:'คุณวิไล (ภรรยา)' },
+  { name:'คุณวิไล รัตนา', initial:'ว', idCard:'2-2222-33333-44-5', age:80, area:'พหลโยธิน', cases:'1', coord:'คุณสมศักดิ์ (ลูกชาย)' },
+  { name:'คุณสุดา มณีรัตน์', initial:'ส', idCard:'4-5678-90123-45-6', age:77, area:'รามคำแหง', cases:'1', coord:'คุณนภา (ลูกสาว)' },
+  { name:'คุณชูศักดิ์ วงษ์ใหญ่', initial:'ช', idCard:'5-6789-01234-56-7', age:85, area:'บางนา', cases:'1', coord:'คุณพิมพ์ (ภรรยา)' },
+  { name:'คุณรำไพ สว่างจิต', initial:'ร', idCard:'6-7890-12345-67-8', age:79, area:'ลาดพร้าว', cases:'0', coord:'คุณอรุณ (ลูกชาย)' },
+  { name:'คุณบุญมี ทองดี', initial:'บ', idCard:'7-8901-23456-78-9', age:83, area:'มีนบุรี', cases:'รอเปิดเคส', coord:'คุณสายใจ (ลูกสาว)' },
 ];
 
 function renderPatientsTable() {
   const el = document.getElementById('mkt-patients-table');
   if (!el) return;
   el.innerHTML = PATIENTS.map(p => `<tr>
-    <td>${p.name}</td><td>${p.age}</td><td>${p.area}</td>
+    <td><span class="avatar-thumb">${p.initial}</span></td>
+    <td>${p.name}</td><td style="font-size:.78rem;">${p.idCard}</td><td>${p.age}</td><td>${p.area}</td>
     <td>${p.cases==='1'?'<span class="badge badge-green">1</span>':p.cases==='0'?'<span class="badge badge-gray">0</span>':'<span class="badge badge-yellow">'+p.cases+'</span>'}</td>
     <td>${p.coord}</td><td><button class="btn btn-outline btn-sm" onclick="navigate('admin','patient-detail')">ดู</button></td>
   </tr>`).join('');

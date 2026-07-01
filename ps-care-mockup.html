@@ -414,7 +414,7 @@
     /* Check-in page */
     .checkin-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 24px; max-width: 480px; box-shadow: var(--shadow);
+      padding: 24px; max-width: 640px; box-shadow: var(--shadow);
     }
     .checkin-card h3 { font-size: 1rem; margin-bottom: 4px; }
     .checkin-card .meta { font-size: .82rem; color: var(--muted); margin-bottom: 20px; }
@@ -431,6 +431,63 @@
       color: var(--muted); font-size: .85rem; margin-bottom: 16px; cursor: pointer;
     }
     .photo-area:hover { border-color: var(--p); background: var(--p-light); }
+    .gps-box {
+      background: linear-gradient(135deg, #e5f4fc, #f0faf5); border: 1px solid #b8dce8;
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; font-size: .82rem;
+    }
+    .gps-box .coords { font-weight: 600; color: var(--p-dark); margin-top: 4px; }
+    .gps-map-mock {
+      height: 120px; border-radius: 8px; margin-top: 10px; background:
+        linear-gradient(180deg, rgba(91,184,232,.15), rgba(20,162,105,.08)),
+        repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(20,162,105,.06) 18px, rgba(20,162,105,.06) 19px),
+        repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(20,162,105,.06) 18px, rgba(20,162,105,.06) 19px);
+      position: relative; overflow: hidden;
+    }
+    .gps-pin {
+      position: absolute; width: 28px; height: 28px; border-radius: 50% 50% 50% 0;
+      background: var(--p); transform: rotate(-45deg); border: 2px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    }
+    .gps-pin::after {
+      content: ''; position: absolute; width: 10px; height: 10px; background: #fff;
+      border-radius: 50%; top: 6px; left: 6px;
+    }
+    .checkout-section {
+      border-top: 1px solid var(--border); margin-top: 20px; padding-top: 18px;
+    }
+    .checkout-section h4 { font-size: .9rem; margin-bottom: 12px; color: var(--p-dark); }
+    .vital-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+    .vital-grid label { font-size: .72rem; color: var(--muted); display: block; margin-bottom: 4px; }
+    .vital-grid input, .form-row input, .form-row select, .form-row textarea {
+      width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px;
+      font-family: inherit; font-size: .85rem;
+    }
+    .form-row { margin-bottom: 12px; }
+    .form-row label { display: block; font-size: .78rem; font-weight: 600; margin-bottom: 4px; }
+    .radio-group { display: flex; gap: 8px; flex-wrap: wrap; }
+    .radio-group label {
+      display: flex; align-items: center; gap: 6px; padding: 8px 12px;
+      border: 1px solid var(--border); border-radius: 8px; font-size: .82rem; cursor: pointer;
+    }
+    .radio-group input:checked + span { color: var(--p-dark); font-weight: 600; }
+    .map-dashboard {
+      height: 220px; border-radius: var(--radius); background:
+        linear-gradient(160deg, #d4ede4 0%, #e5f4fc 50%, #f0faf5 100%);
+      position: relative; overflow: hidden; border: 1px solid var(--border);
+    }
+    .map-dashboard .gps-pin { width: 22px; height: 22px; }
+    .map-dashboard .gps-pin::after { width: 8px; height: 8px; top: 4px; left: 4px; }
+    .map-pin-label {
+      position: absolute; background: #fff; padding: 2px 8px; border-radius: 6px;
+      font-size: .68rem; font-weight: 600; box-shadow: var(--shadow); white-space: nowrap;
+      transform: translate(-50%, -100%); margin-top: -6px;
+    }
+    .date-range-bar {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+      padding: 12px 16px; background: var(--p-light); border-radius: var(--radius);
+      margin-bottom: 20px; font-size: .85rem;
+    }
+    .date-range-bar input { padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; }
 
     /* Portal mobile-like on desktop */
     .portal-wrap { max-width: 420px; margin: 0 auto; }
@@ -561,7 +618,9 @@
       <div class="compare-item"><span class="ico"><i data-lucide="shield-check"></i></span><strong>PDPA Audit</strong>Consent + Audit Log</div>
       <div class="compare-item"><span class="ico"><i data-lucide="camera"></i></span><strong>Photo Check-in</strong>ยืนยันด้วยรูปถ่าย</div>
       <div class="compare-item"><span class="ico"><i data-lucide="graduation-cap"></i></span><strong>Training+Quiz</strong>60 ข้อสอบ HR</div>
-      <div class="compare-item"><span class="ico"><i data-lucide="database-backup"></i></span><strong>Migration</strong>ย้ายจาก AppSheet</div>
+      <div class="compare-item"><span class="ico"><i data-lucide="map-pin"></i></span><strong>GPS Check-in</strong>พิกัด + แผนที่ยืนยัน</div>
+      <div class="compare-item"><span class="ico"><i data-lucide="activity"></i></span><strong>Check-out Vital</strong>BP, อาหาร, ADL ครบ</div>
+      <div class="compare-item"><span class="ico"><i data-lucide="file-bar-chart"></i></span><strong>Reports</strong>HR Audit · บัญชี · คลินิก</div>
     </div>
     <!-- <div class="module-map">
       <div class="module-map-item"><strong>Patients</strong>ข้อมูลผู้ป่วย</div>
@@ -582,7 +641,7 @@
       <div class="module-map-item"><strong>Settings</strong>ตั้งค่าระบบ</div>
     </div> -->
     <div class="landing-title">เข้าสู่ระบบ</div>
-    <div class="landing-sub">เลือกประเภทผู้ใช้งานของคุณ · Select your role · รวม 41 หน้าจอ Demo</div>
+    <div class="landing-sub">เลือกประเภทผู้ใช้งานของคุณ · Select your role · รวม 45 หน้าจอ Demo (v4.0)</div>
     <div class="role-grid">
       <div class="role-card admin" data-role="admin">
         <div class="icon"><i data-lucide="shield-check"></i></div>
@@ -590,7 +649,7 @@
           <h3>Admin</h3>
           <div class="en">Administrator</div>
           <p>Core Care, ผู้ป่วย/เคส, Invoice, Analytics, PDPA, Migration</p>
-          <span class="role-mod-count">18 หน้า · 6 กลุ่มเมนู</span>
+          <span class="role-mod-count">21 หน้า · 6 กลุ่มเมนู</span>
         </div>
       </div>
       <div class="role-card caregiver" data-role="caregiver">
@@ -607,8 +666,8 @@
         <div>
           <h3>ฝ่าย HR</h3>
           <div class="en">Human Resources</div>
-          <p>Kanban สมัคร→สอบ→จ้าง, เอกสาร, PAY Slip</p>
-          <span class="role-mod-count">7 หน้า · 3 กลุ่มเมนู</span>
+          <p>Kanban สมัคร→สอบ→จ้าง, เอกสาร, PAY Slip, HR Audit</p>
+          <span class="role-mod-count">8 หน้า · 3 กลุ่มเมนู</span>
         </div>
       </div>
       <div class="role-card customer full" data-role="customer">
@@ -621,7 +680,7 @@
         </div>
       </div>
     </div>
-    <div class="landing-footer">PS Care · Mockup v2.0 · มิถุนายน 2569 · ไม่เชื่อมต่อระบบจริง</div>
+    <div class="landing-footer">PS Care · Mockup v4.0 · มิถุนายน 2569 · อัปเดตตาม Feedback ลูกค้า</div>
   </div>
 </div>
 
@@ -663,40 +722,67 @@
 
       <!-- ADMIN PAGES -->
       <div class="page" data-role="admin" data-page="dashboard">
+        <div class="date-range-bar">
+          <strong>ช่วงวันที่:</strong>
+          <input type="date" value="2026-06-01" /> — <input type="date" value="2026-06-20" />
+          <button class="btn btn-primary btn-sm">ใช้ช่วงนี้</button>
+        </div>
         <div class="highlight-banner">
           <div>
-            <h3><i data-lucide="sparkles" class="ic ic-white"></i> จุดเด่น PS Care vs AppSheet</h3>
-            <p>Prescriptive Analytics · Customer Portal · PDPA Audit · Photo Check-in · Migration Tool</p>
+            <h3><i data-lucide="sparkles" class="ic ic-white"></i> Dashboard สรุป — ตาม Feedback ลูกค้า</h3>
+            <p>กะ/เดือน · CG Active · กำไร · แผนที่ GPS พนักงาน</p>
           </div>
           <div class="vs-tags">
-            <span class="vs-tag">+ AI แนะนำผู้ดูแล</span>
-            <span class="vs-tag">+ Portal ลูกค้า</span>
-            <span class="vs-tag">+ Audit Log</span>
-            <span class="vs-tag">+ 60 ข้อสอบ HR</span>
+            <span class="vs-tag">+ GPS Live (MVP)</span>
+            <span class="vs-tag">+ กำไรสุทธิ</span>
           </div>
         </div>
         <div class="stats">
-          <div class="stat-card stat-card--green"><div class="val">24</div><div class="lbl">เคส Active</div><div class="change">↑ 2 เคสใหม่สัปดาห์นี้</div></div>
-          <div class="stat-card stat-card--sky"><div class="val">18</div><div class="lbl">Check-in วันนี้</div><div class="change">96% อัตราครบ</div></div>
-          <div class="stat-card stat-card--lav"><div class="val">42</div><div class="lbl">พนักงาน Active</div></div>
-          <div class="stat-card stat-card--coral"><div class="val">฿285K</div><div class="lbl">รายได้เดือนนี้</div><div class="change">↑ 8% จากเดือนก่อน</div></div>
+          <div class="stat-card stat-card--green"><div class="val">186</div><div class="lbl">จำนวนกะ (มิ.ย.)</div><div class="change">↑ 12 จาก พ.ค.</div></div>
+          <div class="stat-card stat-card--sky"><div class="val">38</div><div class="lbl">CG Active</div><div class="change">จาก 42 คนทั้งหมด</div></div>
+          <div class="stat-card stat-card--lav"><div class="val">฿72K</div><div class="lbl">กำไรสุทธิ</div><div class="change">รายรับ ฿285K − ค่า CG ฿213K</div></div>
+          <div class="stat-card stat-card--coral"><div class="val">24</div><div class="lbl">เคส Active</div><div class="change">เฉลี่ย 7.8 กะ/ผู้ป่วย</div></div>
         </div>
         <div class="grid-2">
           <div class="card">
-            <div class="card-head"><h3><i data-lucide="trending-up" class="ic"></i> แนวโน้มเคส</h3><span class="badge badge-green">7 วันล่าสุด</span></div>
+            <div class="card-head"><h3><i data-lucide="trending-up" class="ic"></i> แนวโน้มเคส</h3><span class="badge badge-green">ช่วงที่เลือก</span></div>
             <div id="dash-trend-chart" class="line-chart-wrap"></div>
             <div class="line-chart-legend">
               <span><span class="dot" style="background:var(--p)"></span> เคส Active (ราย)</span>
             </div>
           </div>
           <div class="card">
+            <div class="card-head"><h3><i data-lucide="map-pin" class="ic"></i> ตำแหน่งพนักงาน (GPS)</h3><span class="badge badge-blue">Real-time · 3 คนออนไลน์</span></div>
+            <div class="map-dashboard" style="margin:16px;">
+              <div class="gps-pin" style="left:28%;top:42%;"><span class="map-pin-label" style="left:14px;top:-8px;transform:none;margin:0;">พญ. แอน · 08:02</span></div>
+              <div class="gps-pin" style="left:62%;top:55%;background:#5bb8e8;"><span class="map-pin-label" style="left:14px;top:-8px;transform:none;margin:0;">คุณนิด · 07:55</span></div>
+              <div class="gps-pin" style="left:48%;top:28%;background:#b8a9e8;"><span class="map-pin-label" style="left:14px;top:-8px;transform:none;margin:0;">คุณเจ · 09:00</span></div>
+            </div>
+            <p style="padding:0 16px 14px;font-size:.75rem;color:var(--muted);">MVP: พิกัดล่าสุดตอน Check-in · Phase 8: live tracking</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
             <div class="card-head"><h3><i data-lucide="bell" class="ic"></i> ต้องดำเนินการ</h3></div>
             <div class="alert-list">
               <div class="alert-item"><span class="alert-dot warn"></span><div><strong>เคส #CS-0242</strong> ใกล้เริ่มพรุ่งนี้ — ยังไม่มอบหมายผู้ดูแล</div></div>
               <div class="alert-item"><span class="alert-dot warn"></span><div><strong>คุณมาลี ก.</strong> — Check-in ขาดวันนี้ (กะเช้า)</div></div>
-              <div class="alert-item"><span class="alert-dot info"></span><div><strong>ผู้สมัคร 3 คน</strong> รอสอบข้อสอบ 60 ข้อ</div></div>
+              <div class="alert-item"><span class="alert-dot warn"></span><div><strong>2 CG</strong> ยังไม่ส่งสรุปกะวันนี้</div></div>
               <div class="alert-item"><span class="alert-dot info"></span><div><strong>Invoice 2 ฉบับ</strong> ค้างออก (เดือน มิ.ย.)</div></div>
             </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>กะต่อผู้ป่วย (Top 5)</h3></div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>ผู้ป่วย</th><th>จังหวัด</th><th>กะ/เดือน</th><th>CG</th></tr></thead>
+              <tbody>
+                <tr><td>คุณสมชาย บ.</td><td>กทม.</td><td>18</td><td>พญ. แอน</td></tr>
+                <tr><td>คุณชูศักดิ์ ว.</td><td>กทม.</td><td>15</td><td>คุณนิด</td></tr>
+                <tr><td>คุณสุดา ม.</td><td>กทม.</td><td>14</td><td>พญ. แอน</td></tr>
+                <tr><td>คุณวิไล ร.</td><td>นนทบุรี</td><td>12</td><td>คุณเจ</td></tr>
+                <tr><td>คุณประเสริฐ ส.</td><td>กทม.</td><td>10</td><td>คุณนิด</td></tr>
+              </tbody>
+            </table></div>
           </div>
         </div>
         <div class="card">
@@ -738,6 +824,8 @@
           <div class="table-wrap"><table>
             <thead><tr><th>รายงาน</th><th>ช่วงเวลา</th><th>รายละเอียด</th><th>Format</th><th></th></tr></thead>
             <tbody>
+              <tr><td><strong>รายงานบัญชี</strong></td><td>มิ.ย. 2569</td><td>กำไร ฿72K · รายรับ ฿285K − ค่า CG ฿213K</td><td>PDF / CSV</td><td><button class="btn btn-primary btn-sm" onclick="navigate('admin','accounting-report')">เปิด →</button></td></tr>
+              <tr><td><strong>รายงานคลินิก</strong></td><td>Real-time</td><td>กราฟ vital · ประวัติอาการ · เอกสารแนบ</td><td>PDF</td><td><button class="btn btn-primary btn-sm" onclick="navigate('admin','clinical-report')">เปิด →</button></td></tr>
               <tr><td>Revenue Summary</td><td>มิ.ย. 2569</td><td>฿285K · 8 เคสใหม่</td><td>PDF / CSV</td><td><button class="btn btn-outline btn-sm">Export</button></td></tr>
               <tr><td>Check-in Compliance</td><td>7 วันล่าสุด</td><td>96% อัตราครบ</td><td>PDF / CSV</td><td><button class="btn btn-outline btn-sm">Export</button></td></tr>
               <tr><td>Case Status Report</td><td>Real-time</td><td>24 Active · 3 รอมอบหมาย</td><td>PDF</td><td><button class="btn btn-outline btn-sm">Export</button></td></tr>
@@ -746,6 +834,85 @@
               <tr><td>PDPA Audit Summary</td><td>30 วัน</td><td>128 Actions · 0 Violations</td><td>CSV</td><td><button class="btn btn-outline btn-sm">Export</button></td></tr>
             </tbody>
           </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="accounting-report">
+        <div class="highlight-banner"><div><h3><i data-lucide="calculator" class="ic ic-white"></i> รายงานการตลาด / บัญชี</h3><p>ค่าบริการจากลูกค้า − ค่าตอบแทน CG = กำไร</p></div></div>
+        <div class="date-range-bar">
+          <strong>ช่วงวันที่:</strong>
+          <input type="date" value="2026-06-01" /> — <input type="date" value="2026-06-20" />
+          <button class="btn btn-primary btn-sm">คำนวณ</button>
+        </div>
+        <div class="stats">
+          <div class="stat-card stat-card--green"><div class="val">฿285K</div><div class="lbl">รายรับรวม</div></div>
+          <div class="stat-card stat-card--coral"><div class="val">฿213K</div><div class="lbl">ค่าตอบแทน CG</div></div>
+          <div class="stat-card stat-card--sky"><div class="val">฿72K</div><div class="lbl">กำไรสุทธิ</div><div class="change">25.3% margin</div></div>
+        </div>
+        <div class="grid-2">
+          <div class="card"><div class="card-head"><h3>สรุปตามจังหวัด</h3><button class="btn btn-outline btn-sm">Export</button></div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>จังหวัด</th><th>รายรับ</th><th>ค่า CG</th><th>กำไร</th></tr></thead>
+              <tbody>
+                <tr><td>กรุงเทพฯ</td><td>฿198K</td><td>฿148K</td><td><strong>฿50K</strong></td></tr>
+                <tr><td>นนทบุรี</td><td>฿52K</td><td>฿39K</td><td><strong>฿13K</strong></td></tr>
+                <tr><td>ปทุมธานี</td><td>฿35K</td><td>฿26K</td><td><strong>฿9K</strong></td></tr>
+              </tbody>
+            </table></div>
+          </div>
+          <div class="card"><div class="card-head"><h3>สรุปตามผู้ป่วย (Top 5)</h3></div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>ผู้ป่วย</th><th>รายรับ</th><th>ค่า CG</th><th>กำไร</th></tr></thead>
+              <tbody>
+                <tr><td>คุณชูศักดิ์ ว.</td><td>฿49K</td><td>฿36K</td><td>฿13K</td></tr>
+                <tr><td>คุณสมชาย บ.</td><td>฿45K</td><td>฿34K</td><td>฿11K</td></tr>
+                <tr><td>คุณสุดา ม.</td><td>฿38K</td><td>฿29K</td><td>฿9K</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+        </div>
+        <div class="card"><div class="card-head"><h3>สรุปตามผู้ดูแล</h3><button class="btn btn-outline btn-sm">Export CSV</button></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>ผู้ดูแล</th><th>กะ</th><th>รายรับรวม</th><th>ค่าตอบแทน</th><th>กำไรสะท้อน</th></tr></thead>
+            <tbody>
+              <tr><td>พญ. แอน</td><td>42</td><td>฿98K</td><td>฿74K</td><td>฿24K</td></tr>
+              <tr><td>คุณนิด</td><td>38</td><td>฿86K</td><td>฿65K</td><td>฿21K</td></tr>
+              <tr><td>คุณเจ</td><td>28</td><td>฿62K</td><td>฿47K</td><td>฿15K</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <div class="page" data-role="admin" data-page="clinical-report">
+        <div class="highlight-banner"><div><h3><i data-lucide="stethoscope" class="ic ic-white"></i> รายงานดูแลผู้ป่วย / คลินิก</h3><p>ประวัติอาการ · กราฟแนวโน้มสุขภาพ · เอกสารวินิจฉัย</p></div></div>
+        <div class="search-bar" style="border-bottom:none;">
+          <input type="text" value="คุณสมชาย บุญเรือง" placeholder="ค้นหาชื่อผู้ป่วย..." />
+          <select><option>30 วันล่าสุด</option><option>90 วัน</option><option>6 เดือน</option></select>
+          <button class="btn btn-primary btn-sm">ค้นหา</button>
+        </div>
+        <div class="grid-2">
+          <div class="card"><div class="card-head"><h3><i data-lucide="activity" class="ic"></i> แนวโน้ม BP (Systolic)</h3></div>
+            <div class="line-chart-wrap" id="clinical-bp-chart"></div>
+          </div>
+          <div class="card"><div class="card-head"><h3><i data-lucide="heart-pulse" class="ic"></i> แนวโน้ม Pulse</h3></div>
+            <div class="line-chart-wrap" id="clinical-pulse-chart"></div>
+          </div>
+        </div>
+        <div class="card"><div class="card-head"><h3>ประวัติอาการ / สรุป Check-out</h3></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>วันที่</th><th>อาการ</th><th>BP</th><th>Pulse</th><th>Temp</th><th>อาหาร</th><th>CG</th></tr></thead>
+            <tbody>
+              <tr><td>19 มิ.ย.</td><td>อาการทั่วไปดี</td><td>130/80</td><td>72</td><td>36.5</td><td>ปานกลาง</td><td>พญ. แอน</td></tr>
+              <tr><td>18 มิ.ย.</td><td>เหนื่อยเล็กน้อยตอนเช้า</td><td>128/78</td><td>70</td><td>36.4</td><td>ดี</td><td>พญ. แอน</td></tr>
+              <tr><td>17 มิ.ย.</td><td>ปกติ</td><td>132/82</td><td>74</td><td>36.6</td><td>ปานกลาง</td><td>พญ. แอน</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="card"><div class="card-head"><h3><i data-lucide="paperclip" class="ic"></i> เอกสารแนบ / ผลตรวจ</h3><button class="btn btn-primary btn-sm">+ อัปโหลด</button></div>
+          <div style="padding:16px 20px;">
+            <div class="doc-item"><div><strong>ผลเลือด CBC — มิ.ย. 2569</strong><br><span style="font-size:.78rem;color:var(--muted);">lab_cbc_jun2026.pdf</span></div><button class="btn btn-outline btn-sm">ดู</button></div>
+            <div class="doc-item"><div><strong>X-ray หน้าอก</strong><br><span style="font-size:.78rem;color:var(--muted);">xray_chest_may2026.pdf</span></div><button class="btn btn-outline btn-sm">ดู</button></div>
+          </div>
         </div>
       </div>
 
@@ -929,13 +1096,17 @@
       <!-- ADMIN: Core Care (expanded) -->
       <div class="page" data-role="admin" data-page="patient-detail">
         <div class="card"><div class="card-head"><h3><i data-lucide="user" class="ic"></i> คุณสมชาย บุญเรือง · P-0001</h3><span class="badge badge-green">Active Case</span></div>
-          <div class="detail-grid">
+          <div style="padding:16px 20px;display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;">
+            <div style="width:88px;height:88px;border-radius:50%;background:var(--p-light);border:3px solid #c8e8d8;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--p-dark);">ส</div>
+            <div class="detail-grid" style="flex:1;padding:0;">
+            <div class="detail-item"><div class="lbl">เลขบัตรประชาชน</div><div class="val">1-2345-67890-12-3</div></div>
             <div class="detail-item"><div class="lbl">เพศ / อายุ</div><div class="val">ชาย · 78 ปี (15 มี.ค. 2491)</div></div>
             <div class="detail-item"><div class="lbl">ที่อยู่</div><div class="val">45/12 ซ.ลาดพร้าว 71 บางกะปิ กทม.</div></div>
             <div class="detail-item"><div class="lbl">ผู้ประสานงาน</div><div class="val">คุณสมหญิง (ลูกสาว) · 089-xxx-xxxx</div></div>
             <div class="detail-item"><div class="lbl">โรคประจำตัว</div><div class="val">ความดัน, ข้อเข่าเสื่อม, เบาหวาน Type 2</div></div>
             <div class="detail-item"><div class="lbl">แพ้ยา</div><div class="val">Penicillin</div></div>
-            <div class="detail-item"><div class="lbl">พื้นที่บริการ</div><div class="val">Zone A — บางกะปิ</div></div>
+            <div class="detail-item"><div class="lbl">พื้นที่บริการ</div><div class="val">Zone A — บางกะปิ · กรุงเทพฯ</div></div>
+            </div>
           </div>
         </div>
         <div class="card"><div class="card-head"><h3><i data-lucide="heart-pulse" class="ic"></i> Health Profile — ADL Assessment</h3><span class="badge badge-blue">Score 3/5</span></div>
@@ -993,14 +1164,14 @@
         <div class="card"><div class="card-head"><h3><i data-lucide="camera" class="ic"></i> ประวัติ Check-in (พร้อมรูปถ่าย)</h3></div>
           <div class="search-bar"><input type="text" placeholder="ค้นหาผู้ป่วย / ผู้ดูแล..." /><input type="date" value="2026-06-20" /></div>
           <div class="table-wrap"><table>
-            <thead><tr><th>วันที่</th><th>ผู้ป่วย</th><th>ผู้ดูแล</th><th>Check-in</th><th>Check-out</th><th>รูป</th><th>หมายเหตุ</th></tr></thead>
+            <thead><tr><th>วันที่</th><th>ผู้ป่วย</th><th>ผู้ดูแล</th><th>Check-in</th><th>Check-out</th><th>GPS</th><th>รูป</th><th>หมายเหตุ</th></tr></thead>
             <tbody>
-              <tr><td>20 มิ.ย.</td><td>คุณสมชาย บ.</td><td>พญ. แอน</td><td>08:02</td><td>—</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>—</td></tr>
-              <tr><td>20 มิ.ย.</td><td>คุณประเสริฐ ส.</td><td>คุณนิด</td><td>07:55</td><td>—</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>—</td></tr>
-              <tr><td>19 มิ.ย.</td><td>คุณสมชาย บ.</td><td>พญ. แอน</td><td>08:02</td><td>16:58</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>ปกติ</td></tr>
-              <tr><td>19 มิ.ย.</td><td>คุณสุดา ม.</td><td>พญ. แอน</td><td>08:10</td><td>17:05</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>—</td></tr>
-              <tr><td>19 มิ.ย.</td><td>คุณวิไล ร.</td><td>คุณเจ</td><td>09:00</td><td>18:02</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>ให้ยาครบ</td></tr>
-              <tr><td>18 มิ.ย.</td><td>คุณสมชาย บ.</td><td>พญ. แอน</td><td>08:05</td><td>17:01</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>—</td></tr>
+              <tr><td>20 มิ.ย.</td><td>คุณสมชาย บ.</td><td>พญ. แอน</td><td>08:02</td><td>—</td><td><i data-lucide="map-pin" class="ic ic-sm"></i> บางกะปิ</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>—</td></tr>
+              <tr><td>20 มิ.ย.</td><td>คุณประเสริฐ ส.</td><td>คุณนิด</td><td>07:55</td><td>—</td><td><i data-lucide="map-pin" class="ic ic-sm"></i> สุขุมวิท</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>—</td></tr>
+              <tr><td>19 มิ.ย.</td><td>คุณสมชาย บ.</td><td>พญ. แอน</td><td>08:02</td><td>16:58</td><td><i data-lucide="map-pin" class="ic ic-sm"></i> บางกะปิ</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>BP 130/80</td></tr>
+              <tr><td>19 มิ.ย.</td><td>คุณสุดา ม.</td><td>พญ. แอน</td><td>08:10</td><td>17:05</td><td><i data-lucide="map-pin" class="ic ic-sm"></i> รามคำแหง</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>—</td></tr>
+              <tr><td>19 มิ.ย.</td><td>คุณวิไล ร.</td><td>คุณเจ</td><td>09:00</td><td>18:02</td><td><i data-lucide="map-pin" class="ic ic-sm"></i> พหลโยธิน</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>ให้ยาครบ</td></tr>
+              <tr><td>18 มิ.ย.</td><td>คุณสมชาย บ.</td><td>พญ. แอน</td><td>08:05</td><td>17:01</td><td><i data-lucide="map-pin" class="ic ic-sm"></i> บางกะปิ</td><td><div class="photo-thumb"><i data-lucide="camera" class="ic"></i></div></td><td>—</td></tr>
             </tbody>
           </table></div>
         </div>
@@ -1060,12 +1231,43 @@
       <div class="page" data-role="caregiver" data-page="checkin">
         <div class="checkin-card">
           <h3>คุณสมชาย บุญเรือง</h3>
-          <div class="meta">เคส #CS-0241 · ดูแลที่บ้าน รายวัน · 08:00 – 17:00</div>
+          <div class="meta">เคส #CS-0241 · ดูแลที่บ้าน รายวัน · 08:00 – 17:00 · พญ. แอน วงศ์ดี</div>
           <div class="checkin-status">
             <div class="ci-box in"><i data-lucide="circle-check" class="ic ic-sm"></i> Check-in<div class="time">08:02</div></div>
             <div class="ci-box out"><i data-lucide="clock" class="ic ic-sm"></i> Check-out<div class="time">—</div></div>
           </div>
-          <div class="photo-area" onclick="alert('Mockup: เปิดกล้องถ่ายรูปยืนยัน')"><i data-lucide="camera" class="ic ic-lg"></i> แตะเพื่อถ่ายรูปยืนยันการดูแล</div>
+          <div class="gps-box">
+            <div><i data-lucide="map-pin" class="ic ic-sm"></i> <strong>ตำแหน่ง Check-in (GPS)</strong></div>
+            <div class="coords">13.7821, 100.6012 · บางกะปี กทม.</div>
+            <div class="gps-map-mock"><div class="gps-pin" style="left:50%;top:45%;"></div></div>
+          </div>
+          <div class="photo-area" onclick="alert('Mockup: เปิดกล้องถ่ายรูปยืนยัน Check-in')"><i data-lucide="camera" class="ic ic-lg"></i> รูปยืนยัน Check-in</div>
+
+          <div class="checkout-section">
+            <h4><i data-lucide="clipboard-check" class="ic ic-sm"></i> ฟอร์ม Check-out (สรุปกะ)</h4>
+            <div class="form-row"><label>โรคประจำตัว</label><input type="text" value="ความดัน, เบาหวาน Type 2" readonly style="background:var(--bg);" /></div>
+            <div class="form-row"><label>อาการ / อาการปัจจุบัน</label><textarea rows="2">อาการทั่วไปดี · ไม่มีไข้</textarea></div>
+            <div class="form-row"><label>ยาที่ให้วันนี้</label><textarea rows="2">Amlodipine 5mg เช้า · Metformin 500mg หลังอาหาร</textarea></div>
+            <div class="vital-grid">
+              <div><label>BP (mmHg)</label><input type="text" value="130/80" /></div>
+              <div><label>Pulse (/min)</label><input type="text" value="72" /></div>
+              <div><label>Temp (°C)</label><input type="text" value="36.5" /></div>
+            </div>
+            <div class="form-row"><label>อาหาร</label>
+              <div class="radio-group">
+                <label><input type="radio" name="food" /> <span>น้อย</span></label>
+                <label><input type="radio" name="food" checked /> <span>ปานกลาง</span></label>
+                <label><input type="radio" name="food" /> <span>ดี</span></label>
+              </div>
+            </div>
+            <div class="vital-grid" style="grid-template-columns:1fr 1fr;">
+              <div><label>ขับถ่าย (ครั้ง)</label><input type="number" value="2" /></div>
+              <div><label>การนอน (ชม.)</label><input type="number" value="7" step="0.5" /></div>
+            </div>
+            <div class="form-row"><label>กายภาพ / OT</label><textarea rows="2">พาเดินในบ้าน 15 นาที · ยืดแขนขา</textarea></div>
+            <div class="photo-area" style="height:100px;margin-bottom:12px;" onclick="alert('Mockup: ถ่ายรูปกิจกรรมวันนี้')"><i data-lucide="image" class="ic ic-lg"></i> รูปกิจกรรมวันนี้</div>
+          </div>
+
           <div class="card" style="margin:16px 0 0;border:1px solid var(--border);box-shadow:none;">
             <div class="card-head" style="padding:12px 16px;"><h3 style="font-size:.9rem;"><i data-lucide="clipboard-list" class="ic"></i> กิจกรรมที่ทำวันนี้</h3></div>
             <div class="care-checklist" style="padding:0 16px 12px;">
@@ -1078,10 +1280,10 @@
             </div>
           </div>
           <label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;">รายงานให้ญาติ (แสดงใน Portal ลูกค้า)</label>
-          <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2" placeholder="สรุปสิ่งที่ทำวันนี้ เช่น ให้ยาครบ · อาหารเช้าครบ...">ให้ยาครบ · BP 130/80 · อาหารเช้าครบ</textarea>
+          <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2">ให้ยาครบ · BP 130/80 · อาหารปานกลาง · นอนหลับ 7 ชม.</textarea>
           <label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;">หมายเหตุภายใน (Admin เท่านั้น)</label>
           <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2" placeholder="หมายเหตุภายใน — ลูกค้าไม่เห็น"></textarea>
-          <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="alert('Mockup: บันทึก Check-out สำเร็จ')">บันทึก Check-out</button>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="alert('Mockup: บันทึก Check-out + สรุปกะสำเร็จ')">บันทึก Check-out + ส่งสรุปกะ</button>
         </div>
       </div>
 
@@ -1198,11 +1400,11 @@
         <div class="card">
           <div class="card-head"><h3><i data-lucide="user" class="ic"></i> พนักงาน / Employees</h3></div>
           <div class="table-wrap"><table>
-            <thead><tr><th>รหัส</th><th>ชื่อ</th><th>ตำแหน่ง</th><th>สถานะ</th><th>เคสปัจจุบัน</th></tr></thead>
+            <thead><tr><th>รหัส</th><th>ชื่อ</th><th>ตำแหน่ง</th><th>ประเภทจ้าง</th><th>สถานะ</th><th>เคสปัจจุบัน</th></tr></thead>
             <tbody>
-              <tr><td>EMP-001</td><td>พญ. แอน วงศ์ดี</td><td>PN</td><td><span class="badge badge-green">Active</span></td><td>3 เคส</td></tr>
-              <tr><td>EMP-002</td><td>คุณนิด ศรีสุข</td><td>NA</td><td><span class="badge badge-green">Active</span></td><td>2 เคส</td></tr>
-              <tr><td>EMP-003</td><td>คุณเจ มั่นคง</td><td>Caregiver</td><td><span class="badge badge-green">Active</span></td><td>1 เคส</td></tr>
+              <tr><td>EMP-001</td><td>พญ. แอน วงศ์ดี</td><td>PN</td><td>พนักงานประจำ</td><td><span class="badge badge-green">Active</span></td><td>3 เคส</td></tr>
+              <tr><td>EMP-002</td><td>คุณนิด ศรีสุข</td><td>NA</td><td>รายวัน</td><td><span class="badge badge-green">Active</span></td><td>2 เคส</td></tr>
+              <tr><td>EMP-003</td><td>คุณเจ มั่นคง</td><td>Caregiver</td><td>สัญญาจ้าง</td><td><span class="badge badge-green">Active</span></td><td>1 เคส</td></tr>
             </tbody>
           </table></div>
         </div>
@@ -1275,6 +1477,35 @@
         </div>
       </div>
 
+      <div class="page" data-role="hr" data-page="hr-audit">
+        <div class="highlight-banner"><div><h3><i data-lucide="clipboard-check" class="ic ic-white"></i> HR Audit — ตรวจสอบ Check-in/out</h3><p>ใครยังไม่ check-in/out · ยังไม่ส่งสรุปกะ · ค่าตอบแทน = กะ × อัตรา</p></div></div>
+        <div class="search-bar">
+          <input type="text" placeholder="ค้นหาชื่อผู้ดูแล..." />
+          <input type="date" value="2026-06-20" />
+          <select><option>ทุกพื้นที่</option><option>กรุงเทพฯ</option><option>นนทบุรี</option></select>
+          <select><option>ทุกสถานะ</option><option>ครบ</option><option>ขาด Check-in</option><option>ขาด Check-out</option><option>ขาดสรุปกะ</option></select>
+        </div>
+        <div class="stats" style="padding:16px 20px 0;">
+          <div class="stat-card stat-card--green"><div class="val">16</div><div class="lbl">ครบทุกขั้นตอน</div></div>
+          <div class="stat-card stat-card--coral"><div class="val">2</div><div class="lbl">ขาด Check-in/out</div></div>
+          <div class="stat-card stat-card--lav"><div class="val">2</div><div class="lbl">ยังไม่ส่งสรุปกะ</div></div>
+          <div class="stat-card stat-card--sky"><div class="val">฿6,300</div><div class="lbl">ค่าตอบแทนวันนี้</div><div class="change">18 กะ × ฿350</div></div>
+        </div>
+        <div class="card"><div class="card-head"><h3>รายการตรวจสอบ</h3><button class="btn btn-outline btn-sm">Export CSV</button></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>วันที่</th><th>ผู้ดูแล</th><th>ผู้ป่วย</th><th>พื้นที่</th><th>Check-in</th><th>Check-out</th><th>สรุปกะ</th><th>สถานะ</th><th>ค่าตอบแทน</th></tr></thead>
+            <tbody>
+              <tr><td>20 มิ.ย.</td><td>พญ. แอน</td><td>คุณสมชาย บ.</td><td>บางกะปิ</td><td>08:02</td><td>—</td><td>—</td><td><span class="badge badge-yellow">กำลังดูแล</span></td><td>—</td></tr>
+              <tr><td>20 มิ.ย.</td><td>คุณนิด</td><td>คุณประเสริฐ ส.</td><td>สุขุมวิท</td><td>07:55</td><td>—</td><td>—</td><td><span class="badge badge-yellow">กำลังดูแล</span></td><td>—</td></tr>
+              <tr><td>20 มิ.ย.</td><td>คุณมาลี (แทน)</td><td>คุณวิไล ร.</td><td>พหลโยธิน</td><td>—</td><td>—</td><td>—</td><td><span class="badge badge-red">ขาด Check-in</span></td><td>฿0</td></tr>
+              <tr><td>19 มิ.ย.</td><td>พญ. แอน</td><td>คุณสมชาย บ.</td><td>บางกะปิ</td><td>08:02</td><td>16:58</td><td><i data-lucide="circle-check" class="ic ic-xs"></i></td><td><span class="badge badge-green">ครบ</span></td><td>฿350</td></tr>
+              <tr><td>19 มิ.ย.</td><td>คุณเจ</td><td>คุณรำไพ ส.</td><td>ลาดพร้าว</td><td>09:00</td><td>17:30</td><td><i data-lucide="clock" class="ic ic-xs"></i></td><td><span class="badge badge-yellow">ขาดสรุปกะ</span></td><td>฿350</td></tr>
+            </tbody>
+          </table></div>
+          <p style="padding:12px 16px;font-size:.78rem;color:var(--muted);">ค่าตอบแทน = จำนวนกะที่ครบ × อัตราจากประเภทบริการ (เช่น ฿350/วัน)</p>
+        </div>
+      </div>
+
       <div class="page" data-role="hr" data-page="hr-reports">
         <div class="card"><div class="card-head"><h3><i data-lucide="bar-chart-3" class="ic"></i> HR Reports</h3><button class="btn btn-outline btn-sm">Export CSV</button></div>
           <div class="stats" style="padding:16px 20px 0;">
@@ -1286,6 +1517,7 @@
           <div class="table-wrap"><table>
             <thead><tr><th>รายงาน</th><th>รายละเอียด</th><th></th></tr></thead>
             <tbody>
+              <tr><td>HR Audit — Check-in/out</td><td>วันนี้ · 96% ครบ</td><td><button class="btn btn-primary btn-sm" onclick="navigate('hr','hr-audit')">เปิด →</button></td></tr>
               <tr><td>Applicant Pipeline</td><td>Applied → Quiz → Passed → Hired</td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
               <tr><td>Quiz Score Summary</td><td>คะแนนเฉลี่ย 45.2/60</td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
               <tr><td>Headcount Report</td><td>42 Active · 3 Probation</td><td><button class="btn btn-outline btn-sm">PDF</button></td></tr>
@@ -1559,6 +1791,8 @@ const ROLES = {
       { group: 'ANALYTICS', items: [
         { page:'analytics', icon:'trending-up', th:'Analytics', en:'รายได้/เคส' },
         { page:'prescriptive', icon:'sparkles', th:'Prescriptive', en:'แนะนำ AI' },
+        { page:'accounting-report', icon:'calculator', th:'รายงานบัญชี', en:'กำไร' },
+        { page:'clinical-report', icon:'stethoscope', th:'รายงานคลินิก', en:'Vital' },
         { page:'reports', icon:'file-text', th:'รายงาน', en:'Reports' },
       ]},
       { group: 'COMPLIANCE', items: [
@@ -1571,7 +1805,7 @@ const ROLES = {
       ]},
     ],
     pages: {
-      dashboard: { title:'Dashboard', sub:'ภาพรวมระบบ · System Overview' },
+      dashboard: { title:'Dashboard', sub:'กะ/เดือน · CG Active · กำไร · แผนที่ GPS' },
       patients: { title:'ข้อมูลผู้ป่วย', sub:'Patients · 8 ราย · Staff CRUD' },
       'patient-detail': { title:'Health Profile', sub:'ADL Assessment · คุณสมชาย บ.' },
       cases: { title:'จัดการเคสบริการ', sub:'Staff · ทุกเคส · CRUD + Check-in' },
@@ -1588,6 +1822,8 @@ const ROLES = {
       users: { title:'จัดการผู้ใช้', sub:'Users Management' },
       migration: { title:'AppSheet Migration', sub:'สถานะการย้ายข้อมูล' },
       reports: { title:'รายงาน', sub:'Reports & Export' },
+      'accounting-report': { title:'รายงานบัญชี', sub:'รายรับ − ค่า CG = กำไร · สรุปตามจังหวัด/ผู้ป่วย/CG' },
+      'clinical-report': { title:'รายงานคลินิก', sub:'ประวัติอาการ · กราฟ Vital · เอกสารแนบ' },
       settings: { title:'ตั้งค่าระบบ', sub:'System Settings' },
     },
   },
@@ -1614,7 +1850,7 @@ const ROLES = {
     pages: {
       jobs: { title:'งานของฉัน', sub:'Assigned Jobs Only — วันนี้' },
       'daily-care': { title:'บันทึกการดูแลรายวัน', sub:'กิจกรรมที่ทำแต่ละวัน · ส่งรายงานให้ลูกค้า' },
-      checkin: { title:'Check-in / Check-out', sub:'บันทึกเวลา รูปถ่าย และกิจกรรมการดูแล' },
+      checkin: { title:'Check-in / Check-out', sub:'GPS · รูปถ่าย · ฟอร์ม Vital/ADL ครบชุด' },
       'attendance-history': { title:'ประวัติเข้างาน', sub:'Attendance History · ของฉัน' },
       earnings: { title:'รายได้ของฉัน', sub:'ค่าตอบแทนตามเคส · มิ.ย. 2569' },
       'my-payslip': { title:'สลิปเงินเดือน', sub:'PAY Slip · ดูเฉพาะของตัวเอง' },
@@ -1638,6 +1874,7 @@ const ROLES = {
         { page:'payslip', icon:'wallet', th:'PAY Slip', en:'' },
       ]},
       { group: 'REPORTS', items: [
+        { page:'hr-audit', icon:'clipboard-check', th:'HR Audit', en:'Check-in/out' },
         { page:'hr-reports', icon:'bar-chart-3', th:'HR Reports', en:'' },
       ]},
     ],
@@ -1648,6 +1885,7 @@ const ROLES = {
       employees: { title:'พนักงาน', sub:'Employees' },
       documents: { title:'เอกสาร', sub:'Contract · Offer Letter · PDF' },
       payslip: { title:'PAY Slip', sub:'สลิปเงินเดือน' },
+      'hr-audit': { title:'HR Audit', sub:'ตรวจ Check-in/out · สรุปกะ · ค่าตอบแทนอัตโนมัติ' },
       'hr-reports': { title:'HR Reports', sub:'รายงาน HR' },
     },
   },
@@ -2002,8 +2240,25 @@ function renderTrainingVideos() {
   `).join('')).join('');
 }
 
+function renderClinicalCharts() {
+  const days = ['13','14','15','16','17','18','19'];
+  const bp = [134, 132, 130, 131, 128, 129, 130];
+  const pulse = [76, 74, 72, 73, 70, 71, 72];
+  const bpEl = document.getElementById('clinical-bp-chart');
+  const pulseEl = document.getElementById('clinical-pulse-chart');
+  if (bpEl) bpEl.innerHTML = buildLineChartSvg({
+    labels: days, data: bp, color: '#14a269', fill: 'rgba(20,162,105,.12)',
+    maxY: 150, yTicks: [120, 130, 140, 150], ariaLabel: 'กราฟ BP Systolic',
+  });
+  if (pulseEl) pulseEl.innerHTML = buildLineChartSvg({
+    labels: days, data: pulse, color: '#5bb8e8', fill: 'rgba(91,184,232,.12)',
+    maxY: 90, yTicks: [60, 70, 80, 90], ariaLabel: 'กราฟ Pulse',
+  });
+}
+
 renderAdminCharts();
 renderDashTrendChart();
+renderClinicalCharts();
 renderPatientsTable();
 renderTrainingVideos();
 refreshIcons();

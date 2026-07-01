@@ -456,6 +456,14 @@
       border-top: 1px solid var(--border); margin-top: 20px; padding-top: 18px;
     }
     .checkout-section h4 { font-size: .9rem; margin-bottom: 12px; color: var(--p-dark); }
+    .checkout-subsection {
+      margin-bottom: 14px; padding: 12px 14px; background: var(--bg);
+      border-radius: 10px; border: 1px solid var(--border);
+    }
+    .checkout-subsection h4 {
+      font-size: .78rem; text-transform: uppercase; letter-spacing: .04em;
+      color: var(--p); margin: 0 0 10px; font-weight: 700;
+    }
     .vital-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
     .vital-grid label { font-size: .72rem; color: var(--muted); display: block; margin-bottom: 4px; }
     .vital-grid input, .form-row input, .form-row select, .form-row textarea {
@@ -653,7 +661,7 @@
       <img src="assets/logo.png" alt="PS Care" />
       <h1>PS Care Web Application</h1>
       <p>ระบบบริหารจัดการ Home Care ครบวงจร — ออกแบบตาม Brief ลูกค้า (คุณประสาน)</p>
-      <span class="demo-badge">UI Mockup v4.1 · Demo ส่งลูกค้า</span>
+      <span class="demo-badge">UI Mockup v4.2 · Demo ส่งลูกค้า</span>
     </div>
     <div style="text-align:center;margin-bottom:12px;">
       <span class="modules-badge"><i data-lucide="clipboard-list" class="ic ic-sm ic-white"></i> 7 ข้อตาม Brief ลูกค้า · คลิกเพื่อดูตัวอย่าง</span>
@@ -678,7 +686,7 @@
       <div class="compare-item"><span class="ico"><i data-lucide="camera"></i></span><strong>Photo Check-in</strong>ยืนยันด้วยรูปถ่าย</div>
       <div class="compare-item"><span class="ico"><i data-lucide="graduation-cap"></i></span><strong>Training+Quiz</strong>60 ข้อสอบ HR</div>
       <div class="compare-item"><span class="ico"><i data-lucide="map-pin"></i></span><strong>GPS Check-in</strong>พิกัด + แผนที่ยืนยัน</div>
-      <div class="compare-item"><span class="ico"><i data-lucide="activity"></i></span><strong>Check-out Vital</strong>BP, อาหาร, ADL ครบ</div>
+      <div class="compare-item"><span class="ico"><i data-lucide="activity"></i></span><strong>Check-out ครบ AppSheet</strong>31 ฟิลด์ Vital+ADL</div>
       <div class="compare-item"><span class="ico"><i data-lucide="file-bar-chart"></i></span><strong>Reports</strong>HR Audit · บัญชี · คลินิก</div>
     </div>
     <!-- <div class="module-map">
@@ -739,7 +747,7 @@
         </div>
       </div>
     </div>
-    <div class="landing-footer">PS Care · Mockup v4.1 · Brief ลูกค้า คุณประสาน · มิถุนายน 2569</div>
+    <div class="landing-footer">PS Care · Mockup v4.2 · Check-out ครบ AppSheet · มิถุนายน 2569</div>
   </div>
 </div>
 
@@ -1330,33 +1338,74 @@
           </div>
           <div id="step-checkout" class="step-panel">
             <div class="checkout-section" style="border-top:none;padding-top:0;margin-top:0;">
-              <div class="form-row"><label>โรคประจำตัว</label><input type="text" value="ความดัน, เบาหวาน Type 2" readonly style="background:var(--bg);" /></div>
-              <div class="form-row"><label>อาการ / อาการปัจจุบัน</label><textarea rows="2">อาการทั่วไปดี · ไม่มีไข้</textarea></div>
-              <div class="form-row"><label>ยาที่ใช้วันนี้</label><textarea rows="2">Amlodipine 5mg เช้า · Metformin 500mg หลังอาหาร</textarea></div>
-              <div class="vital-grid">
-                <div><label>BP (mmHg)</label><input type="text" value="130/80" /></div>
-                <div><label>Pulse (/min)</label><input type="text" value="72" /></div>
-                <div><label>Temp (°C)</label><input type="text" value="36.5" /></div>
-              </div>
-              <div class="form-row"><label>อาหาร (น้อย / ปานกลาง / ดี)</label>
-                <div class="radio-group">
-                  <label><input type="radio" name="food" /> <span>น้อย</span></label>
-                  <label><input type="radio" name="food" checked /> <span>ปานกลาง</span></label>
-                  <label><input type="radio" name="food" /> <span>ดี</span></label>
+              <p style="font-size:.78rem;color:var(--muted);margin:0 0 12px;">ฟอร์ม Check-out ครบตาม AppSheet (31 ฟิลด์) · ลูกค้าเห็นเฉพาะส่วนที่กำหนด</p>
+
+              <div class="checkout-subsection">
+                <h4><i data-lucide="heart-pulse" class="ic ic-xs"></i> สัญญาณชีพ (Vital)</h4>
+                <div class="vital-grid">
+                  <div><label>อุณหภูมิ (°C)</label><input type="text" value="36.5" /></div>
+                  <div><label>ชีพจร (/min)</label><input type="text" value="72" /></div>
+                  <div><label>ความดัน (mmHg)</label><input type="text" value="130/80" /></div>
+                  <div><label>อัตราการหายใจ</label><input type="text" value="18" /></div>
+                  <div><label>SpO2 (%)</label><input type="text" value="98" /></div>
                 </div>
               </div>
-              <div class="vital-grid" style="grid-template-columns:1fr 1fr;">
-                <div><label>ขับถ่าย (ครั้ง)</label><input type="number" value="2" /></div>
-                <div><label>การนอน (ชม.)</label><input type="number" value="7" step="0.5" /></div>
+
+              <div class="checkout-subsection">
+                <h4><i data-lucide="wind" class="ic ic-xs"></i> การหายใจ</h4>
+                <div class="vital-grid" style="grid-template-columns:1fr 1fr;">
+                  <div class="form-row" style="margin:0;"><label>การหายใจ</label><select><option>ปกติ</option><option>หอบเหนื่อย</option></select></div>
+                  <div class="form-row" style="margin:0;"><label>ใช้ออกซิเจน</label><select><option>ไม่ใช้</option><option>ใช้</option></select></div>
+                </div>
               </div>
-              <div class="form-row"><label>กายภาพ / OT</label><textarea rows="2">พาเดินในบ้าน 15 นาที · ยืดแขนขา</textarea></div>
+
+              <div class="checkout-subsection">
+                <h4><i data-lucide="utensils" class="ic ic-xs"></i> อาหาร / น้ำ</h4>
+                <div class="form-row"><label>การรับประทาน</label><select><option>รับประทานได้ตามปกติ</option><option>ได้น้อย</option></select></div>
+                <div class="form-row"><label>การให้อาหารทางสาย</label><select><option>ไม่มี</option><option>NG Tube</option></select></div>
+                <div class="form-row"><label>การดื่มน้ำ (มล.)</label><input type="number" value="1000" /></div>
+              </div>
+
+              <div class="checkout-subsection">
+                <h4><i data-lucide="droplets" class="ic ic-xs"></i> ปัสสาวะ / อุจจาระ</h4>
+                <div class="vital-grid" style="grid-template-columns:1fr 1fr 1fr 1fr;">
+                  <div><label>ปัสสาวะ</label><select><option>ปกติ</option></select></div>
+                  <div><label>จำนวนครั้ง</label><input type="number" value="3" /></div>
+                  <div><label>อุจจาระ</label><select><option>ปกติ</option></select></div>
+                  <div><label>จำนวนครั้ง</label><input type="number" value="1" /></div>
+                </div>
+              </div>
+
+              <div class="checkout-subsection">
+                <h4><i data-lucide="person-standing" class="ic ic-xs"></i> กิจกรรม / การเคลื่อนไหว</h4>
+                <div class="form-row"><label>การเคลื่อนไหว</label><select><option>ลุกนั่ง-เดินได้เอง</option></select></div>
+                <div class="form-row"><label>กิจกรรม</label><input type="text" value="ทำกายภาพ · พาเดินในบ้าน" /></div>
+              </div>
+
+              <div class="checkout-subsection">
+                <h4><i data-lucide="stethoscope" class="ic ic-xs"></i> การรักษา / ยา</h4>
+                <div class="form-row"><label>บาดแผล</label><select><option>ไม่มีแผล</option></select></div>
+                <div class="form-row"><label>หัตถการ</label><input type="text" value="-" /></div>
+                <div class="form-row"><label>การให้ยา</label><textarea rows="2">Amlodipine 5mg เช้า · Metformin 500mg หลังอาหาร</textarea></div>
+                <div class="form-row"><label>การรักษา</label><input type="text" placeholder="อาการที่รักษา" /></div>
+              </div>
+
+              <div class="checkout-subsection">
+                <h4><i data-lucide="clipboard-list" class="ic ic-xs"></i> สรุปวัน</h4>
+                <div class="form-row"><label>อาการผิดปกติ</label><select><option>ไม่มี</option></select></div>
+                <div class="form-row"><label>อารมณ์</label><select><option>อารมณ์แจ่มใส</option></select></div>
+                <div class="form-row"><label>การนอนหลับ</label><select><option>ปกติ</option></select></div>
+                <div class="form-row"><label>ภาพรวมวันนี้</label><textarea rows="2">อาการทั่วไปดี · ไม่มีไข้</textarea></div>
+                <div class="form-row"><label>ควรแจ้ง (ญาติ/Admin)</label><select><option>ไม่มี</option><option>ควรแจ้ง</option></select></div>
+              </div>
+
               <div class="photo-area" style="height:100px;margin-bottom:12px;" onclick="alert('Mockup: ถ่ายรูปกิจกรรมวันนี้')"><i data-lucide="image" class="ic ic-lg"></i> รูปกิจกรรมวันนี้ (Check-out)</div>
             </div>
-            <label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;">รายงานให้ญาติ (แสดงใน Portal — ข้อ 7)</label>
-            <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2">ให้ยาครบ · BP 130/80 · อาหารปานกลาง · นอนหลับ 7 ชม.</textarea>
-            <label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;">หมายเหตุภายใน (Admin เท่านั้น)</label>
-            <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2" placeholder="หมายเหตุภายใน — ลูกค้าไม่เห็น"></textarea>
-            <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="alert('Mockup: Check-out + สรุปกะสำเร็จ · ส่งรายงานให้ลูกค้าแล้ว')">บันทึก Check-out + ส่งสรุปกะ</button>
+            <label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;">รายงานให้ญาติ (Portal — จาก ภาพรวมวันนี้)</label>
+            <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2">ให้ยาครบ · BP 130/80 · อาหารปกติ · นอนหลับดี</textarea>
+            <label style="display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;">หมายเหตุเพิ่มเติม (ภายใน — ลูกค้าไม่เห็น)</label>
+            <textarea style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;margin-bottom:12px;" rows="2" placeholder="หมายเหตุภายใน Admin/CG เท่านั้น"></textarea>
+            <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="alert('Mockup: Check-out ครบ 31 ฟิลด์ · ส่งสรุปให้ลูกค้าแล้ว')">บันทึก Check-out + ส่งสรุปกะ</button>
           </div>
         </div>
       </div>
